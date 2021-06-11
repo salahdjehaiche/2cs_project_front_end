@@ -1,10 +1,13 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link :to="{name : 'GestionUtilisateur'}">Gestion Utilisateur</router-link>
-  </div>
   <router-view/>
 </template>
+<script>
+
+export default {
+  components:{
+    }
+}
+</script>
 
 <style>
 #app {

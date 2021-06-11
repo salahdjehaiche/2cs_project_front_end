@@ -1,6 +1,6 @@
 <template>
-   <div class="backdrop py-36" @click.self="closemodal" > 
-       <form @submit.prevent="submit"  class="w-2/4 mx-auto" v-if="ajouter">
+   <div class="backdrop py-36 " @click.self="closemodal" > 
+       <form @submit.prevent="submit"  class="w-2/4 mx-60 " v-if="ajouter">
             <div class="w-full mx-auto px-4 sm:px-6 lg:px-8 lg:py-8 bg-white rounded-lg ">
                 <label class="text-left px-2 py-4 text-lg flex items-center">
                     <span class="text-grey-800  mr-3 ">Nom</span>
@@ -54,7 +54,7 @@
                 </button>
             </div>
        </form>
-        <div class="w-2/4 mx-auto" v-if="supprimer">
+        <div class="w-2/4 mx-60" v-if="supprimer">
                 <div class="w-full mx-auto px-auto sm:px-6 lg:px-8 lg:py-8 bg-white rounded-lg ">
                 <label class="mx-auto px-3 py-4 text-lg  block">
                     <span class="text-grey-800  mr-3 ">Are you sure you want to delete this user ??</span>
