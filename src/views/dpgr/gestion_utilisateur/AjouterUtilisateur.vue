@@ -92,7 +92,7 @@
                         class="py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white  my-2 bg-red-500 hover:bg-red-600 
                         focus:border-red-500 focus:ring-2 focus:ring-red-500 focus:outline-none focus:ring-opacity-50" >
                         <div class="flex items-center">
-                                  <svg class="h-6 w-6 mr-3 md:w-1/3" fill="none" viewBox="0 0 24 24" stroke="white">
+                                  <svg class="h-6 w-6 mr-3" fill="none" viewBox="0 0 24 24" stroke="white">
                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                             </svg>
                             <h3>Confirmer</h3>
@@ -102,7 +102,7 @@
                         class="py-2 ml-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white  my-2 bg-gray-500 hover:bg-gray-600 
                         focus:border-gray-500 focus:ring-2 focus:ring-gray-500 focus:outline-none focus:ring-opacity-50" >
                         <div class="flex items-center">
-                            <svg  class="h-6 w-6 mr-3 md:w-1/3" fill="none" viewBox="0 0 24 24" stroke="white">
+                            <svg  class="h-6 w-6 mr-3" fill="none" viewBox="0 0 24 24" stroke="white">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
                             <h3> Annuler</h3>

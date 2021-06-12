@@ -17,15 +17,15 @@
             </div>
             <div class="px-4 py-5 bg-white sm:p-6">
                 <div class="grid grid-cols-6 gap-6" v-for="information in projectInformations" :key="information">
-                <div class="col-span-6 sm:col-span-6">
-                    <label
-                    for="nom"
-                    class="block text-sm font-medium text-black text-left text-md mb-3"
-                    >{{information.label}} :</label
-                    >
+                    <div class="col-span-6 sm:col-span-6">
+                        <label
+                        for="nom"
+                        class="block text-sm font-medium text-black text-left text-md mb-3"
+                        >{{information.label}} :</label
+                        >
+                    </div>
                 </div>
-
-                </div>
+                <TableColaboration :tableau="tablecolaboration" />
             </div>
             </div>
         </div>
@@ -33,8 +33,12 @@
 </template>
 
 <script>
+import TableColaboration from './TableColaboration.vue'
 export default {
     props:['id_equipe'],
+    components:{
+        TableColaboration
+    },
   data(){
       return{ 
  
@@ -49,6 +53,22 @@ export default {
           {label:'Objectifs',information:''},
           {label:'Méthodologie',information:''},
         ],
+        tablecolaboration:[
+            {
+                etablissement:'--',
+                nom:'--',
+                prenom:'--',
+                fonction:'--',
+                pays:'--'
+            },
+             {
+                etablissement:'--',
+                nom:'--',
+                prenom:'--',
+                fonction:'--',
+                pays:'--'
+            }
+        ]
       }
   }
 }

@@ -20,7 +20,7 @@
             <div
               class="md:grid md:grid-cols-4 md:gap-6 py-2 sm:px-3 lg:px-4 bg-white rounded-md"
             >
-              <ProjetInformationCard :id_equipe="id" />
+              <ProjetInformationCard :id_equipe="id" />            
               <MembresEquipeCard   :id_equipe="id"/>
             </div>
           </div>

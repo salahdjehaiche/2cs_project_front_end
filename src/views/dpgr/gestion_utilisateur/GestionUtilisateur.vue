@@ -2,17 +2,16 @@
   
 
  <WelcomeLayout >
-
-    
-      <MainHeader :titre="' C\'est la page de Gestion Utilisateur'" />    
-
-     <main class="bg-white">
+   
+    <MainHeader :titre="' C\'est la page de Gestion Utilisateur'" />    
+    <main class="bg-white">
       <div class="max-w-8xl mx-auto sm:px-6 lg:px-4">
          <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
           <div class="w-full  px-6 pb-2 md:flex md:items-center justify-between">
             <div class="text-left px-2 py-4 text-xl md:w-1/3 ">
               <p class="text-grey-800 font-bold mr-3 block">Rechercher</p>
-              <input type="text" class="block w-full px-3 py-1  transition duration-100 ease-in-out border rounded shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:ring-opacity-50 disabled:opacity-50 disabled:cursor-not-allowed">
+              <input type="text"  v-model="rechercher"
+                class="block w-full px-3 py-1  transition duration-100 ease-in-out border rounded shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:ring-opacity-50 disabled:opacity-50 disabled:cursor-not-allowed">
             </div>
             <div class="text-left px-2 py-4 text-xl  md:w-1/3   ">
               <p class="text-grey-800 font-bold mr-3">Filter Role</p>
@@ -95,7 +94,7 @@
                       ></th>
                     </tr>
                   </thead>
-                  <tbody class="bg-white divide-y divide-gray-200" v-for="user in usersFiltre" :key="user">
+                  <tbody class="bg-white divide-y divide-gray-200" v-for="user in rechercherUsers" :key="user">
                     <tr>
                       <td class="px-6 py-2 whitespace-no-wrap">
                         <div class="text-sm font-bold leading-5 text-left text-blue-600">
@@ -170,13 +169,15 @@ export default {
                 },
                 {
                   id:2,
-                  nom:'Djehaiche',
-                  prenom:'Salah',
-                  email:'hs_djehaiche@esi.dz',
+                  nom:'zatout',
+                  prenom:'Baderdinne',
+                  email:'hs_zatout@esi.dz',
                   role:'membreCS',
                 }
             ],
-            usersFiltre: this.users
+            usersFiltre: this.users,
+            filterSelection:false,
+            rechercher:''
         }
     },
     methods:{
@@ -187,15 +188,11 @@ export default {
           this.supprimer= !this.supprimer
         },
         filterUsers(){
-          if(this.roleSelection !=' '){
-            this.usersFiltre = this.users.filter((user) =>{
-                return user.role ===this.roleSelection
-            })  
-          }else{
-             this.usersFiltre=this.users
-          }
-        }
+         this.filterSelection =true
+         this.rechercherUsers
+        }        
     },
+ 
      mounted(){
       this.usersFiltre=this.users
     },
@@ -203,7 +200,38 @@ export default {
       if(!this.ajouter_utilisateur && !this.supprimer) {
         console.log("get users from  database")
         }
-    }
+    },
+    computed:{
+     rechercherUsers()  
+      {
+        if(this.rechercher !=''){
+          this.usersFiltre = this.users.filter((user) =>{
+              const search=this.rechercher.toLowerCase()
+              const nom = user.nom.toLowerCase()
+              const prenom =user.prenom.toLowerCase()
+              const email = user.email.toLowerCase()
+              return  (nom.includes(search)|| prenom.includes(search) ||email.includes(search))              
+          })  
+        }else{
+             this.usersFiltre=this.users
+        }
+        if(this.filterSelection){
+           if(this.roleSelection !=' '){
+            this.usersFiltre = this.usersFiltre.filter((user) =>{
+                return user.role ===this.roleSelection
+            })  
+          }else{
+             this.usersFiltre=this.users
+             this.filterSelection=false
+          }
+        }
+
+
+        
+        return this.usersFiltre
+      }
+    },  
+    
     
 }
 </script>
