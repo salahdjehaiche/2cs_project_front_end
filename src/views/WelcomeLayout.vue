@@ -10,9 +10,7 @@
                 <welcome-header />
 
                 <div class="p-3 bg-white mb-6">
-                    <main>
-                        <slot ></slot>
-                    </main>
+                    <slot ></slot>                    
                 </div>
 
                

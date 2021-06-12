@@ -19,65 +19,8 @@
             <div
               class="md:grid md:grid-cols-4 md:gap-6 py-2 sm:px-3 lg:px-4 bg-white rounded-md"
             >
-              <div
-                class="md:col-span-3 md:border-r border-gray-300 px-3 sm:px-2"
-              >
-                <div class="px-4 sm:px-0">
-                  <div class="bg-green-50 overflow-hidden shadow sm:rounded-lg">
-                    <div
-                      class="w-full h-10 px-6 pb-1 flex items-center justify-between"
-                    >
-                      <div
-                        class="text-left px-2 py-1 text-xl flex items-center"
-                      >
-                        <p class="text-grey-800 font-bold">
-                          Information sur le projet
-                        </p>
-                      </div>
-                    </div>
-                    <div class="px-4 py-5 bg-white sm:p-6">
-                      <div class="grid grid-cols-6 gap-6" v-for="information in projectInformations" :key="information">
-                        <div class="col-span-6 sm:col-span-6">
-                          <label
-                            for="nom"
-                            class="block text-sm font-medium text-black text-left text-md mb-3"
-                            >{{information.label}} :</label
-                          >
-                        </div>
-
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="md:col-span-1 px-3 sm:px-2">
-                <div class="px-4 sm:px-0">
-                  <div
-                    class="border border-grey-light lg:border lg:border-grey-light bg-white rounded lg:rounded p-2 flex flex-col justify-between leading-normal"
-                  >
-                    <div class="mb-2">
-                      <div class="text-black font-bold text-xl">Membres</div>
-                    </div>
-                    <div class="flex items-center">
-                      <div class="text-sm">
-                        <ul v-for="membre in membres" :key="membre">
-                          <li class="flex items-center text-black py-2">
-                            <svg
-                              class="h-6 w-6 fill-current mr-2 text-blue-800"
-                              viewBox="0 0 20 20"
-                            >
-                              <path fill="none" d="M9.875,0.625C4.697,0.625,0.5,4.822,0.5,10s4.197,9.375,9.375,9.375S19.25,15.178,19.25,10S15.053,0.625,9.875,0.625"></path>
-                            </svg>
-                            <span class="text-grey-dark text-center"
-                              >{{membre.nom}} {{membre.prenom}}</span
-                            >
-                          </li>                        
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <ProjetInformationCard :id_equipe="id" />
+              <MembresEquipeCard   :id_equipe="id"/>
             </div>
           </div>
           <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
@@ -202,34 +145,18 @@
 </template>
 
 <script>
+import MembresEquipeCard from '../../components/MembresEquipeCard.vue'
+import ProjetInformationCard from '../../components/ProjetInformationCard.vue'
 import WelcomeLayout from '../WelcomeLayout.vue'
 export default {
   props :['id'],
-  components: { WelcomeLayout },
+  components: { WelcomeLayout,MembresEquipeCard, ProjetInformationCard  },
   data(){
       return{ 
-        projectInformations:[
-          {label:'Intitulé de projet',information:''},
-          {label:'Domaine de recherche',information:''},
-          {label:'Filière',information:''},
-          {label:'Spécialité',information:''},
-          {label:'Intitulé de la formation doctorale',information:''},
-          {label:'Problématique',information:''},
-          {label:'Mot clés',information:''},
-          {label:'Objectifs',information:''},
-          {label:'Méthodologie',information:''},
-        ],
-        membres:[
-            {nom:'Djehaiche',prenom:'Salah'},
-            {nom:'Debabza',prenom:'Idriss'},
-            {nom:'Telli',prenom:'Mohamed Khoja'},
-            {nom:'Haddad',prenom:'Zineddine'},
-            {nom:'Kherroubi',prenom:'Oussama'},
-        ],
         decisions:[
             {conseil:'CL ',pointVue:'--' },
             {conseil:'CS ',pointVue:'--' },
-        ]
+        ],
       }
   },
   mounted(){
