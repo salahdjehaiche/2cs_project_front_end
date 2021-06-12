@@ -13,10 +13,17 @@ const routes = [
     component: () => import( '../views/gestion_utilisateur/GestionUtilisateur.vue')
   },
   {
-    path: '/ConsulterProjetDPGR',
+    path: '/consulterprojet',
     name: 'ConsulterProjetDPGR',
     component: () => import( '../views/ConsulterProjet/ConsulterProjetDPGR.vue')
-  }
+  },
+  {
+    path: '/consulterprojet/:id',
+    name: 'ProjetDetail',
+    component: () => import( '../views/ConsulterProjet/ProjetDetail.vue'),
+    props:true
+
+  },
 ]
 
 const router = createRouter({
