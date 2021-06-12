@@ -66,18 +66,19 @@
                     <div
                         class="px-4 py-3 bg-gray-50 text-right sm:px-6"
                     >
+
+                        <button
+                        type="submit"
+                        class="py-2 px-4 mb-3 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-800 hover:bg-blue-700"
+                        >
+                        Sauvegarder
+                        </button>
                         <button
                         type="reset"
                         @click="closemodal"
                         class="py-2 px-4 mr-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-500"
                         >
                         Annuler
-                        </button>
-                        <button
-                        type="submit"
-                        class="py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-800 hover:bg-blue-700"
-                        >
-                        Sauvegarder
                         </button>
                     </div>
                     </div>
@@ -133,8 +134,7 @@ updated(){
     width: 100%;
     height: 100%;
 }
-.card{
-    width:50%;
+.card{    
     background-color: white;
     border-radius: 0.375rem;
 }
