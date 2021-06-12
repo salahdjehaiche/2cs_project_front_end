@@ -6,7 +6,7 @@
         <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
           <div class="w-full h-15 px-6 pb-2 flex items-center justify-between">
             <div class="text-left px-2 py-4 text-xl flex items-center">
-              <p class="text-grey-800 font-bold">Laboratoire {{laboTab.name}} + CS</p>
+              <p class="text-grey-800 font-bold">Laboratoire {{laboTab.name}} </p>
             </div>
           </div>
         </div>
@@ -15,25 +15,22 @@
     </main>
   </WelcomeLayout>
 </template>
-
 <script>
 import TableauConsulterProjet from '../../components/TableauConsulterProjet.vue'
 import MainHeader from '../../components/mainHeader.vue'
 import WelcomeLayout from '../WelcomeLayout.vue'
 
 
-// @ is an alias to /src
-
 export default {
-  name: 'ConsulterProjetDPGR',
+ name: 'ConsulterProjetCS',
   components: {
     WelcomeLayout,
     TableauConsulterProjet,
-    MainHeader,
+    MainHeader
   },
   data(){
     return{
-    linkName:{name : 'ProjetDetail' ,user:'dpgr'},
+    linkName:{name : 'ProjetDetail' ,user:'cs'},
      
       laboTabs:[
         {
@@ -77,9 +74,5 @@ export default {
         ]
     }
   }
-}
+};
 </script>
-
-<style>
-
-</style>

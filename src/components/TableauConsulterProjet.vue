@@ -11,7 +11,7 @@
                   <thead>
                     <tr>
                       <th
-                        class="px-6 py-3 bg-blue-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
+                        class="px-6 py-3 bg-blue-50  text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
                       >
                         id_équipe
                       </th>
@@ -29,7 +29,12 @@
                       <th
                         class="px-6 py-3 bg-blue-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
                       >
-                        Décision
+                        Date
+                      </th>                      
+                      <th
+                        class="px-6 py-3 bg-blue-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
+                      >
+                        Etat
                       </th>
                       <th
                         class="px-6 py-3 bg-blue-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
@@ -39,22 +44,25 @@
                   <tbody class="bg-white divide-y divide-gray-200">
                     <tr v-for="tab in tableau" :key="tab">
                       <td class="px-6 py-2 whitespace-no-wrap">
-                        <div class="text-sm font-bold leading-5 text-blue-600">
+                        <div class="text-sm font-bold leading-5  text-blue-600">
                           {{tab.id_équipe}}
                         </div>
                       </td>
                       <td class="px-6 py-2 whitespace-no-wrap">
-                        <div class="text-xs leading-5 text-gray-900"> {{tab.chef_equipe}} </div>
+                        <div class="text-xs leading-5 text-gray-900 text-left"> {{tab.chef_equipe}} </div>
                       </td>
                       <td class="px-6 py-2 whitespace-no-wrap">
-                        <div class="text-xs leading-5 text-gray-900">{{tab.intutilé}}</div>
+                        <div class="text-xs leading-5 text-gray-900 text-left">{{tab.intutilé}}</div>
                       </td>
                       <td class="px-6 py-2 whitespace-normal">
-                        <div class="text-xs leading-5 text-gray-900">{{tab.décision}}</div>
+                        <div class="text-xs leading-5 text-gray-900 text-left">{{tab.date}}</div>
+                      </td>
+                      <td class="px-6 py-2 whitespace-normal">
+                        <div class="text-xs leading-5 text-gray-900 text-left">{{tab.etat}}</div>
                       </td>
                       <td class="px-6 py-4 whitespace-no-wrap">
-                        <div class="text-xs leading-5 text-gray-900">
-                          <router-link  :to="{name:linkName.name ,params: {id :tab.id_équipe}}"
+                        <div class="text-xs leading-5 text-gray-900 text-left">
+                          <router-link  :to="{name:linkName.name ,params: {user:linkName.user ,id :tab.id_équipe}}"
                             class="text-blue-800 hover:text-blue-500 hover:font-bold"
                           >
                             <svg

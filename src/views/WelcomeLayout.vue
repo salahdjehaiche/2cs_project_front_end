@@ -34,6 +34,8 @@ export default {
                 //from data base 
                 {name :'GestionUtilisateur' , label: 'Gestion Utilisateur'},
                 {name :'ConsulterProjetDPGR' , label: 'Consulter Projet'},
+                {name :'ConsulterProjetCS' , label: 'Consulter ProjetCS'},
+                {name :'ConsulterProjetCL' , label: 'Consulter ProjetCL'},
                 {name :'AffecterLesDelais' , label: 'Affecter Les Delais'},
             ]
         }

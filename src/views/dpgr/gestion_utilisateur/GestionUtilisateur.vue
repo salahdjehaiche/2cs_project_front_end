@@ -3,13 +3,9 @@
 
  <WelcomeLayout >
 
-    <header class="bg-gray-100 shadow">
-      <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
-        <h1 class="text-2xl font-bold leading-tight text-gray-900">
-        C'est la page de Gestion Utilisateur
-        </h1>
-      </div>
-    </header>
+    
+      <MainHeader :titre="' C\'est la page de Gestion Utilisateur'" />    
+
      <main class="bg-white">
       <div class="max-w-8xl mx-auto sm:px-6 lg:px-4">
          <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
@@ -147,12 +143,14 @@
 </template>
 
 <script>
-import WelcomeLayout from '../WelcomeLayout.vue'
+import WelcomeLayout from '../../WelcomeLayout.vue'
+import MainHeader from '../../../components/mainHeader.vue'
 import AjouterUtilisateur  from './AjouterUtilisateur.vue'
 export default {
   components: {
     AjouterUtilisateur,
-    WelcomeLayout
+    WelcomeLayout,
+    MainHeader
   },
     data(){
         return{

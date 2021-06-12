@@ -1,28 +1,36 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import AffecterLesDelais from '../views/AffecterLesDelais.vue'
 
 const routes = [
   {
     path: '/',
     name: 'AffecterLesDelais',
-    component: AffecterLesDelais
-  },
+    component: () => import( '../views/dpgr/AffecterLesDelais.vue')
+    },
   {
     path: '/GestionUtilisateur',
     name: 'GestionUtilisateur',
-    component: () => import( '../views/gestion_utilisateur/GestionUtilisateur.vue')
+    component: () => import( '../views/dpgr/gestion_utilisateur/GestionUtilisateur.vue')
   },
   {
-    path: '/consulterprojet',
+    path: '/consulterprojet/dpgr',
     name: 'ConsulterProjetDPGR',
     component: () => import( '../views/ConsulterProjet/ConsulterProjetDPGR.vue')
   },
   {
-    path: '/consulterprojet/:id',
+    path: '/consulterprojet/cl',
+    name: 'ConsulterProjetCL',
+    component: () => import( '../views/ConsulterProjet/ConsulterProjetCL.vue')
+  },
+  {
+    path: '/consulterprojet/cs',
+    name: 'ConsulterProjetCS',
+    component: () => import( '../views/ConsulterProjet/ConsulterProjetCS.vue')
+  },
+  {
+    path: '/consulterprojet/:user/:id',
     name: 'ProjetDetail',
     component: () => import( '../views/ConsulterProjet/ProjetDetail.vue'),
     props:true
-
   },
 ]
 
