@@ -9,33 +9,36 @@
      <main class="bg-white">
       <div class="max-w-8xl mx-auto sm:px-6 lg:px-4">
          <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-          <div class="w-full h-15 px-6 pb-2 flex items-center justify-between">
-            <div class="text-left px-2 py-4 text-xl flex items-center">
-              <p class="text-grey-800 font-bold mr-3">Rechercher</p>
-              <input type="text" class="block w-full px-3  transition duration-100 ease-in-out border rounded shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:ring-opacity-50 disabled:opacity-50 disabled:cursor-not-allowed">
+          <div class="w-full  px-6 pb-2 md:flex md:items-center justify-between">
+            <div class="text-left px-2 py-4 text-xl md:w-1/3 ">
+              <p class="text-grey-800 font-bold mr-3 block">Rechercher</p>
+              <input type="text" class="block w-full px-3 py-1  transition duration-100 ease-in-out border rounded shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:ring-opacity-50 disabled:opacity-50 disabled:cursor-not-allowed">
             </div>
-            <div class="text-left px-2 py-4 text-xl flex items-center">
+            <div class="text-left px-2 py-4 text-xl  md:w-1/3   ">
               <p class="text-grey-800 font-bold mr-3">Filter Role</p>
-              <select name="role" id="role"  v-model="roleSelection"
-               class="lock pl-3 pr-10  transition duration-90 ease-in-out border rounded shadow-sm 
-               focus:ring-2 focus:ring-blue-500 focus:outline-none focus:ring-opacity-50 
-               disabled:opacity-50 disabled:cursor-not-allowed" >
-                  <option value="admin">admin</option>
-                  <option value="membreCS">membre de CS</option>
-                  <option value="membreCL1">membre de CL1</option>
-                  <option value="membreCL2">membre de CL2</option>
-                  <option value="chercheur">Chercheur</option>
-                  <option value="doctorant">Doctorant</option>
-              </select>
-              <button @click="filterUsers"
+              <div class="md:flex md:items-center">
+                <button @click="filterUsers"
                 class="ml-3 border border-transparent shadow-sm text-sm font-medium rounded-md text-gray-500  hover:bg-gray-500 hover:text-white
                      focus:border-gray-200 focus:ring-2 focus:ring-gray-200 focus:outline-none focus:ring-opacity-50 " >
                 <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
                 </svg>
-              </button>
+                </button>
+                <select name="role" id="role"  v-model="roleSelection"
+                class="lock w-full pl-3 pr-10  transition duration-90 ease-in-out border rounded shadow-sm 
+                focus:ring-2 focus:ring-blue-500 focus:outline-none focus:ring-opacity-50 
+                disabled:opacity-50 disabled:cursor-not-allowed" >
+                    <option value=" "> </option>
+                    <option value="admin">admin</option>
+                    <option value="membreCS">membre de CS</option>
+                    <option value="membreCL1">membre de CL1</option>
+                    <option value="membreCL2">membre de CL2</option>
+                    <option value="chercheur">Chercheur</option>
+                    <option value="doctorant">Doctorant</option>
+                </select>   
+              </div>           
             </div>
-            <div class="text-left px-2 py-4 text-xl flex items-center">
+            <div class="text-left px-2 py-4 text-xl  md:w-1/3 md:text-right">
                 <button @click="openForm" 
                     class="py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-500 hover:bg-green-600 
                      focus:border-green-500 focus:ring-2 focus:ring-green-500 focus:outline-none focus:ring-opacity-50" >
@@ -92,7 +95,7 @@
                       ></th>
                     </tr>
                   </thead>
-                  <tbody class="bg-white divide-y divide-gray-200" v-for="user in users" :key="user">
+                  <tbody class="bg-white divide-y divide-gray-200" v-for="user in usersFiltre" :key="user">
                     <tr>
                       <td class="px-6 py-2 whitespace-no-wrap">
                         <div class="text-sm font-bold leading-5 text-left text-blue-600">
@@ -173,6 +176,7 @@ export default {
                   role:'membreCS',
                 }
             ],
+            usersFiltre: this.users
         }
     },
     methods:{
@@ -183,10 +187,17 @@ export default {
           this.supprimer= !this.supprimer
         },
         filterUsers(){
-        /**  this.users = this.users.filter((user) =>{
+          if(this.roleSelection !=' '){
+            this.usersFiltre = this.users.filter((user) =>{
                 return user.role ===this.roleSelection
-            })     */  
+            })  
+          }else{
+             this.usersFiltre=this.users
+          }
         }
+    },
+     mounted(){
+      this.usersFiltre=this.users
     },
     updated(){
       if(!this.ajouter_utilisateur && !this.supprimer) {
