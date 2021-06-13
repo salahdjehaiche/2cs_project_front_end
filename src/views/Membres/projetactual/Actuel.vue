@@ -91,10 +91,10 @@
   </WelcomeLayout>
 </template>
 <script>
-import WelcomeLayout from "../WelcomeLayout.vue";
-import MainHeader from '../../components/mainHeader.vue'
-import ProjetInformationCard from '../../components/ProjetInformationCard.vue'
-import MembresEquipeCard from '../../components/MembresEquipeCard.vue';
+import MainHeader from '../../../components/mainHeader.vue'
+import WelcomeLayout from "../../WelcomeLayout.vue";
+import ProjetInformationCard from '../../../components/ProjetInformationCard.vue'
+import MembresEquipeCard from '../../../components/MembresEquipeCard.vue';
 
 export default {
   components: {

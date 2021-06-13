@@ -1,27 +1,12 @@
 <template>
-  <welcome-layout>
-    <header class="bg-blue-100 shadow">
-      <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
-        <h1 class="text-2xl font-bold leading-tight text-gray-900">
-          <a
-            :href="'/soumettreprojet'"
-            class="text-blue-800 hover:text-blue-500 hover:font-bold"
-            >Projet Actuel</a
-          >
-          <span class="text-grey-dark text-center font-bold">></span>
-          Modifier Projet
-        </h1>
-      </div>
-    </header>
-    <main class="bg-white">
-      <div class="max-w-8xl mx-auto sm:px-6 lg:px-4">
+   <div class="max-w-8xl mx-auto sm:px-6 lg:px-4">
         <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
           <div class="w-full max-w-7xl mx-auto py-2 sm:px-6 lg:px-2">
             <div
               class="md:grid md:grid-cols-4 md:gap-6 py-2 sm:px-3 lg:px-4 bg-white rounded-md"
             >
               <div
-                class="md:col-span-4 md:border-r border-gray-300 px-3 sm:px-2"
+                class="md:col-span-3 md:border-r border-gray-300 px-3 sm:px-2"
               >
                 <div class="px-4 sm:px-0">
                   <form>
@@ -211,31 +196,14 @@
                           <div class="col-span-6 sm:col-span-3">
                             <label
                               for="file"
-                              class="block text-sm font-medium text-black"
-                              >Planning de travail</label
-                            >
-                            <input
-                              type="file"
-                              name="file"
-                              id="file"
-                              placeholder="Selectionner"
-                              class="mt-1 border border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm rounded-md"
-                              required
-                            />
-                          </div>
-                                                    <div class="col-span-6 sm:col-span-3">
-                            <label
-                              for="file"
-                              class="block text-sm font-bold text-black"
-                              >Planning de travail</label
-                            >
+                               class="block text-sm font-bold text-black"
+                              >Planning de travail</label>
                           </div>
                           <div class="col-span-6 sm:col-span-4 ml-4">
                             <label
                               for="plan"
                               class="block text-sm font-bold text-black"
-                              >1ere Année</label
-                            >
+                              >1ere Année</label>
                             <input
                               type="text"
                               name="plan"
@@ -244,8 +212,7 @@
                               class="mt-1 border border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm rounded-md"
                               required
                             />
-                            
-                          </div>
+                           </div>
                           <div class="col-span-6 sm:col-span-4 ml-4">
                             <label
                               for="file"
@@ -260,7 +227,7 @@
                               class="mt-1 border border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm rounded-md"
                               required
                             />
-                            
+
                           </div>
                           <div class="col-span-6 sm:col-span-4 ml-4">
                             <label
@@ -276,7 +243,7 @@
                               class="mt-1 border border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm rounded-md"
                               required
                             />
-                            
+
                           </div>
                           <div class="col-span-6 sm:col-span-4 ml-4">
                             <label
@@ -292,7 +259,7 @@
                               class="mt-1 border border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm rounded-md"
                               required
                             />
-                            
+
                           </div>
                           <div class="col-span-6 sm:col-span-6">
                             <label
@@ -311,6 +278,10 @@
                               required
                             ></textarea>
                           </div>
+
+
+
+
                           <div class="col-span-6 sm:col-span-4">
                             <label
                               class="block text-sm font-medium text-black"
@@ -480,7 +451,7 @@
 	v4H9v-4H5V9h4V5h2v4h4V11z"
                               />
                             </svg>
-                            <h3>Valider les modifications</h3>
+                            <h3>Soumettre</h3>
                           </div>
                         </button>
                       </div>
@@ -488,20 +459,20 @@
                   </form>
                 </div>
               </div>
+              <MembresEquipeCard :id_equipe="1" />
             </div>
           </div>
         </div>
-      </div>
-    </main>
-  </welcome-layout>
+    </div>
 </template>
+
 <script>
-import WelcomeLayout from "../WelcomeLayout";
+import MembresEquipeCard from "../../../components/MembresEquipeCard.vue"
+
 export default {
-  components: {
-    WelcomeLayout,
-  },
-  data() {
+  props:['type'],
+  components: { MembresEquipeCard },
+data() {
             return {
                 form: {
                     title: null,

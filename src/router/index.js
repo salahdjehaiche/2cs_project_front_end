@@ -59,32 +59,32 @@ const routes = [
   {
     path: '/actuel',
     name: 'Actuel',
-    component: () => import( '../views/Membres/Actuel.vue')
+    component: () => import( '../views/Membres/projetactual/Actuel.vue')
   },
   {
     path: '/actuel/bilan',
     name: 'Bilan',
-    component: () => import( '../views/Membres/Bilan.vue')
+    component: () => import( '../views/Membres/projetactual/Bilan.vue')
   },
   {
     path: '/actuel/soumission',
     name: 'SoumettreProjet',
-    component: () => import( '../views/Membres/SoumettreProjet.vue')
+    component: () => import( '../views/Membres/projetactual/SoumettreProjet.vue')
   },
   {
     path: '/actuel/modifier',
     name: 'ModifierProjet',
-    component: () => import( '../views/Membres/ModifierProjet.vue')
+    component: () => import( '../views/Membres/projetactual/ModifierProjet.vue')
   },
   {
     path: '/actuel/ficheprojet',
     name: 'FicheProjet',
-    component: () => import( '../views/Membres/FicheProjet.vue')
+    component: () => import( '../views/Membres/projetactual/FicheProjet.vue')
   },  
   {
     path: '/actuel/consulter',
     name: 'Consulter',
-    component: () => import( '../views/Membres/Consulter.vue')
+    component: () => import( '../views/Membres/projetactual/Consulter.vue')
   },
   {
     path: '/actuel/contrat',

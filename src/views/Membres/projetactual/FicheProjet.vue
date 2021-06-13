@@ -16,8 +16,8 @@
   </WelcomeLayout>
 </template>
 <script>
-import WelcomeLayout from "../WelcomeLayout";
-import MainHeader from '../../components/mainHeader.vue'
+import MainHeader from '../../../components/mainHeader.vue'
+import WelcomeLayout from "../../WelcomeLayout.vue";
 
 export default {
   components: {
