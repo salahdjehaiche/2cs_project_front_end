@@ -7,11 +7,16 @@
             <img src="../assets/logo.png" alt="2a logo">
           </div>
           <div class="mb-4 px-4 " v-for="link in  sideBar" :key="link" >
-              <router-link :to="{name : link.name}">
+              <router-link :to="{name : link.name} ">
               <div class="w-full flex items-center text-blue-800 h-10 pl-4  hover:bg-blue-200  rounded-lg cursor-pointer">
-                  <svg  class="h-6 w-6 fill-current mr-2" viewBox="0 0 20 20">
+                  <svg v-if="!link.herite" class="h-6 w-6 fill-current mr-2" viewBox="0 0 20 20">
                       <path d="M18.672,11H17v6c0,0.445-0.194,1-1,1h-4v-6H8v6H4c-0.806,0-1-0.555-1-1v-6H1.328c-0.598,0-0.47-0.324-0.06-0.748L9.292,2.22 C9.487,2.018,9.743,1.918,10,1.908c0.257,0.01,0.513,0.109,0.708,0.312l8.023,8.031C19.142,10.676,19.27,11,18.672,11z"/>
                   </svg>
+                  <div class="ml-4" v-else>
+                    <svg  class="h-6 w-6 fill-current mr-1" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                    </svg>
+                  </div>
                   {{link.label}}
               </div>
             </router-link> 

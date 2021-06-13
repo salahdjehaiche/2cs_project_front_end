@@ -72,6 +72,11 @@ const routes = [
     component: () => import( '../views/Membres/SoumettreProjet.vue')
   },
   {
+    path: '/actuel/modifier',
+    name: 'ModifierProjet',
+    component: () => import( '../views/Membres/ModifierProjet.vue')
+  },
+  {
     path: '/actuel/ficheprojet',
     name: 'FicheProjet',
     component: () => import( '../views/Membres/FicheProjet.vue')

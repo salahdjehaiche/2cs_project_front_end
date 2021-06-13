@@ -5,14 +5,14 @@
             <p class="text-grey-800 font-bold mr-3  md:text-right block">Date Debut</p>
         </div>
         <div class="w-full text-sm mr-4 md:text-left md:my-auto md:w-1/5 block ">
-            <datepicker v-model="date_debut" 
+             <input type="date" required v-model="date_debut" 
                 class="block w-full px-3  transition duration-100 ease-in-out border rounded shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:ring-opacity-50 disabled:opacity-50 disabled:cursor-not-allowed" />
         </div>
         <div class="mr-3 mt-4 md:my-auto md:w-1/5 md:text-right">
             <p class="text-grey-800 font-bold mr-3   block">Date Fin</p>
         </div>
         <div class="w-full text-sm mr-4 md:text-left md:my-auto md:w-1/5 block">
-            <datepicker v-model="date_fin"  
+             <input type="date" required v-model="date_fin"  
                 class="block w-full px-3  transition duration-100 ease-in-out border rounded shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:ring-opacity-50 disabled:opacity-50 disabled:cursor-not-allowed" />
         </div>
         <div class="ml-20 md:w-1/5 ">
@@ -26,12 +26,9 @@
 </template>
 
 <script>
-import Datepicker from 'vue3-datepicker'
 
 export default {
-components: {
-    Datepicker,
-},
+
 props : ['type'],
 data(){
     return{      
