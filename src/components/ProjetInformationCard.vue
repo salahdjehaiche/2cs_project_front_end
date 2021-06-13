@@ -56,7 +56,7 @@
                 <div class="grid grid-cols-6 gap-6" v-for="information in projectInformations" :key="information">
                     <div class="col-span-6 sm:col-span-6 flex items-center justify-start">
                         <div class=" text-left block text-sm font-bold text-black flex items-center  ">
-                            <label for="nom" class="block text-sm font-medium text-black text-left text-md mb-3">
+                            <label for="nom" class="block text-sm  text-black text-left text-md mb-3">
                                 {{information.label}} :
                             </label>
                         </div>

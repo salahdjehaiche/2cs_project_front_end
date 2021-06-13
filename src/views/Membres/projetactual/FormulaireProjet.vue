@@ -16,7 +16,7 @@
                           <div class="col-span-6 sm:col-span-4">
                             <label
                               for="nom"
-                              class="block text-sm font-medium text-black"
+                              class="block text-left font-bold text-sm font-medium text-black"
                               >Intitulé de projet</label
                             >
                             <input

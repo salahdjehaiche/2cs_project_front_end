@@ -10,8 +10,8 @@
           <div class="w-full  px-6 pb-2 md:flex md:items-center justify-between">
             <div class="text-left px-2 py-4 text-xl md:w-1/3 ">
               <p class="text-grey-800 font-bold mr-3 block">Rechercher</p>
-              <input type="text"  v-model="rechercher"
-                class="block w-full px-3 py-1  transition duration-100 ease-in-out border rounded shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:ring-opacity-50 disabled:opacity-50 disabled:cursor-not-allowed">
+              <input type="search"  v-model="rechercher"
+                class="mt-1 border border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm rounded-md">
             </div>
             <div class="text-left px-2 py-4 text-xl  md:w-1/3   ">
               <p class="text-grey-800 font-bold mr-3">Filter Collaborateur</p>
@@ -24,9 +24,7 @@
                 </svg>
                 </button>
                 <select name="role" id="role"  v-model="collaborateurSelection"
-                class="lock w-full pl-3 pr-10  transition duration-90 ease-in-out border rounded shadow-sm 
-                focus:ring-2 focus:ring-blue-500 focus:outline-none focus:ring-opacity-50 
-                disabled:opacity-50 disabled:cursor-not-allowed" >
+                class="mt-1 border border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm rounded-md" >
                     <option value=" ">tout les membres</option>
                     <option value="admin">admin</option>
                     <option value="membreCS">membre de CS</option>

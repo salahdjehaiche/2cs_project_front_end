@@ -3,7 +3,7 @@
         <div class="flex flex-wrap">
             <welcome-sidebar :sideBar="sideBar"/>
             <div
-                class="w-full bg-white pl-0 lg:pl-64 min-h-screen"
+                class="w-full bg-white   lg:ml-72 lg:mr-1 min-h-screen"
                 :class="sideBarOpen ? 'overlay' : ''"
                 id="main-content"
             >

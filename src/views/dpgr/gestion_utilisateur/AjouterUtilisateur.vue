@@ -1,5 +1,5 @@
 <template>
-   <div class="backdrop h-screen w-screen " @click.self="closemodal" > 
+   <div class="backdrop  " @click.self="closemodal" > 
        <div class="w-2/2  p-4  md:w-2/4 card"   v-if="ajouter" >
              <div class="flex justify-between items-center"
                 >
@@ -33,20 +33,17 @@
                     <div class="text-left px-2 py-4 text-lg md:flex md:items-center">
                         <span class="text-grey-800  mr-3 md:w-1/3 ">Nom</span>
                         <input type="text" required v-model="nom"
-                            class="block w-full px-3  transition duration-100 ease-in-out border rounded shadow-sm 
-                            focus:ring-2 focus:ring-blue-500 focus:outline-none focus:ring-opacity-50 disabled:opacity-50 disabled:cursor-not-allowed" placeholder="Nom">
+                            class="mt-1 border border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm rounded-md" placeholder="Nom">
                     </div>
                     <div class="text-left px-2 py-4 text-lg md:flex md:items-center">
                         <span class="text-grey-800  mr-3 md:w-1/3 ">Prenom</span>
                         <input type="text" required v-model="prenom"
-                            class="block w-full px-3  transition duration-100 ease-in-out border rounded shadow-sm 
-                            focus:ring-2 focus:ring-blue-500 focus:outline-none focus:ring-opacity-50 disabled:opacity-50 disabled:cursor-not-allowed" placeholder="Prenom">
+                            class="mt-1 border border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm rounded-md" placeholder="Prenom">
                     </div>
                     <div class="text-left px-2 py-4 text-lg md:flex md:items-center">
                         <span class="text-grey-800  mr-3 md:w-1/3 ">Mail</span>
                         <input type="email" required v-model="email"
-                            class="block w-full px-3  transition duration-100 ease-in-out border rounded shadow-sm 
-                            focus:ring-2 focus:ring-blue-500 focus:outline-none focus:ring-opacity-50 disabled:opacity-50 disabled:cursor-not-allowed" placeholder="mail@esi.dz">
+                            class="mt-1 border border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm rounded-md" placeholder="mail@esi.dz">
                     </div>
                     <div class="flex text-left">
                         <label class="flex text-left">
@@ -57,9 +54,7 @@
                     <div class="text-left px-2 py-4 text-lg md:flex md:items-center">
                         <p class="text-grey-800  mr-3 md:w-1/3">Role</p>
                         <select name="role" id="role"  v-model="role"
-                        class="lock w-full pl-3 pr-10  transition duration-90 ease-in-out border rounded shadow-sm 
-                        focus:ring-2 focus:ring-blue-500 focus:outline-none focus:ring-opacity-50 
-                        disabled:opacity-50 disabled:cursor-not-allowed" >
+                        class="mt-1 border border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm rounded-md" >
                             <option value="administrateur">admin</option>
                             <option value="membreCS">membre de CS</option>
                             <option value="membreCL">membre de CL1</option>
