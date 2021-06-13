@@ -110,7 +110,7 @@
                         </td>                    
                         <td class="px-6 py-4 whitespace-no-wrap">
                           <div class="text-xs leading-5 text-gray-900 text-left">
-                            <router-link  :to="{name : 'CreationContrat'}"
+                            <router-link  :to="{name : 'DetailContrat' ,params:{id:1}}"
                               class="text-blue-800 hover:text-blue-500 hover:font-bold"
                             >
                               <svg

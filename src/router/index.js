@@ -1,6 +1,18 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
 const routes = [
+//----------------profile-----------
+{
+  path: '/modifeirpofile',
+  name: 'Modifierprofile',
+  component: () => import( '../views/profile/ModifierProfile.vue')
+},
+{
+  path: '/consulterpofile',
+  name: 'Consulterprofile',
+  component: () => import( '../views/profile/ConsulterProfile.vue')
+},
+
 //---------------------dpgr-----------------
   {
     path: '/',
