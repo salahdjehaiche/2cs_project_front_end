@@ -1,17 +1,13 @@
 <template>
 <WelcomeLayout>
-   <header class="bg-blue-100 shadow">
-      <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8 text-left">
-        <h1 class="text-2xl font-bold leading-tight text-gray-900">
+   <MainHeader :titre="'Projet de recherche d\'Equipe '+id" >
           <router-link :to="{path : '/consulterprojet/'+user}"
             class="text-blue-800 hover:text-blue-500 hover:font-bold"
             >Consulter Projet
             </router-link>
             <span class="text-grey-dark text-center font-bold">> </span>
-            Projet de recherche d'Equipe {{id}}
-        </h1>
-      </div>
-    </header>
+   </MainHeader>            
+        
     <main class="bg-white">
 
       <div class="max-w-8xl mx-auto sm:px-6 lg:px-4">
@@ -143,9 +139,10 @@ import MembresEquipeCard from '../../components/MembresEquipeCard.vue'
 import CommenterProjet from '../../components/CommenterProjet.vue'
 import ProjetInformationCard from '../../components/ProjetInformationCard.vue'
 import WelcomeLayout from '../WelcomeLayout.vue'
+import MainHeader from '../../components/mainHeader.vue'
 export default {
   props :['id','user'],
-  components: { WelcomeLayout,MembresEquipeCard, ProjetInformationCard,CommenterProjet  },
+  components: { WelcomeLayout,MembresEquipeCard, ProjetInformationCard,CommenterProjet, MainHeader  },
   data(){
       return{ 
         modal1:false,

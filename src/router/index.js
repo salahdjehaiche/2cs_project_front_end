@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
 const routes = [
+//---------------------dpgr-----------------
   {
     path: '/',
     name: 'AffecterLesDelais',
@@ -11,6 +12,7 @@ const routes = [
     name: 'GestionUtilisateur',
     component: () => import( '../views/dpgr/gestion_utilisateur/GestionUtilisateur.vue')
   },
+  //-----------------------------consultation projet -----------------
   {
     path: '/consulterprojet/dpgr',
     name: 'ConsulterProjetDPGR',
@@ -31,6 +33,73 @@ const routes = [
     name: 'ProjetDetail',
     component: () => import( '../views/ConsulterProjet/ProjetDetail.vue'),
     props:true
+  },
+  //----------------------- consulter publication --------------
+  {
+    path: '/consulterpublication',
+    name: 'Consulterpublication',
+    component: () => import( '../views/Publication/ConsulterPublication.vue')
+  },
+  //-----------------------------membres -------------------
+    {
+    path: '/creation_equipe',
+    name: 'CreationEquipe',
+    component: () => import( '../views/Membres/CreationEquipe.vue')
+  },
+  {
+    path: '/consulter_equipe',
+    name: 'ConsulterEquipe',
+    component: () => import( '../views/Membres/ConsulterEquipe.vue')
+  },
+  {
+    path: '/projetrecherche',
+    name: 'ProjetRecherche',
+    component: () => import( '../views/Membres/ProjetRecherche.vue')
+  },
+  {
+    path: '/actuel',
+    name: 'Actuel',
+    component: () => import( '../views/Membres/Actuel.vue')
+  },
+  {
+    path: '/actuel/bilan',
+    name: 'Bilan',
+    component: () => import( '../views/Membres/Bilan.vue')
+  },
+  {
+    path: '/actuel/soumission',
+    name: 'SoumettreProjet',
+    component: () => import( '../views/Membres/SoumettreProjet.vue')
+  },
+  {
+    path: '/actuel/ficheprojet',
+    name: 'FicheProjet',
+    component: () => import( '../views/Membres/FicheProjet.vue')
+  },  
+  {
+    path: '/actuel/consulter',
+    name: 'Consulter',
+    component: () => import( '../views/Membres/Consulter.vue')
+  },
+  {
+    path: '/actuel/contrat',
+    name: 'Contrat',
+    component: () => import( '../views/Membres/contrat/Contrat.vue')
+  },
+  {
+    path: '/actuel/contrat/creer',
+    name: 'CreationContrat',
+    component: () => import( '../views/Membres/contrat/CreationContrat.vue')
+  },
+  {
+    path: '/actuel/contrat/detail/:id',
+    name: 'DetailContrat',
+    component: () => import( '../views/Membres/contrat/DetailContrat.vue')
+  },
+  {
+    path: '/actuel/contrat/renouvler',
+    name: 'RenouvlerContrat',
+    component: () => import( '../views/Membres/contrat/RenouvlerContrat.vue')
   },
 ]
 

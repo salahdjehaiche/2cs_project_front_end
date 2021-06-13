@@ -2,10 +2,10 @@
   
 
  <WelcomeLayout >
-   
-    <MainHeader :titre="' C\'est la page de Gestion Utilisateur'" />    
-    <main class="bg-white">
-      <div class="max-w-8xl mx-auto sm:px-6 lg:px-4">
+
+    <MainHeader :titre="' C\'est la page de consultation de publications'" /> 
+     <main class="bg-white">
+     <div class="max-w-8xl mx-auto sm:px-6 lg:px-4">
          <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
           <div class="w-full  px-6 pb-2 md:flex md:items-center justify-between">
             <div class="text-left px-2 py-4 text-xl md:w-1/3 ">
@@ -14,7 +14,7 @@
                 class="block w-full px-3 py-1  transition duration-100 ease-in-out border rounded shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:ring-opacity-50 disabled:opacity-50 disabled:cursor-not-allowed">
             </div>
             <div class="text-left px-2 py-4 text-xl  md:w-1/3   ">
-              <p class="text-grey-800 font-bold mr-3">Filter Role</p>
+              <p class="text-grey-800 font-bold mr-3">Filter Collaborateur</p>
               <div class="md:flex md:items-center">
                 <button @click="filterUsers"
                 class="ml-3 border border-transparent shadow-sm text-sm font-medium rounded-md text-gray-500  hover:bg-gray-500 hover:text-white
@@ -23,11 +23,11 @@
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
                 </svg>
                 </button>
-                <select name="role" id="role"  v-model="roleSelection"
+                <select name="role" id="role"  v-model="collaborateurSelection"
                 class="lock w-full pl-3 pr-10  transition duration-90 ease-in-out border rounded shadow-sm 
                 focus:ring-2 focus:ring-blue-500 focus:outline-none focus:ring-opacity-50 
                 disabled:opacity-50 disabled:cursor-not-allowed" >
-                    <option value=" "> </option>
+                    <option value=" ">tout les membres</option>
                     <option value="admin">admin</option>
                     <option value="membreCS">membre de CS</option>
                     <option value="membreCL1">membre de CL1</option>
@@ -39,13 +39,13 @@
             </div>
             <div class="text-left px-2 py-4 text-xl  md:w-1/3 md:text-right">
                 <button @click="openForm" 
-                    class="py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-500 hover:bg-green-600 
+                   class="py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-500 hover:bg-green-600 
                      focus:border-green-500 focus:ring-2 focus:ring-green-500 focus:outline-none focus:ring-opacity-50" >
                     <div class="flex items-center">
                         <svg  class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="white">
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
                         </svg>
-                        <h3> Ajouter Utilisateur</h3>
+                        <h3> Ajouter Publication</h3>
                     </div>
                 </button>
             </div>
@@ -77,54 +77,77 @@
                       <th
                         class="px-6 py-3 bg-blue-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
                       >
-                        Prénom
+                        Date de création
                       </th>
                       <th
                         class="px-6 py-3 bg-blue-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
                       >
-                        Mail
+                        Collaborateurs
                       </th>
                       <th
                         class="px-6 py-3 bg-blue-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
                       >
-                        Role
+                        Autre collaborateurs
                       </th>
                       <th
                         class="px-6 py-3 bg-blue-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
-                      ></th>
+                      > Visionner
+                      </th>
+                      <th
+                        class="px-6 py-3 bg-blue-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
+                      > Telecharger
+                      </th>
                     </tr>
                   </thead>
-                  <tbody class="bg-white divide-y divide-gray-200" v-for="user in rechercherUsers" :key="user">
+                  <tbody class="bg-white divide-y divide-gray-200" v-for="publication in publications" :key="publication">
                     <tr>
                       <td class="px-6 py-2 whitespace-no-wrap">
                         <div class="text-sm font-bold leading-5 text-left text-blue-600">
-                          {{user.id}}
+                          {{publication.id}}
                         </div>
                       </td>
                       <td class="px-6 py-2 whitespace-no-wrap">
-                        <div class="text-xs leading-5 text-gray-900 text-left">{{user.nom}}</div>
+                        <div class="text-xs leading-5 text-gray-900 text-left">{{publication.id}}</div>
                       </td>
                       <td class="px-6 py-2 whitespace-no-wrap">
-                        <div class="text-xs leading-5 text-gray-900 text-left">{{user.prenom}}</div>
+                        <div class="text-xs leading-5 text-gray-900 text-left">{{publication.date_creation}}</div>
                       </td>
                       <td class="px-6 py-2 whitespace-normal">
-                        <div class="text-xs leading-5 text-gray-900 text-left">{{user.email}}</div>
+                        <div class="text-xs leading-5 text-gray-900 text-left">{{publication.collaborteurs}}</div>
                       </td>
                       <td class="px-6 py-2 whitespace-normal">
-                        <div class="text-xs leading-5 text-gray-900 text-left">{{user.role}}</div>
+                        <div class="text-xs leading-5 text-gray-900 text-left">{{publication.autre_collaborateurs}}</div>
                       </td>
                       <td class="px-6 py-4 whitespace-no-wrap">
                         <div class="text-xs leading-5 text-gray-900 text-left">
+                        
                          <button
-                            @click="supprimerUser"
+                            @click="seePublication"
                             class="text-blue-800 hover:text-blue-500 hover:font-bold"
                           >
-                            <svg  class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="Red">
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7a4 4 0 11-8 0 4 4 0 018 0zM9 14a6 6 0 00-6 6v1h12v-1a6 6 0 00-6-6zM21 12h-6" />
-                            </svg>
-                          </button>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+</svg>
+        
+                                  </button>
                         </div>
                       </td>
+                      <td class="px-6 py-4 whitespace-no-wrap">
+                        <div class="text-xs leading-5 text-gray-900 text-left">
+                        
+                         <button
+                            @click="downloadPublication"
+                            class="text-blue-800 hover:text-blue-500 hover:font-bold"
+                          >
+                                      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="Green">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+</svg>
+        
+                                  </button>
+                        </div>
+                      </td>
+                      
                     </tr>
                   </tbody>
                 </table>
@@ -133,11 +156,11 @@
           </div>
         </div>
       </div> 
-      <div v-if="ajouter_utilisateur ">
-        <AjouterUtilisateur  @close="openForm" :ajouter="ajouter_utilisateur" />
+      <div v-if="ajouter_publication ">
+        <ajouterPublication  @close="openForm" :ajouter="ajouter_publication" />
      </div>
      <div v-else-if="supprimer">
-        <AjouterUtilisateur  @close="supprimerUser" :supprimer="supprimer"/>
+        <ajouterPublication  @close="downloadPublication" :supprimer="supprimer"/>
      </div>
     </main>
   
@@ -145,47 +168,50 @@
 </template>
 
 <script>
-import WelcomeLayout from '../../WelcomeLayout.vue'
-import MainHeader from '../../../components/mainHeader.vue'
-import AjouterUtilisateur  from './AjouterUtilisateur.vue'
+import WelcomeLayout from '../WelcomeLayout.vue'
+import ajouterPublication  from './AjouterPublication'
+import MainHeader from '../../components/mainHeader.vue'
+
 export default {
   components: {
-    AjouterUtilisateur,
+    ajouterPublication,
     WelcomeLayout,
     MainHeader
   },
     data(){
         return{
             supprimer:false,
-            roleSelection:'',
-            ajouter_utilisateur:false,
-            users:[
-                {
+            collaborateurSelection:'',
+            ajouter_publication:false,
+            publications:[
+                  {
                   id:1,
-                  nom:'Djehaiche',
-                  prenom:'Salah',
-                  email:'hs_djehaiche@esi.dz',
-                  role:'admin',
+                  nom:'Sujetscientifique1',
+                  date_creation:'21/06/2020',
+                  collaborteurs:'hs_debabza@esi.dz',
+                  autre_collaborateurs:'tout les membres',
                 },
-                {
+                 {
                   id:2,
-                  nom:'zatout',
-                  prenom:'Baderdinne',
-                  email:'hs_zatout@esi.dz',
-                  role:'membreCS',
+                  nom:'Sa',
+                  date_creation:'21/06/2020',
+                  collaborteurs:'hs_debabza@',
+                  autre_collaborateurs:'tout les membres',
                 }
-            ],
-            usersFiltre: this.users,
+                
+            ],            usersFiltre: this.users,
             filterSelection:false,
             rechercher:''
         }
     },
     methods:{
         openForm(){
-           this.ajouter_utilisateur =!this.ajouter_utilisateur
+           this.ajouter_publication =!this.ajouter_publication
         },
-        supprimerUser(){
+        downloadPublication(){
           this.supprimer= !this.supprimer
+        },
+        seePublication(){
         },
         filterUsers(){
          this.filterSelection =true
@@ -216,21 +242,20 @@ export default {
              this.usersFiltre=this.users
         }
         if(this.filterSelection){
-           if(this.roleSelection !=' '){
+           if(this.collaborateurSelection !=' '){
             this.usersFiltre = this.usersFiltre.filter((user) =>{
-                return user.role ===this.roleSelection
+                return user.role ===this.collaborateurSelection
             })  
           }else{
              this.usersFiltre=this.users
              this.filterSelection=false
           }
-        }        
+        }
         return this.usersFiltre
       }
-    },  
-    
-    
+    },        
 }
+
 </script>
 
 <style>

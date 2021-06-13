@@ -1,12 +1,7 @@
 <template>
-  <welcome-layout>
-    <header class="bg-blue-100 shadow">
-      <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
-        <h1 class="text-2xl font-bold leading-tight text-gray-900">
-           Consulter l'équipe
-        </h1>
-      </div>
-    </header>
+  <WelcomeLayout>
+
+    <MainHeader :titre="'Consulter l\'équipe'" />    
     <main class="bg-white">
       <div class="max-w-8xl mx-auto sm:px-6 lg:px-4">
          <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
@@ -74,7 +69,7 @@
                       <td class="px-6 py-4 whitespace-no-wrap">
                         <div class="text-xs leading-5 text-gray-900">
                          <a
-                            :href="'/projetcl/consulter'"
+                            :href="'/consulterprojet/cl/1'"
                             class="text-blue-800 hover:text-blue-500 hover:font-bold"
                           >
                             <svg
@@ -97,13 +92,15 @@
         </div>
       </div>
     </main>
-  </welcome-layout>
+  </WelcomeLayout>
 </template>
 <script>
-import WelcomeLayout from "./../../WelcomeLayout";
+import WelcomeLayout from "../WelcomeLayout";
+import MainHeader from '../../components/mainHeader.vue'
 export default {
   components: {
     WelcomeLayout,
+    MainHeader
   },
 };
 </script>

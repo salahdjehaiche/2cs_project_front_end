@@ -1,12 +1,7 @@
 <template>
-  <welcome-layout>
-    <header class="bg-blue-100 shadow">
-      <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
-        <h1 class="text-2xl font-bold leading-tight text-gray-900">
-          Créer une équipe
-        </h1>
-      </div>
-    </header>
+  <WelcomeLayout>
+
+    <MainHeader :titre="'Créer une équipe'" />
     <main class="bg-white">
       <div class="max-w-8xl mx-auto sm:px-6 lg:px-4">
         <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
@@ -54,16 +49,11 @@
                               class="block text-sm font-medium text-black"
                               >Membre n° {{ index + 1 }} </label
                             >
-                            <input
-                              type="text"
-                              name="first_name"
-                              id="nom"
-                              placeholder="Membre"
-                              autocomplete="given-name"
-                              v-model="form.membres[index].nom"
-                              class="mt-1 border border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm rounded-md"
-                              required
-                            />
+                             <select v-model="SelectMembre"
+                            @change="selected"
+                             class="mt-1 border border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm rounded-md " required="required" >
+                              <option v-for="(chercheur, index) in chercheurs" v-bind:key="index" :value="index">{{chercheur.nom}}</option>
+                            </select>
                           </div>
                         </div>
                       </div>
@@ -115,13 +105,15 @@
         </div>
       </div>
     </main>
-  </welcome-layout>
+  </WelcomeLayout>
 </template>
 <script>
-import WelcomeLayout from "./../../WelcomeLayout";
+import MainHeader from '../../components/mainHeader.vue'
+import WelcomeLayout from "../WelcomeLayout";
 export default {
   components: {
     WelcomeLayout,
+    MainHeader
   },
   data() {
             return {
@@ -129,9 +121,16 @@ export default {
                     membres: [
                        {nom:null},
                        {nom:null},
-                       {nom:null},
                     ]
                 },
+                chercheurs:[
+                    {nom:"oussama"},
+                       {nom:"salah"},
+                       {nom:"rafik"},
+                       {nom:"zinou"},
+                       {nom:"Ahmed"},
+              ],
+              selectMembre:null,
             }
         },
         methods: {
@@ -141,6 +140,12 @@ export default {
             remove() {
                 this.form.membres.pop();
             },
+              selected(){
+        for (var i=0; i<selectobject.length; i++) {
+    if (selectobject.options[i].value == 'A')
+        selectobject.remove(i);
+}
+    },
     },
 };
 </script>

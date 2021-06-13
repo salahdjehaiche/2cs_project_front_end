@@ -1,18 +1,12 @@
 <template>
-  <welcome-layout>
-    <header class="bg-blue-100 shadow">
-      <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
-        <h1 class="text-2xl font-bold leading-tight text-gray-900">
-          <a
-            :href="'/soumettreprojet'"
-            class="text-blue-800 hover:text-blue-500 hover:font-bold"
-            >Projet Actuel</a
-          >
-          <span class="text-grey-dark text-center font-bold">></span>
-          Soumettre un projet
-        </h1>
-      </div>
-    </header>
+  <WelcomeLayout>  
+    <MainHeader :titre="' Soumettre un projet'" >
+          <router-link :to="{path : '/actuel'}"
+          class="text-blue-800 hover:text-blue-500 hover:font-bold"
+          >  Projet Actuel
+          </router-link>
+          <span class="text-grey-dark text-center font-bold">> </span>
+    </MainHeader>
     <main class="bg-white">
       <div class="max-w-8xl mx-auto sm:px-6 lg:px-4">
         <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
@@ -211,18 +205,92 @@
                           <div class="col-span-6 sm:col-span-3">
                             <label
                               for="file"
-                              class="block text-sm font-medium text-black"
-                              >Planning de travail</label
-                            >
+                               class="block text-sm font-bold text-black"
+                              >Planning de travail</label>
+                          </div>
+                          <div class="col-span-6 sm:col-span-4 ml-4">
+                            <label
+                              for="plan"
+                              class="block text-sm font-bold text-black"
+                              >1ere Année</label>
                             <input
-                              type="file"
-                              name="file"
-                              id="file"
-                              placeholder="Selectionner"
+                              type="text"
+                              name="plan"
+                              id="Plan"
+                              placeholder="Planning 1ère Année"
                               class="mt-1 border border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm rounded-md"
                               required
                             />
+                           </div>
+                          <div class="col-span-6 sm:col-span-4 ml-4">
+                            <label
+                              for="file"
+                              class="block text-sm font-bold text-black"
+                              >2eme Année</label
+                            >
+                            <input
+                              type="text"
+                              name="plan"
+                              id="Plan"
+                              placeholder="Planning 2ème Année"
+                              class="mt-1 border border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm rounded-md"
+                              required
+                            />
+
                           </div>
+                          <div class="col-span-6 sm:col-span-4 ml-4">
+                            <label
+                              for="file"
+                              class="block text-sm font-bold text-black"
+                              >3eme Année</label
+                            >
+                            <input
+                              type="text"
+                              name="plan"
+                              id="Plan"
+                              placeholder="Planning 3ème Année"
+                              class="mt-1 border border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm rounded-md"
+                              required
+                            />
+
+                          </div>
+                          <div class="col-span-6 sm:col-span-4 ml-4">
+                            <label
+                              for="file"
+                              class="block text-sm font-bold text-black"
+                              >4eme Année</label
+                            >
+                            <input
+                              type="text"
+                              name="plan"
+                              id="Plan"
+                              placeholder="Planning 4ème Année"
+                              class="mt-1 border border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm rounded-md"
+                              required
+                            />
+
+                          </div>
+                          <div class="col-span-6 sm:col-span-6">
+                            <label
+                              for="prenom"
+                              class="block text-sm font-medium text-black"
+                              >Resultats Attendus</label
+                            >
+                            <textarea
+                              maxlength="300"
+                              name="feedback"
+                              id="feedback"
+                              rows="4"
+                              cols="80"
+                              class="mt-1 border border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm rounded-md"
+                              placeholder="Resultats Attendus"
+                              required
+                            ></textarea>
+                          </div>
+
+
+
+
                           <div class="col-span-6 sm:col-span-4">
                             <label
                               class="block text-sm font-medium text-black"
@@ -477,13 +545,15 @@
         </div>
       </div>
     </main>
-  </welcome-layout>
+  </WelcomeLayout>
 </template>
 <script>
-import WelcomeLayout from "./../../WelcomeLayout";
+import MainHeader from '../../components/mainHeader.vue'
+import WelcomeLayout from "../WelcomeLayout";
 export default {
   components: {
     WelcomeLayout,
+    MainHeader
   },
   data() {
             return {
