@@ -121,7 +121,7 @@
                         
                          <button
                             @click="seePublication"
-                            class="text-blue-800 hover:text-blue-500 hover:font-bold"
+                            class="text-blue-500 hover:text-blue-800 hover:font-bold"
                           >
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -136,7 +136,7 @@
                         
                          <button
                             @click="downloadPublication"
-                            class="text-blue-800 hover:text-blue-500 hover:font-bold"
+                            class="text-blue-500 hover:text-blue-800 hover:font-bold"
                           >
                                       <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="Green">
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />

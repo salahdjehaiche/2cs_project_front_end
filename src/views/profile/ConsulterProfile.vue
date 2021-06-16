@@ -2,7 +2,7 @@
 <WelcomeLayout>
    <MainHeader :titre="'Consuler profile de '+id" >
           <router-link :to="{path : '/consulterprofile/'+user}"
-            class="text-blue-800 hover:text-blue-500 hover:font-bold"
+            class="text-blue-500 hover:text-blue-800 hover:font-bold"
             >Consulter Profile
             </router-link>
             <span class="text-grey-dark text-center font-bold">> </span>

@@ -67,7 +67,7 @@
                         <div class="text-xs leading-5 text-gray-900">
                           <div class="text-xs leading-5 text-gray-900">
                           <router-link  :to="{name:linkName.name ,params: {user:linkName.user ,id :tab.id_équipe}}"
-                            class="text-blue-800 hover:text-blue-500 hover:font-bold"
+                            class="text-blue-500 hover:text-blue-800 hover:font-bold"
                           >
                             <svg
                               class="h-6 w-6 fill-current mr-2 text-red-700 cursor-pointer"
@@ -83,7 +83,7 @@
                       <td class="px-6 py-4 whitespace-no-wrap">
                         <div class="text-xs leading-5 text-gray-900 text-left">
                           <router-link  :to="{name:linkName.name ,params: {user:linkName.user ,id :tab.id_équipe}}"
-                            class="text-blue-800 hover:text-blue-500 hover:font-bold"
+                            class="text-blue-500 hover:text-blue-800 hover:font-bold"
                           >
                             <svg
                               class="h-6 w-6 fill-current mr-2 text-green-700 cursor-pointer"

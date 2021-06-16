@@ -3,7 +3,7 @@
     
     <MainHeader :titre="'Contrat'" >
             <router-link :to="{path : '/actuel'}"
-            class="text-blue-800 hover:text-blue-500 hover:font-bold"
+            class="text-blue-500 hover:text-blue-800 hover:font-bold"
             >  Projet Actuel
             </router-link>
             <span class="text-grey-dark text-center font-bold">> </span>
@@ -111,7 +111,7 @@
                         <td class="px-6 py-4 whitespace-no-wrap">
                           <div class="text-xs leading-5 text-gray-900 text-left">
                             <router-link  :to="{name : 'DetailContrat' ,params:{id:1}}"
-                              class="text-blue-800 hover:text-blue-500 hover:font-bold"
+                              class="text-blue-500 hover:text-blue-800 hover:font-bold"
                             >
                               <svg
                                 class="h-6 w-6 fill-current mr-2 text-green-700 cursor-pointer"

@@ -5,14 +5,15 @@
     md:opacity-100   lg:w-72 fixed  md:top-15 lg:top-0 top-0 md:left-0 h-screen lg:block md:bg-white border-r-2  z-30" 
      :class="sideBarOpen ? '' : 'hidden'" id="main-nav">
       <div class="bg-white w-3/4 sm:w-1/2 md:w-full opacity-100 z-10">
-          <div class="w-2/3   flex px-4 items-center mb-8 ">
-            <img src="../assets/logo.png" alt="2a logo">
+          <div class="w-full   flex px-4 items-center mb-8 ">
+            <img src="../assets/ProjetRechercheBlanc2.png" alt="2a logo">
           </div>
-          <div class="mb-4 px-4 text-blue-800" id="nav" v-for="link in  sideBar" :key="link" >
+          <div class="mb-4 px-4 text-gray-500" id="nav" v-for="link in  sideBar" :key="link" >
               <router-link  :to="{name : link.name}  ">
-              <div class="w-full flex items-center  h-10 pl-4  hover:bg-blue-200  rounded-lg cursor-pointer">
-                  <svg v-if="!link.herite" class="h-6 w-6 fill-current mr-2" viewBox="0 0 20 20">
-                      <path d="M18.672,11H17v6c0,0.445-0.194,1-1,1h-4v-6H8v6H4c-0.806,0-1-0.555-1-1v-6H1.328c-0.598,0-0.47-0.324-0.06-0.748L9.292,2.22 C9.487,2.018,9.743,1.918,10,1.908c0.257,0.01,0.513,0.109,0.708,0.312l8.023,8.031C19.142,10.676,19.27,11,18.672,11z"/>
+              <div class="w-full flex items-center  h-10 pl-4  hover:bg-blue-200 hover:text-gray-600 rounded-lg cursor-pointer">
+
+                  <svg  v-if="!link.herite" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clip-rule="evenodd" />
                   </svg>
                   <div class="ml-4" v-else>
                     <svg  class="h-6 w-6 fill-current mr-1" viewBox="0 0 20 20">

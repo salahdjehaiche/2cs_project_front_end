@@ -96,26 +96,26 @@
                     <tr>
                       <td class="px-6 py-2 whitespace-no-wrap">
                         <div class="text-sm font-bold leading-5 text-left text-blue-600">
-                          {{user.id}}
+                          {{user.pk}}
                         </div>
                       </td>
                       <td class="px-6 py-2 whitespace-no-wrap">
-                        <div class="text-xs leading-5 text-gray-900 text-left">{{user.nom}}</div>
+                        <div class="text-xs leading-5 text-gray-900 text-left">{{user.last_name}}</div>
                       </td>
                       <td class="px-6 py-2 whitespace-no-wrap">
-                        <div class="text-xs leading-5 text-gray-900 text-left">{{user.prenom}}</div>
+                        <div class="text-xs leading-5 text-gray-900 text-left">{{user.first_name}}</div>
                       </td>
                       <td class="px-6 py-2 whitespace-normal">
                         <div class="text-xs leading-5 text-gray-900 text-left">{{user.email}}</div>
                       </td>
                       <td class="px-6 py-2 whitespace-normal">
-                        <div class="text-xs leading-5 text-gray-900 text-left">{{user.role}}</div>
+                        <div class="text-xs leading-5 text-gray-900 text-left">{{user.user_type}}</div>
                       </td>
                       <td class="px-6 py-4 whitespace-no-wrap">
                         <div class="text-xs leading-5 text-gray-900 text-left">
                          <button
                             @click="supprimerUser"
-                            class="text-blue-800 hover:text-blue-500 hover:font-bold"
+                            class="text-blue-500 hover:text-blue-800 hover:font-bold"
                           >
                             <svg  class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="Red">
                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7a4 4 0 11-8 0 4 4 0 018 0zM9 14a6 6 0 00-6 6v1h12v-1a6 6 0 00-6-6zM21 12h-6" />
@@ -138,7 +138,8 @@
         <AjouterUtilisateur  @close="supprimerUser" :supprimer="supprimer"/>
      </div>
     </main>
-  
+    <div>{{data}}</div>
+
  </WelcomeLayout>
 </template>
 
@@ -157,25 +158,10 @@ export default {
             supprimer:false,
             roleSelection:'',
             ajouter_utilisateur:false,
-            users:[
-                {
-                  id:1,
-                  nom:'Djehaiche',
-                  prenom:'Salah',
-                  email:'hs_djehaiche@esi.dz',
-                  role:'admin',
-                },
-                {
-                  id:2,
-                  nom:'zatout',
-                  prenom:'Baderdinne',
-                  email:'hs_zatout@esi.dz',
-                  role:'membreCS',
-                }
-            ],
+            users:[],
             usersFiltre: this.users,
             filterSelection:false,
-            rechercher:''
+            rechercher:'',
         }
     },
     methods:{
@@ -191,12 +177,30 @@ export default {
         }        
     },
  
-     mounted(){
+    /* mounted(){
+
       this.usersFiltre=this.users
+    },*/
+        mounted(){
+        fetch('http://192.168.43.213:8000/v1/api/users/?format=json')
+            .then(res=> res.json())
+            .then(data => {
+              this.users = data
+              this.usersFiltre=this.users            
+            })
+            .catch(err => console.log(err.message))         
     },
     updated(){
+      console.log("-----")
       if(!this.ajouter_utilisateur && !this.supprimer) {
-        console.log("get users from  database")
+        fetch('http://192.168.43.213:8000/v1/api/users/?format=json')
+            .then(res=> res.json())
+            .then(data => {
+              this.users = data
+              this.usersFiltre=this.users        
+              console.log(data)    
+            })
+            .catch(err => console.log(err.message))  
         }
     },
     computed:{
@@ -205,10 +209,10 @@ export default {
         if(this.rechercher !=''){
           this.usersFiltre = this.users.filter((user) =>{
               const search=this.rechercher.toLowerCase()
-              const nom = user.nom.toLowerCase()
-              const prenom =user.prenom.toLowerCase()
+              const last_name = user.last_name.toLowerCase()
+              const first_name =user.first_name.toLowerCase()
               const email = user.email.toLowerCase()
-              return  (nom.includes(search)|| prenom.includes(search) ||email.includes(search))              
+              return  (last_name.includes(search)|| first_name.includes(search) ||email.includes(search))              
           })  
         }else{
              this.usersFiltre=this.users
@@ -216,7 +220,7 @@ export default {
         if(this.filterSelection){
            if(this.roleSelection !=' '){
             this.usersFiltre = this.usersFiltre.filter((user) =>{
-                return user.role ===this.roleSelection
+                return user.user_type ===this.roleSelection
             })  
           }else{
              this.usersFiltre=this.users

@@ -32,12 +32,12 @@
             <form @submit.prevent="submit" >
                     <div class="text-left px-2 py-4 text-lg md:flex md:items-center">
                         <span class="text-grey-800  mr-3 md:w-1/3 ">Nom</span>
-                        <input type="text" required v-model="nom"
+                        <input type="text" required v-model="last_name"
                             class="mt-1 border border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm rounded-md" placeholder="Nom">
                     </div>
                     <div class="text-left px-2 py-4 text-lg md:flex md:items-center">
                         <span class="text-grey-800  mr-3 md:w-1/3 ">Prenom</span>
-                        <input type="text" required v-model="prenom"
+                        <input type="text" required v-model="first_name"
                             class="mt-1 border border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm rounded-md" placeholder="Prenom">
                     </div>
                     <div class="text-left px-2 py-4 text-lg md:flex md:items-center">
@@ -53,7 +53,7 @@
                 
                     <div class="text-left px-2 py-4 text-lg md:flex md:items-center">
                         <p class="text-grey-800  mr-3 md:w-1/3">Role</p>
-                        <select name="role" id="role"  v-model="role"
+                        <select name="role" id="role"  v-model="user_type"
                         class="mt-1 border border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm rounded-md" >
                             <option value="administrateur">admin</option>
                             <option value="membreCS">membre de CS</option>
@@ -109,15 +109,25 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
     props: ['ajouter','supprimer'], 
     data(){
         return{
-            nom:'',
-            prenom:'',
+            last_name:'',
+            first_name:'',
             email:'',
-            role:'',
-            emailErreur:''
+            user_type:'',
+            emailErreur:'',
+            data:{ 
+                    user_name:'Djehaiche-Salah',
+                    last_name:'Djehaiche',
+                    first_name:'Salah',
+                    email:'h_djehaiche@esi.dz',
+                    user_type:'MEMBRE_CS',
+                    password1:'12345678',
+                    nss:533,
+                }            
         }
     },
     methods:{
@@ -135,11 +145,51 @@ export default {
             }else 
             {
                 this.emailErreur=''
-                console.log(this.nom)
+                this.postrequest()                
                 this.closemodal()
             }
         },
-    },
+        postrequest(){            
+            /*
+console.log(this.data)
+            var formData = new FormData();
+            var username='DjehaicheSalah'
+            var last_name ='Djehaiche'
+            var first_name ='Salah'
+            var email ='hs_djehaiche@esi.dz'
+            var user_type ='MEMBRE_CS'
+            var password1 ='12345678'
+            var nss=212
+            formData.append("username",username)
+            formData.append("last_name",last_name)
+            formData.append("first_name",first_name)
+            formData.append("email",email)
+            formData.append("user_type",user_type)
+            formData.append("password1",password1)
+            formData.append("nss",nss)
+            axios.post("http://192.168.43.213:8000/v1/api/users", formData, {
+          }).then((res) => {
+            console.log(res)
+          }).catch(error => (console.log(error)));
+            */
+            // Simple POST request with a JSON body using axios
+            /*console.log(this.data)
+            axios.post("http://192.168.43.213:8000/v1/api/users/", this.data)
+                .then(response => console.log(response))
+                .catch(error => (console.log(error)));*/
+                axios({
+                method: 'post',
+                url: 'http://192.168.43.213:8000/v1/api/users/',
+                headers:{"Content-Type":"application/json"},
+                data: this.data
+                }).then(response => (console.log(response.data)))
+                .catch(error => (console.log(error)));
+        },
+
+    },   
+            mounted(){
+            this.postrequest()
+        }
 }
 </script>
 

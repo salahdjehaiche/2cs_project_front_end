@@ -70,7 +70,7 @@
                         <div class="text-xs leading-5 text-gray-900">
                          <a
                             :href="'/consulterprojet/cl/1'"
-                            class="text-blue-800 hover:text-blue-500 hover:font-bold"
+                            class="text-blue-500 hover:text-blue-800 hover:font-bold"
                           >
                             <svg
                               class="h-6 w-6 fill-current mr-2 text-green-700 cursor-pointer"
