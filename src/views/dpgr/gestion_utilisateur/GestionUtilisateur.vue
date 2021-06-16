@@ -26,12 +26,12 @@
                 <select name="role" id="role"  v-model="roleSelection"
                 class="mt-1 border border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm rounded-md" >
                     <option value=" "> </option>
-                    <option value="admin">admin</option>
-                    <option value="membreCS">membre de CS</option>
-                    <option value="membreCL1">membre de CL1</option>
-                    <option value="membreCL2">membre de CL2</option>
-                    <option value="chercheur">Chercheur</option>
-                    <option value="doctorant">Doctorant</option>
+                    <option value="MEMBRE_DPGR">membre de DPGR</option>
+                    <option value="MEMBRE_CS">membre de CS</option>
+                    <option value="MEMBRE_LMCS">membre de LMCS</option>
+                    <option value="MEMBRE_LCSI">membre de LCSI</option>
+                    <option value="CHERCHEUR">Chercheur</option>
+                    <option value="DOCTORANT">Doctorant</option>
                 </select>   
               </div>           
             </div>
@@ -114,7 +114,7 @@
                       <td class="px-6 py-4 whitespace-no-wrap">
                         <div class="text-xs leading-5 text-gray-900 text-left">
                          <button
-                            @click="supprimerUser"
+                            @click="supprimerUser(user.pk)"
                             class="text-blue-500 hover:text-blue-800 hover:font-bold"
                           >
                             <svg  class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="Red">
@@ -135,7 +135,7 @@
         <AjouterUtilisateur  @close="openForm" :ajouter="ajouter_utilisateur" />
      </div>
      <div v-else-if="supprimer">
-        <AjouterUtilisateur  @close="supprimerUser" :supprimer="supprimer"/>
+        <AjouterUtilisateur  @close="supprimerUser" :supprimer="supprimer" :delete_id="delete_id"/>
      </div>
     </main>
     <div>{{data}}</div>
@@ -162,13 +162,17 @@ export default {
             usersFiltre: this.users,
             filterSelection:false,
             rechercher:'',
+            delete_id:''
         }
     },
     methods:{
         openForm(){
            this.ajouter_utilisateur =!this.ajouter_utilisateur
         },
-        supprimerUser(){
+        supprimerUser(delete_id){
+          if(!this.supprimer)
+          {this.delete_id = delete_id}
+          else {this.delete_id=''}
           this.supprimer= !this.supprimer
         },
         filterUsers(){
@@ -182,7 +186,7 @@ export default {
       this.usersFiltre=this.users
     },*/
         mounted(){
-        fetch('http://192.168.43.213:8000/v1/api/users/?format=json')
+        fetch('http://192.168.43.213:8000/v1/api/users/all/?format=json')
             .then(res=> res.json())
             .then(data => {
               this.users = data
@@ -191,17 +195,7 @@ export default {
             .catch(err => console.log(err.message))         
     },
     updated(){
-      console.log("-----")
-      if(!this.ajouter_utilisateur && !this.supprimer) {
-        fetch('http://192.168.43.213:8000/v1/api/users/?format=json')
-            .then(res=> res.json())
-            .then(data => {
-              this.users = data
-              this.usersFiltre=this.users        
-              console.log(data)    
-            })
-            .catch(err => console.log(err.message))  
-        }
+
     },
     computed:{
      rechercherUsers()  

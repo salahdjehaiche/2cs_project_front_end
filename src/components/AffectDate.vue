@@ -26,6 +26,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 
 export default {
 
@@ -44,10 +45,30 @@ data(){
         console.log(' erruer :la date debut >= date_fin')
       }else {
         console.log('affecter la date')
-        this.date_debut=''
-        this.date_fin=''
+        this.postDate()        
       }
     },
+    postDate(){   
+      
+      const config ={ 
+        from_date: this.date_debut,
+        to_date:this.date_fin,
+        type:''
+      }
+      if (this.type==="Soummission")  {config.type="SM"}
+      else {config.type="VA"}
+      axios({
+          method: 'post',
+          url: 'http://192.168.43.213:8000/v1/api/configs/',
+          headers:{"Content-Type":"application/json"},
+          data: config
+        }).then(response => {
+          console.log(response.data)
+          this.date_debut=''
+          this.date_fin=''
+          })
+        .catch(error => (console.log(error)));
+      },
   },
 
 }

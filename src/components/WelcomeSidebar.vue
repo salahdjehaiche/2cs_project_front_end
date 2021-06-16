@@ -8,15 +8,15 @@
           <div class="w-full   flex px-4 items-center mb-8 ">
             <img src="../assets/ProjetRechercheBlanc2.png" alt="2a logo">
           </div>
-          <div class="mb-4 px-4 text-gray-500" id="nav" v-for="link in  sideBar" :key="link" >
+          <div class="mb-4 px-4 text-black-800" id="nav" v-for="link in  sideBar" :key="link" >
               <router-link  :to="{name : link.name}  ">
-              <div class="w-full flex items-center  h-10 pl-4  hover:bg-blue-200 hover:text-gray-600 rounded-lg cursor-pointer">
+              <div class="w-full flex items-center  h-10 pl-4 transition-colors duration-150 hover:text-black  hover:bg-blue-200 hover:text-gray-600 rounded-lg cursor-pointer">
 
-                  <svg  v-if="!link.herite" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                  <svg  v-if="!link.herite" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 fill-current mr-1 text-blue-700 " viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clip-rule="evenodd" />
                   </svg>
                   <div class="ml-4" v-else>
-                    <svg  class="h-6 w-6 fill-current mr-1" viewBox="0 0 20 20">
+                    <svg  class="h-6 w-6 fill-current mr-1 text-blue-700" viewBox="0 0 20 20">
                       <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
                     </svg>
                   </div>
