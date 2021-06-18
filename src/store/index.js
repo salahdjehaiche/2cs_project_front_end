@@ -1,6 +1,13 @@
 import { createStore } from 'vuex'
 
+//general
+import { login } from './login.module';
+
+
 export default createStore({
+    modules: {
+        login
+    },
     state: {
         sideBarOpen: false
     },

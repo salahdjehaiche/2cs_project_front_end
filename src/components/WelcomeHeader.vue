@@ -72,9 +72,9 @@
             <router-link  :to="{name : 'Modifierprofile'}  ">
                 <div class="block px-2 py-2 text-sm text-gray-700 hover:bg-gray-200" role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</div>
             </router-link >
-            <div class="block px-2 py-2 text-sm text-gray-700 hover:bg-gray-200" role="menuitem" tabindex="-1" id="user-menu-item-2">      
-              <router-link  to="/login" @click="logout()" replace>Logout</router-link>
-            </div>      
+            <router-link  to="/login" @click="doLogout" >
+            <div class="block px-2 py-2 text-sm text-gray-700 hover:bg-gray-200" role="menuitem" tabindex="-1" id="user-menu-item-2">Logout</div>  
+            </router-link>
           </div>
         </div>
       </div>
@@ -89,25 +89,34 @@
 </nav>
 </template>
 
+
+
 <script>
-import { mapState } from "vuex";
+import { mapActions, mapState } from "vuex";
 
 export default {
     name: "Navbar",
+      
     computed: {
-        ...mapState(["sideBarOpen"])
+        ...mapState(["sideBarOpen"]),      
     },
     data() {
         return {
-            dropDownOpen: false
+            dropDownOpen: false,
         };
     },
     methods: {
         toggleSidebar() {
             this.$store.dispatch("toggleSidebar");
         },
-          logout() {
-                this.authenticated = false;
+        ...mapActions('login', {
+                logout: 'logout'
+            }),
+                reset() {
+                this.$refs.form.reset();
+            },
+            doLogout() {
+                this.logout();
             }
     }
 };
