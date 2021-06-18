@@ -154,7 +154,9 @@ export default {
                 axios({
                     method: 'post',
                     url: 'http://192.168.43.213:8000/v1/api/users/',
-                    headers:{"Content-Type":"application/json"},
+                    headers:{
+                        "Content-Type":"application/json", 
+                        'Authorization': 'Bearer '+TOKEN},
                     data: this.data
                     }).then(response => (console.log(response.data)))
                     .catch(error => (console.log(error)));

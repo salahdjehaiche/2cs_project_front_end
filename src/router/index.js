@@ -1,6 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
 const routes = [
+  //
+  {
+    path: '//',
+    redirect: { name:'GestionUtilisateur'}    
+  },
 //----------------profile-----------
 {
   path: '/modifeirpofile',
@@ -15,7 +20,7 @@ const routes = [
 
 //---------------------dpgr-----------------
   {
-    path: '/',
+    path: '/affecterlesdelais',
     name: 'AffecterLesDelais',
     component: () => import( '../views/dpgr/AffecterLesDelais.vue')
     },
@@ -117,6 +122,11 @@ const routes = [
     path: '/actuel/contrat/renouvler',
     name: 'RenouvlerContrat',
     component: () => import( '../views/Membres/contrat/RenouvlerContrat.vue')
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: () => import( '../views/authentification/Login.vue')
   },
 ]
 

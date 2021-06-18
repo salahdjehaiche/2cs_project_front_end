@@ -72,7 +72,9 @@
             <router-link  :to="{name : 'Modifierprofile'}  ">
                 <div class="block px-2 py-2 text-sm text-gray-700 hover:bg-gray-200" role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</div>
             </router-link >
-            <div class="block px-2 py-2 text-sm text-gray-700 hover:bg-gray-200" role="menuitem" tabindex="-1" id="user-menu-item-2">Logout</div>            
+            <div class="block px-2 py-2 text-sm text-gray-700 hover:bg-gray-200" role="menuitem" tabindex="-1" id="user-menu-item-2">      
+              <router-link  to="/login" @click="logout()" replace>Logout</router-link>
+            </div>      
           </div>
         </div>
       </div>
@@ -103,7 +105,10 @@ export default {
     methods: {
         toggleSidebar() {
             this.$store.dispatch("toggleSidebar");
-        }
+        },
+          logout() {
+                this.authenticated = false;
+            }
     }
 };
 

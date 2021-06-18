@@ -180,13 +180,13 @@ export default {
          this.rechercherUsers
         }        
     },
- 
-    /* mounted(){
-
-      this.usersFiltre=this.users
-    },*/
         mounted(){
-        fetch('http://192.168.43.213:8000/v1/api/users/all/?format=json')
+          let token ="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjIzOTgyNjQxLCJqdGkiOiI3ZGM3NzViMjBmYzA0OTA3YjI1ZDk2NDUyZDI5OWVjYiIsInVzZXJfaWQiOjE0fQ.kNZNpJOobcl10Ey2D-2sMWCOEsJwC55Kz-Ux75WJt-U"
+          const  headers={
+            'Authorization' : `Bearer ${token}`,
+            'Content-Type': `multipart/form-data; `
+          }
+        fetch('http://192.168.43.213:8000/v1/api/users/all/?format=json',{ headers })
             .then(res=> res.json())
             .then(data => {
               this.users = data
