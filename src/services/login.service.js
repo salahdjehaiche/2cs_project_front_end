@@ -3,6 +3,12 @@ export const loginService = {
 };
 function login(email, password) {
     if(email != "" && password != "") {
-        return true;
+        if (password=="1111")
+        {
+            return {role:"dpgr"};
+        }else{
+            return {role:"membre"};
+        }
+
     }
 }

@@ -11,9 +11,13 @@ const actions = {
     
         let result = loginService.login(email, password);
         if(result){
-            commit('loginSuccess');
-            console.log("login success");
-            router.push('/');
+            commit('loginSuccess',{result});
+            if (result.role=="dpgr")
+            {
+                router.push('/');
+            }else{
+                router.push({name : 'Actuel'});
+            }
         }
     },
     logout({commit}) {
@@ -28,20 +32,20 @@ const mutations = {
     resetState (state) {
         state.isLogin=false;
         state.token=null;
-        state.user=null;
+        state.user=null;        
     },
     loginRequest(state, user) {
         state.isLogin=true;
         state.token=null;
         state.user=user;
     },
-    loginSuccess(state) {
+    loginSuccess(state,user) {
         state.isLogin=true;
         state.token=null;
-        state.user=null;
+        state.user=user;        
     },
     loginFailure(state) {
-        state.isLogin=false;
+        state.isLogin=false;        
     },
 };
 export const login = {
