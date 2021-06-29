@@ -58,13 +58,15 @@
                             placeholder="Commentaire"
                             required
                             ></textarea>
-                            <label class="text-red-500" v-if="commentaireError"> {{commentaireError}}</label><br>
-                            <label class="text-red-500" v-if="commentaireError"> {{characterLeft}}</label>
+                            <div class="mt-2">
+                                <label class="text-grey-100 text-xs" v-if="commentaireError"> {{commentaireError}}</label>
+                                <label class="text-grey-100 text-xs" v-if="commentaireError"> {{characterLeft}}</label>
+                            </div>
                         </div>
                         </div>
                     </div>
                     <div
-                        class="px-4 py-3 bg-gray-50 text-right sm:px-6"
+                        class="px-4 py-3 text-right sm:px-6"
                     >
 
                         <button
@@ -76,7 +78,7 @@
                         <button
                         type="reset"
                         @click="closemodal"
-                        class="py-2 px-4 mr-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-500"
+                        class="py-2 px-4 ml-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-500"
                         >
                         Annuler
                         </button>
@@ -105,21 +107,21 @@ methods:{
         this.$emit('close')
     },
     submit(){
-        if(this.commentaire.length >=50 )
+        if(this.commentaire.length >=40 )
        {
             //----submit response -----------------//
             this.closemodal()
        }else {
-           this.commentaireError ="le commentaire doit contenir au moins 50 caractères"
+           this.commentaireError ="le commentaire doit contenir au moins 40 caractères"
        }
     },
 },
 updated(){
     
-    if (this.commentaire.length<50)
+    if (this.commentaire.length<40)
     {
-        this.commentaireError = "le commentaire doit contenir au moins 50 caractères "
-        this.characterLeft=" il reste " +(50 - this.commentaire.length )+" caractères"
+        this.commentaireError = "le commentaire doit contenir au moins 40 caractères,"
+        this.characterLeft=" il reste " +(40 - this.commentaire.length )+" caractères"
     }else {this.commentaireError =''}
 }
 }

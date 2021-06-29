@@ -31,17 +31,17 @@
             </div>
             <form @submit.prevent="submit" >
                     <div class="text-left px-2 py-4 text-lg md:flex md:items-center">
-                        <span class="text-grey-800  mr-3 md:w-1/3 ">Nom</span>
+                        <span class="text-grey-800 font-bold  mr-3 md:w-1/3 ">Nom</span>
                         <input type="text" required v-model="data.last_name"
                             class="mt-1 border border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm rounded-md" placeholder="Nom">
                     </div>
                     <div class="text-left px-2 py-4 text-lg md:flex md:items-center">
-                        <span class="text-grey-800  mr-3 md:w-1/3 ">Prenom</span>
+                        <span class="text-grey-800 font-bold  mr-3 md:w-1/3 ">Prénom</span>
                         <input type="text" required v-model="data.first_name"
                             class="mt-1 border border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm rounded-md" placeholder="Prenom">
                     </div>
                     <div class="text-left px-2 py-4 text-lg md:flex md:items-center">
-                        <span class="text-grey-800  mr-3 md:w-1/3 ">Mail</span>
+                        <span class="text-grey-800 font-bold  mr-3 md:w-1/3 ">Mail</span>
                         <input type="email" required v-model="data.email"
                             class="mt-1 border border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm rounded-md" placeholder="mail@esi.dz">
                     </div>
@@ -52,7 +52,7 @@
                     </div>
                 
                     <div class="text-left px-2 py-4 text-lg md:flex md:items-center">
-                        <p class="text-grey-800  mr-3 md:w-1/3">Role</p>
+                        <p class="text-grey-800 font-bold  mr-3 md:w-1/3">Role</p>
                         <select name="role" id="role"  v-model="data.user_type" required
                         class="mt-1 border border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm rounded-md" >
                             <option value="MEMBRE_DPGR">membre de DPGR</option>

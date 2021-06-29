@@ -98,22 +98,6 @@
                               required
                             />
                           </div>
-                          <div class="col-span-6 sm:col-span-3">
-                            <label
-                              for="file"
-                              class="block text-sm font-medium text-black"
-                              >Fichiers</label
-                            >
-                            <input
-                              type="file"
-                              name="file"
-                              id="file"
-                              @change="previewFiles"
-                              placeholder="Selectionner"
-                              class="mt-1 border border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm rounded-md"
-                              required
-                            />
-                          </div>
                         </div>
                       </div>
                       <div
@@ -309,6 +293,7 @@
                             </select>
                           </div>
                         </div>
+
                       </div>
                       <!--colaborations-->
                       <div v-if="selectColab" id="colabs">
@@ -451,6 +436,31 @@
                       </div>
                       
                       </div>
+
+                      <div class="bg-blue-50 overflow-hidden shadow sm:rounded-lg">
+                        <div class="w-full h-10 px-4 pb-1 flex items-center justify-between">
+                          <div class="text-left px-2 py-1 text-xl flex items-center" >
+                            <p class="text-grey-800 font-bold">
+                              Fichier saisi sur la plateforme de le ministère
+                            </p>
+                          </div>
+                        </div>
+                      </div>      
+                      
+                          <div class="col-span-6 sm:col-span-3">
+                          <br>
+                            <input
+                              type="file"
+                              name="file"
+                              id="file"
+                              @change="previewFiles"
+                              placeholder="Selectionner"
+                              class="mt-1 border border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm rounded-md"
+                              required
+                            />
+                          </div>
+                <br>
+                <br>
                       <div class="px-4 py-3 bg-gray-50 text-center sm:px-6">
                         <button
                           type="submit"
@@ -528,7 +538,8 @@ data() {
         },
         methods: {
             previewFiles(event) {
-                this.file=event.target.files
+                this.file=event.target.files[0] 
+                console.log(this.file)            
             },
             add() {
                 this.form.collaborations.push( {
@@ -589,7 +600,7 @@ data() {
                                               'wanted_result':'type1'
                                             })
              
-              let token ="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjIzOTgyNjQxLCJqdGkiOiI3ZGM3NzViMjBmYzA0OTA3YjI1ZDk2NDUyZDI5OWVjYiIsInVzZXJfaWQiOjE0fQ.kNZNpJOobcl10Ey2D-2sMWCOEsJwC55Kz-Ux75WJt-U"
+              let token ="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjI0NTQzNTkwLCJqdGkiOiI2ZTUzYzFhZjA4ZjA0OWI0OTA0YzVkYTJlMTU1MGZkNyIsInVzZXJfaWQiOjE0fQ.LZ0i1OGlFa_N92RisfV81fjVn6yMWhEPNBiwBtWImdc"
               axios.post(`http://192.168.43.213:8000/v1/api/projects/`, projet,                      
                 {
                   headers:{

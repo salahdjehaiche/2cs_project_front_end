@@ -1,6 +1,6 @@
 <template>
    <div class="backdrop  " @click.self="closemodal" > 
-       <div class="w-2/2  p-4  md:w-2/4 card"  v-if="ajouter">
+       <div class="w-2/2 bg-white p-4  md:w-2/4 card"  v-if="ajouter">
             <div class="flex justify-between items-center"
                 >
                 <div

@@ -24,9 +24,9 @@
                                 >
                                 <circle cx="8" cy="8" r="8"/>
                                 </svg>
-                                <span class="text-grey-dark text-center"
-                                >{{membre.nom}} {{membre.prenom}}</span
-                                >
+                                <router-link :to="{name : 'Consulterprofile'}"  class="text-grey-dark text-center">
+                                     {{membre.nom}} {{membre.prenom}}
+                                </router-link >
                             </li>                        
                         </ul>
                     </div>

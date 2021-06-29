@@ -94,7 +94,7 @@ export default {
           {label:'Intitulé de la formation doctorale',information:'information'},
           {label:'Problématique',information:'information'},
           {label:'Mot clés',information:'information'},
-          {label:'Objectifs',information:'information'},
+          {label:'Objectifs',information:'informationinformationinformationinformationinformationinformationinformationinformationinformationinformationinformation'},
           {label:'Méthodologie',information:'information'},
         ],
         tablecolaboration:[

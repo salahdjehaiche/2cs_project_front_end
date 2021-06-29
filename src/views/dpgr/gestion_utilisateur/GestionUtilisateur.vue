@@ -3,7 +3,7 @@
 
  <WelcomeLayout >
    
-    <MainHeader :titre="' C\'est la page de Gestion Utilisateur'" />    
+    <MainHeader :titre="'Gestion Utilisateur'" />    
     <main class="bg-white">
       <div class="max-w-8xl mx-auto sm:px-6 lg:px-4">
          <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
@@ -181,7 +181,7 @@ export default {
         }        
     },
         mounted(){
-          let token ="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjIzOTgyNjQxLCJqdGkiOiI3ZGM3NzViMjBmYzA0OTA3YjI1ZDk2NDUyZDI5OWVjYiIsInVzZXJfaWQiOjE0fQ.kNZNpJOobcl10Ey2D-2sMWCOEsJwC55Kz-Ux75WJt-U"
+          let token ="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjI0NTQzNTkwLCJqdGkiOiI2ZTUzYzFhZjA4ZjA0OWI0OTA0YzVkYTJlMTU1MGZkNyIsInVzZXJfaWQiOjE0fQ.LZ0i1OGlFa_N92RisfV81fjVn6yMWhEPNBiwBtWImdc"
           const  headers={
             'Authorization' : `Bearer ${token}`,
             'Content-Type': `multipart/form-data; `

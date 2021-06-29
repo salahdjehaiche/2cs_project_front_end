@@ -47,7 +47,7 @@
                             <label
                               :for="'membre-' + index"
                               class="block text-sm font-medium text-black"
-                              >Membre n° {{ index + 1 }} </label
+                              >Membre n° {{ index + 2 }} </label
                             >
                              <select v-model="SelectMembre"
                             @change="selected"
@@ -61,14 +61,14 @@
                         <div
                             class="text-left px-2 py-1 text-xl flex items-center"
                           >
-                          <button class="bg-green-500 hover:bg-green-700 text-white font-bold my-4 py-2 px-4 rounded" v-if="form.membres.length < 6" @click.prevent="add">
+                          <button class="bg-green-500 hover:bg-green-700 text-white font-bold my-4 py-2 px-4 rounded" v-if="form.membres.length < 5" @click.prevent="add">
                         +
                        </button>
                         </div>
                          <div
                             class="text-left px-2 py-1 text-xl flex items-center"
                           >
-                          <button class="bg-red-500 hover:bg-red-700 text-white font-bold my-3 py-2 px-4 rounded" v-if="form.membres.length > 1" @click.prevent="remove">
+                          <button class="bg-red-500 hover:bg-red-700 text-white font-bold my-3 py-2 px-4 rounded" v-if="form.membres.length > 3" @click.prevent="remove">
                         -
                     </button>
                         </div>   
@@ -121,6 +121,7 @@ export default {
                     membres: [
                        {nom:null},
                        {nom:null},
+                       {nom:null},
                     ]
                 },
                 chercheurs:[
@@ -141,10 +142,7 @@ export default {
                 this.form.membres.pop();
             },
               selected(){
-        for (var i=0; i<selectobject.length; i++) {
-    if (selectobject.options[i].value == 'A')
-        selectobject.remove(i);
-}
+ 
     },
     },
 };

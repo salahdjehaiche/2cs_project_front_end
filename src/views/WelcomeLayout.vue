@@ -7,9 +7,9 @@
                 :class="sideBarOpen ? 'overlay' : ''"
                 id="main-content"
             >
-                <welcome-header />
+                <welcome-header class="sticky top-0 z-50" />
 
-                <div class="p-3 bg-white mb-6">
+                <div class=" bg-white mb-6">
                     <slot ></slot>                    
                 </div>
 
