@@ -1,12 +1,6 @@
 <template>
   <WelcomeLayout>  
-    <MainHeader :titre="' Soumettre un projet'" >
-          <router-link :to="{path : '/actuel'}"
-          class="text-blue-500 hover:text-blue-800 hover:font-bold"
-          >  Projet Actuel
-          </router-link>
-          <span class="text-grey-dark text-center font-bold">> </span>
-    </MainHeader>
+    <MainHeader :titre="' Soumettre un projet'" />         
     <main class="bg-white">
      <FormulaireProjet :type="'creer'"/>
     </main>

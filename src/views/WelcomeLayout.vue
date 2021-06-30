@@ -7,9 +7,9 @@
                 :class="sideBarOpen ? 'overlay' : ''"
                 id="main-content"
             >
-                <welcome-header class="sticky top-0 z-50" />
+                <welcome-header class="md:sticky md:top-0 md:z-50" />
 
-                <div class=" bg-white mb-6">
+                <div class="m-3 bg-white mb-6">
                     <slot ></slot>                    
                 </div>
 
@@ -31,9 +31,7 @@ export default {
     },
     data(){
         return{
-            sideBar : [
-                {name :'Consulterpublications'  , label: 'Consulter Publication',herite:false},
-            ]
+            sideBar : []
         }
     },
     mounted(){
@@ -44,21 +42,21 @@ export default {
                 {name :'AffecterLesDelais' , label: 'Affecter Les Delais',herite:false},    
       ]
       let sideBarCS=[
-                {name :'ConsulterProjetCS' , label: 'Consulter ProjetsCS',herite:false},               
+                {name :'ConsulterProjetCS' , label: 'Projets de recherche soumis',herite:false},               
       ]
       let sideBarCL=[
-                {name :'ConsulterProjetCL' , label: 'Consulter ProjetsCL',herite:false},
+                {name :'ConsulterProjetCL' , label: 'Projets de recherche soumis',herite:false},
       ]
       let sideBarMembre=[
-                {name :'CreationEquipe' , label: 'Creer Equipe',herite:false},
-                {name :'ConsulterEquipe' , label: 'Consulter Equipe',herite:false},
-                {name :'ProjetRecherche' , label: 'Projet Recherche',herite:false},
+                {name :'ProjetRecherche' , label: 'Projets de Recherche',herite:false},                
+                {name :'CreationEquipe' , label: 'Créer Equipe',herite:false},
+                {name :'ConsulterEquipe' , label: 'Equipe de Projet',herite:false},
+                {name :'SoumettreProjet' , label: 'Soumission De Projet',herite:false},                
                 {name :'Actuel' , label: 'Projet Actual',herite:false},
-                {name :'Bilan' , label: 'Bilans De Projet',herite:true},
-                {name :'Contrat' , label: 'Contrat',herite:true},
-                {name :'SoumettreProjet' , label: 'Soumission De Projet',herite:true},
-                {name :'FicheProjet' , label: 'Fiche De Projet',herite:true},
-                {name :'Consulter' , label: 'Consulter Les Decisions',herite:true},
+                {name :'Consulter' , label: 'Consulter Les Decisions',herite:true},                
+                {name :'Contrat' , label: 'Contrats',herite:true},
+                {name :'FicheProjet' , label: 'Fiches De Projet',herite:true},
+                {name :'Bilan' , label: 'Bilans De Projet',herite:true},                  
       ]
       if (user.role==="dpgr") {
             sideBarDPGR.forEach(element => {
@@ -77,6 +75,7 @@ export default {
               this.sideBar.push(element) 
             });        
         }
+        this.sideBar.push({name :'Consulterpublications'  , label: 'Publications',herite:false})
     }      
     
     ,

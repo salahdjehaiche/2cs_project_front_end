@@ -1,6 +1,6 @@
 <template>
   <WelcomeLayout >
-    <MainHeader :titre="'Projet de recherche des laboratoires'" />    
+    <MainHeader :titre="'Projet de recherche de laboratoire'" />    
     <main class="bg-white">
       <div class="max-w-8xl mx-auto sm:px-6 lg:px-4" v-for="laboTab in laboTabs" :key="laboTab">
         <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
