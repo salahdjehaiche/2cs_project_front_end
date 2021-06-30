@@ -24,8 +24,8 @@
                                 >
                                 <circle cx="8" cy="8" r="8"/>
                                 </svg>
-                                <router-link :to="{name : 'Consulterprofile' ,params: {user:membre.nom +' '+ membre.prenom}}"  class="text-grey-dark text-center">
-                                     {{membre.nom}} {{membre.prenom}} 
+                                <router-link :to="{name : 'Consulterprofile' ,params: {user:membre.pk}}"  class="text-grey-dark text-center">
+                                     {{membre.last_name}} {{membre.first_name}} 
                                 </router-link >
                             </li>                        
                         </ul>
@@ -42,14 +42,27 @@ export default {
 data(){
     return{
         membres:[
-            {nom:'Djehaiche',prenom:'Salah'},
-            {nom:'Debabza',prenom:'Idriss'},
-            {nom:'Telli',prenom:'Mohamed Khouja'},
-            {nom:'Haddad',prenom:'Zineddine'},
-            {nom:'Kherroubi',prenom:'Oussama'},
+            {last_name:'Djehaiche',first_name:'Salah'},
+            {last_name:'Debabza',first_name:'Idriss'},
+            {last_name:'Telli',first_name:'Mohamed Khouja'},
+            {last_name:'Haddad',first_name:'Zineddine'},
+            {last_name:'Kherroubi',first_name:'Oussama'},
         ],
     }
 },
+mounted(){         
+          let token =localStorage.getItem('token')
+          const  headers={
+            'Authorization' : `Bearer ${token}`,
+          }
+        fetch('http://192.168.43.213:8000/v1/api/teams/',{headers})
+            .then(res=> res.json())
+            .then(data => {
+              console.log(data)
+              this.membres = data           
+            })
+            .catch(err => console.log(err.message))         
+    },
 }
 </script>
 

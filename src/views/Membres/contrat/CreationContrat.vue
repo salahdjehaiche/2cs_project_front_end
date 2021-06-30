@@ -33,7 +33,7 @@ export default {
   methods:{
     saveContrat(){
       console.log(this.titre,this.date,this.detail)
-    }
+    },
   }
 };
 </script>

@@ -79,38 +79,25 @@
                       <tr v-for="tab in tableau" :key="tab">
                         <td class="px-6 py-2 whitespace-no-wrap">
                           <div class="text-sm font-bold leading-5  text-blue-600">
-                            {{tab.titre}}
+                            {{tab.title}}
                           </div>
                         </td>
                         <td class="px-6 py-2 whitespace-no-wrap">
-                          <div class="text-xs leading-5 text-gray-900 text-left"> {{tab.date_signature}} </div>
+                          <div class="text-xs leading-5 text-gray-900 text-left"> {{tab.date_sign}} </div>
                         </td>
                         <td class="px-6 py-2 whitespace-no-wrap">
-                          <div class="text-xs leading-5 text-gray-900 text-left">{{tab.date_renouvelement}}</div>
+                          <div class="text-xs leading-5 text-gray-900 text-left">{{tab.date_ren}}</div>
                         </td> 
                         <td class="px-6 py-2 whitespace-normal">
                         <div class="text-xs leading-5 text-gray-900">
                           <div class="px-2 py-2 flex items-center">
-                          <router-link  :to="{name : 'RenouvlerContrat'}"
+                          <router-link  :to="{name : 'RenouvlerContrat',params :{id:tab.id}}"
                               class="text-blue-800 hover:text-blue-500 hover:font-bold"
                             >
-                          <button
-                            class="
-                              py-1
-                              px-2
-                              border border-transparent
-                              shadow-sm
-                              text-sm
-                              font-medium
-                              rounded-md
-                              text-white
-                              bg-orange-400
-                              hover:bg-orange-500
-                            "
-                          >
-                          <div class="flex items-center">
-                            <h3>Renouveler</h3>
-                          </div>
+                          <button  class=" py-1 px-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-orange-400 hover:bg-orange-500  ">
+                            <div class="flex items-center">
+                              <h3>Renouveler</h3>
+                            </div>
                           </button>
                           </router-link>
 
@@ -119,7 +106,8 @@
                       </td>                                 
                         <td class="px-6 py-4 whitespace-no-wrap">
                           <div class="text-xs leading-5 text-gray-900 text-left">
-                            <router-link  :to="{name : 'DetailContrat' ,params:{id:1}}"
+                            <router-link  :to="{name : 'DetailContrat' ,
+                            params:{title:tab.title, date_sign :tab.date_sign , date_ren: tab.date_ren,detail:tab.detail}}"
                               class="text-blue-500 hover:text-blue-800 hover:font-bold"
                             >
                               <svg
@@ -154,14 +142,22 @@ export default {
   },
   data(){
     return{
-      tableau:[
-        {
-          titre:'--',
-          date_signature:'--',
-          date_renouvelement:'--',
-        }
+      tableau:[       
       ]
     }
-  }
+  },
+  mounted(){         
+          let token =localStorage.getItem('token')
+          const  headers={
+            'Authorization' : `Bearer ${token}`,
+          }
+        fetch('http://192.168.43.213:8000/v1/api/contrats/',{headers})
+            .then(res=> res.json())
+            .then(data => {
+              console.log(data)
+              this.tableau = data           
+            })
+            .catch(err => console.log(err.message))         
+    },
 };
 </script>

@@ -141,7 +141,7 @@ const routes = [
         let user =store.state.login.user
         if (!user){
           next({name:'Login'})
-        }else if(user.user_type!="membre"){
+        }else if(user.user_type!="CHERCHEUR" && user.user_type!="DOCTORANT"){
           next({name:'Login'})
         }else{
           next()
@@ -163,7 +163,7 @@ const routes = [
         let user =store.state.login.user
         if (!user){
           next({name:'Login'})
-        }else if(user.user_type!="membre"){
+        }else if(user.user_type!="CHERCHEUR" && user.user_type!="DOCTORANT"){
           next({name:'Login'})
         }else{
           next()
@@ -179,7 +179,7 @@ const routes = [
       let user =store.state.login.user
       if (!user){
         next({name:'Login'})
-      }else if(user.user_type!="membre"){
+      }else if(user.user_type!="CHERCHEUR" && user.user_type!="DOCTORANT"){
         next({name:'Login'})
       }else{
         next()
@@ -195,7 +195,7 @@ const routes = [
       let user =store.state.login.user
       if (!user){
         next({name:'Login'})
-      }else if(user.user_type!="membre"){
+      }else if(user.user_type!="CHERCHEUR" && user.user_type!="DOCTORANT"){
         next({name:'Login'})
       }else{
         next()
@@ -211,7 +211,7 @@ const routes = [
       let user =store.state.login.user
       if (!user){
         next({name:'Login'})
-      }else if(user.user_type!="membre"){
+      }else if(user.user_type!="CHERCHEUR" && user.user_type!="DOCTORANT"){
         next({name:'Login'})
       }else{
         next()
@@ -227,7 +227,7 @@ const routes = [
       let user =store.state.login.user
       if (!user){
         next({name:'Login'})
-      }else if(user.user_type!="membre"){
+      }else if(user.user_type!="CHERCHEUR" && user.user_type!="DOCTORANT"){
         next({name:'Login'})
       }else{
         next()
@@ -243,7 +243,7 @@ const routes = [
       let user =store.state.login.user
       if (!user){
         next({name:'Login'})
-      }else if(user.user_type!="membre"){
+      }else if(user.user_type!="CHERCHEUR" && user.user_type!="DOCTORANT"){
         next({name:'Login'})
       }else{
         next()
@@ -259,7 +259,7 @@ const routes = [
       let user =store.state.login.user
       if (!user){
         next({name:'Login'})
-      }else if(user.user_type!="membre"){
+      }else if(user.user_type!="CHERCHEUR" && user.user_type!="DOCTORANT"){
         next({name:'Login'})
       }else{
         next()
@@ -275,7 +275,7 @@ const routes = [
       let user =store.state.login.user
       if (!user){
         next({name:'Login'})
-      }else if(user.user_type!="membre"){
+      }else if(user.user_type!="CHERCHEUR" && user.user_type!="DOCTORANT"){
         next({name:'Login'})
       }else{
         next()
@@ -291,7 +291,7 @@ const routes = [
       let user =store.state.login.user
       if (!user){
         next({name:'Login'})
-      }else if(user.user_type!="membre"){
+      }else if(user.user_type!="CHERCHEUR" && user.user_type!="DOCTORANT"){
         next({name:'Login'})
       }else{
         next()
@@ -299,15 +299,16 @@ const routes = [
     }
   },
   {
-    path: '/actuel/contrat/detail/:id',
+    path: '/actuel/contrat/detail/:title/:date_sign/:date_ren/:detail',
     name: 'DetailContrat',
     component: () => import( '../views/Membres/contrat/DetailContrat.vue'),
+    props:true,
       meta:{requiresAuth: true},
       beforeEnter: (to, from, next) => {
       let user =store.state.login.user
       if (!user){
         next({name:'Login'})
-      }else if(user.user_type!="membre"){
+      }else if(user.user_type!="CHERCHEUR" && user.user_type!="DOCTORANT"){
         next({name:'Login'})
       }else{
         next()
@@ -315,15 +316,16 @@ const routes = [
     }
   },
   {
-    path: '/actuel/contrat/renouvler',
+    path: '/actuel/contrat/renouvler/:id',
     name: 'RenouvlerContrat',
     component: () => import( '../views/Membres/contrat/RenouvlerContrat.vue'),
       meta:{requiresAuth: true},
+      props:true,
       beforeEnter: (to, from, next) => {
       let user =store.state.login.user
       if (!user){
         next({name:'Login'})
-      }else if(user.user_type!="membre"){
+      }else if(user.user_type!="CHERCHEUR" && user.user_type!="DOCTORANT"){
         next({name:'Login'})
       }else{
         next()
@@ -345,7 +347,6 @@ const router = createRouter({
 router.beforeEach((to,from,next)=>{ 
   if (to.matched.some(record => record.meta.requiresAuth)){
     let user =store.state.login.user
-    console.log(!user)
     if (!user){
       next({name:'Login'})
     }else{

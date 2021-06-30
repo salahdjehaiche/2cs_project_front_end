@@ -7,7 +7,7 @@
            <span class="text-grey-dark text-center font-bold"> > </span>
     </MainHeader>
     <main class="bg-white">
-       <FormulaireContrat :button="'Renouvler'" />
+       <FormulaireContrat :button="'Renouvler'" :id="id" />
     </main>
   </welcome-layout>
 </template>
@@ -16,6 +16,7 @@ import FormulaireContrat from './FormulaireContrat.vue';
 import WelcomeLayout from "./../../WelcomeLayout";
 import MainHeader from '../../../components/mainHeader.vue';
 export default {
+  props:['id'],
   components: {
     WelcomeLayout,
     FormulaireContrat,

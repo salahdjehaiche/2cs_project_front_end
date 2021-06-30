@@ -32,7 +32,7 @@
             </div>
             <div class="text-left px-2 py-4 text-xl  md:w-1/3 md:text-right">
                 <router-link :to="{name: 'ajouterpublication'} ">
-                    <button v-if="user=='membre'"
+                    <button v-if="user.user_type=='CHERCHEUR'|| user.user_type=='DOCTORANT'"
                       class="py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-500 hover:bg-green-600 
                         focus:border-green-500 focus:ring-2 focus:ring-green-500 focus:outline-none focus:ring-opacity-50" >
                         <div class="flex items-center">
@@ -138,7 +138,7 @@
         </div>
       </div>     
     </main>
-  
+  {{pub}}
  </WelcomeLayout>
 </template>
 
@@ -147,6 +147,7 @@ import WelcomeLayout from '../WelcomeLayout.vue'
 import ajouterPublication  from './VisionnerPublication.vue'
 import MainHeader from '../../components/mainHeader.vue'
 import store from "../../store/index";
+import axios from 'axios'
 
 export default {
   components: {
@@ -179,17 +180,31 @@ export default {
             publicationFiltre: this.publication,
             filterDate:false,
             rechercher:'',
-            dateCreation:''
+            dateCreation:'',
+            pub:[],
         }
     },
     methods:{       
         filterpublication(){
          this.filterDate =true
          this.rechercherpublication
+        },
+        getpublicationInfo() {
+         let token =localStorage.getItem('token')
+         axios({
+            method: 'get',
+            url: 'http://192.168.43.213:8000/v1/api/publications/',
+            headers:{
+                "Content-Type":"application/json", 
+                'Authorization': 'Bearer '+token
+                },
+            }).then(response => (this.pub= response.data))
+            .catch(error => (console.log(error)));
         }        
     },
      mounted(){
       this.user =store.state.login.user
+      this.getpublicationInfo()
       console.log(store.state.login.user.result)    
         this.publicationFiltre=this.publication
      /*     let token ="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjI0NTQzNTkwLCJqdGkiOiI2ZTUzYzFhZjA4ZjA0OWI0OTA0YzVkYTJlMTU1MGZkNyIsInVzZXJfaWQiOjE0fQ.LZ0i1OGlFa_N92RisfV81fjVn6yMWhEPNBiwBtWImdc"

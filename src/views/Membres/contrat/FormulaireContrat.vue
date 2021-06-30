@@ -1,31 +1,11 @@
 <template>
    <div class="max-w-8xl mx-auto sm:px-6 lg:px-4">
         <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-          <div
-            class="
-              md:grid md:grid-cols-4
-              md:gap-6
-              py-2
-              sm:px-3
-              lg:px-4
-              bg-white
-              rounded-md
-            "
-          >
+          <div class=" md:grid md:grid-cols-4 md:gap-6 py-2 sm:px-3 lg:px-4 bg-white rounded-md  ">
             <div class="md:col-span-4 px-3 sm:px-2">
               <div class="px-4 sm:px-0">
                 <div class="bg-orange-50 overflow-hidden shadow sm:rounded-lg">
-                <div
-                  class="
-                    w-full
-                    h-10
-                    px-4
-                    pb-1
-                    flex
-                    items-center
-                    justify-between
-                  "
-                >
+                <div  class=" w-full h-10 px-4 pb-1 flex items-center justify-between  ">
                   <div class="text-left px-2 py-4 text-xl flex items-center">
                     <p class="text-grey-800 font-bold">
                       Remplir les informations du contrat
@@ -47,7 +27,7 @@
                             >
                           <div class="w-1/3">
                             <input
-                            v-model="titre"
+                            v-model="title"
                               type="text"
                               name="title"
                               id="title"
@@ -60,13 +40,18 @@
                           </div>
                           <div class="col-span-6 sm:col-span-4  ">
                             <label
+                              for="nom" v-if="$route.name==='CreationContrat'"
+                              class="block text-sm font-medium text-left text-black">
+                              Date de signature
+                              </label>
+                              <label v-if="$route.name==='RenouvlerContrat'"
                               for="nom"
-                              class="block text-sm font-medium text-left text-black"
-                              >Date de signature</label
-                            >
+                              class="block text-sm font-medium text-left text-black">
+                              Date de renouvlement
+                              </label>
                             <div class="w-1/3">
                               <input
-                              v-model="date"
+                              v-model="date_sign"
                                 type="date"
                                 name="date_sign"
                                 id="date_sign"
@@ -128,23 +113,56 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
-    props:['button'],
+    props:['button','id'],
  data(){
     return {
-      titre:'',
-      date:'',
+      title:'',
+      date_sign:'',
       detail:'',
       file:null
     }
   },
   methods:{
     saveContrat(){
-      console.log(this.titre,this.date,this.detail)
-    }
+      if (this.button!='Renouvler') 
+      {
+          this.postContrat()
+      }
+      else{
+        this.updateContrat()
+      }
+    },
+      postContrat(){                          
+        let token =localStorage.getItem('token')      
+        const data= {title:this.title ,date_sign: this.date_sign , detail :this.detail }      
+        console.log(data)
+        axios({
+            method: 'post',
+            url: 'http://192.168.43.213:8000/v1/api/contrats/',
+            headers:{
+                "Content-Type":"application/json", 
+                'Authorization': 'Bearer '+token
+                },
+            data: data
+            }).then(response => (console.log(response.data)))
+            .catch(error => (console.log(error)));            
+      },
+      updateContrat(){      
+            let token =localStorage.getItem('token')         
+            const data={id:this.id , date_ren:this.date_sign} 
+            axios.put('http://192.168.43.213:8000/v1/api/contrats/',data,{
+            headers:{
+                "Content-Type":"application/json", 
+                'Authorization': 'Bearer '+token
+                },          
+            }).then(response => (console.log(response.data)))
+            .catch(error => (console.log(error)));
+      }
   },
   mounted(){
-    console.log(this.$route.name)
+    console.log(this.id)
   }
 }
 </script>

@@ -20,20 +20,8 @@
               >
                 <div class="px-4 sm:px-0">
                   <div class="bg-green-50 overflow-hidden shadow sm:rounded-lg">
-                    <div
-                      class="
-                        w-full
-                        h-10
-                        px-3
-                        pb-1
-                        flex
-                        items-center
-                        justify-between
-                      "
-                    >
-                      <div
-                        class="text-left px-2 py-1 text-xl flex items-center"
-                      >
+                    <div class="   w-full   h-10   px-3   pb-1   flex   items-center   justify-between ">
+                      <div class="text-left px-2 py-1 text-xl flex items-center">
                         <p class="text-grey-800 font-bold">
                           Information sur le contrat
                         </p>
@@ -41,41 +29,13 @@
                     </div>
                     <div class="px-4 py-5 bg-white sm:p-6">
                       <div class="grid grid-cols-6 gap-6">
-                        <div
-                          class="
-                            col-span-6
-                            sm:col-span-6
-                            flex
-                            items-center
-                            justify-start
-                          "
-                        >
+                        <div  class=" col-span-6 sm:col-span-6 flex items-center justify-start  ">
                           <div
-                            class="
-                              text-left
-                              block
-                              text-sm
-                              font-bold
-                              text-black
-                              flex
-                              items-center
-                            "
-                          >
+                            class=" text-left block text-sm font-bold text-black flex items-center  ">
                             Titre de contrat :
                           </div>
-                          <div
-                            class="
-                              text-left
-                              px-1
-                              block
-                              text-sm
-                              font-medium
-                              text-black
-                              flex
-                              items-center
-                            "
-                          >
-                           {{Contrat.title}}
+                          <div  class=" text-left px-1 block text-sm font-medium text-black flex items-center  ">
+                           {{title}}
                           </div>
                         </div>
                         <div
@@ -112,7 +72,44 @@
                               items-center
                             "
                           >
-                          {{Contrat.date_signature}}
+                          {{date_sign}}
+                          </div>
+                        </div>
+                        <div
+                          class="
+                            col-span-6
+                            sm:col-span-6
+                            flex
+                            items-center
+                            justify-start
+                          "
+                        >
+                          <div
+                            class="
+                              text-left
+                              block
+                              text-sm
+                              font-bold
+                              text-black
+                              flex
+                              items-center
+                            "
+                          >
+                            Date de renouvelement :
+                          </div>
+                          <div
+                            class="
+                              text-left
+                              px-1
+                              block
+                              text-sm
+                              font-medium
+                              text-black
+                              flex
+                              items-center
+                            "
+                          >
+                          {{date_ren}}
                           </div>
                         </div>
                         <div
@@ -159,7 +156,7 @@
                               items-center
                             "
                           >
-                            {{Contrat.detail}}
+                            {{detail}}
                           </div>
                           
                         </div>
@@ -180,18 +177,23 @@
 import MainHeader from '../../../components/mainHeader.vue'
 import WelcomeLayout from "./../../WelcomeLayout";
 export default {
+  props :['title','date_sign','date_ren','detail'],
   components: {
     WelcomeLayout,
     MainHeader
   },
    data() {
     return {
-      Contrat: {
-        title: "contrat1",
-        date_signature: "21-06-2012",
-        detail: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum",
-      },
+      Contrat:{ 
+        title:this.title,
+        date_sign:this.date_sign,
+        date_ren:this.date_ren,
+        detail: this.detail
+         }
     };
   },
+  mounted(){
+    console.log(this.title)
+  }
 };
 </script>

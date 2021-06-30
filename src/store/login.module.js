@@ -31,13 +31,14 @@ const actions = {
                    
                      if (user_type=="MEMBRE_DPGR"){
                         router.push({name : 'GestionUtilisateur'});
-                     }else if (user_type=="membre"){
-                         router.push({name : 'Actuel'});
                      }else if (user_type=="MEMBRE_CS"){
                          router.push({name : 'ConsulterProjetCS'});
-                     }else if (user_type=="CL"){
+                     }else if (user_type=="MEMBRE_CL"){
                          router.push({name : 'ConsulterProjetCL'});
-                     }                                     
+                     }else {
+                         router.push({name : 'Actuel'});
+                        }
+                                                         
                 }else{
                     commit('loginFailure');
                 }           

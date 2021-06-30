@@ -102,13 +102,35 @@
               </div>
             </div>
           </div>
-    </div>
+    </div>    
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
     props:['tableau','linkName'],
+    data(){
+      return{
+        projet:null
+      }
+    },
+    methods:{
+       getprojetInfo() {
+         let token =localStorage.getItem('token')
+         axios({
+            method: 'get',
+            url: 'http://192.168.43.213:8000/v1/api/projects/',
+            headers:{
+                "Content-Type":"application/json", 
+                'Authorization': 'Bearer '+token
+                },
+            }).then(response => (this.projet= response.data))
+            .catch(error => (console.log(error)));
+      }
+    },
     mounted(){
+        this.getprojetInfo()
         console.log(this.linkName)
     }
 }

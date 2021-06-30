@@ -40,9 +40,9 @@
                               class="block text-sm font-medium text-black"
                               >Membre n° {{ index + 2 }} </label
                             >
-                             <select v-model="membre.nom" @change="selected"
+                             <select v-model="membre.pk" @change="selected(membre.pk)"
                              class="mt-1 border border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm rounded-md " required="required" >
-                              <option v-for="(chercheur, index2) in chercheurs" v-bind:key="index2" :value="chercheur">{{chercheur.nom}}</option>
+                              <option v-for="(chercheur, index2) in chercheurs" v-bind:key="index2" :value="chercheur">{{chercheur.pk}} {{chercheur.last_name}} {{chercheur.first_name}} </option>
                             </select>
                           </div>
                         </div>
@@ -88,6 +88,8 @@
 <script>
 import MainHeader from '../../components/mainHeader.vue'
 import WelcomeLayout from "../WelcomeLayout";
+import axios from 'axios'
+
 export default {
   components: {
     WelcomeLayout,
@@ -96,43 +98,68 @@ export default {
   data() {
             return {              
                 membres: [
-                    {nom:null},
-                    {nom:null},
-                    {nom:null},
+                    {last_name:null,first_name:null,pk:null},
+                    {last_name:null,first_name:null,pk:null},
+                    {last_name:null,first_name:null,pk:null},
                 ],
-                listmembres:'',
-                chercheurs:[
-                    {nom:"oussama"},
-                    {nom:"salah"},
-                    {nom:"rafik"},
-                    {nom:"zinou"},
-                    {nom:"Ahmed"},
-              ],            
+                listmembres:[],
+                chercheurs:[                   
+              ],
+              users:[]            
             }
         },
         methods: {
             add() {
-                this.membres.push({nom:null});                
+                this.membres.push({last_name:null,first_name:null,pk:null});                
             },
             remove() {
                 this.membres.pop();                
             },
             creerEquipe(){
-              
-              if (this.listmembres.length < this.membres.length) 
-                {console.log(this.listmembres)
-                  alert(this.listmembres+"une duplication des membres est detecté")}
+              this.postTeam()
             },
-            selected(){
-              for(const index in this.membres){
-                console.log(this.membres[index])
-                if(!this.listmembres.includes(this.membres[index]))
-                  {
-                    this.listmembres+=this.membres[index]+','    
-                    console.log(this.listmembres)                
-                  }                
-              }              
-            }
+            selected(membre){
+              if (!this.listmembres.includes(membre.pk))
+                {this.listmembres.push(membre.pk)}
+              },
+               postTeam(){                          
+                let token =localStorage.getItem('token')
+                if (this.listmembres.length==this.membres.length)
+                { 
+
+                  const data= this.listmembres
+                  axios({
+                    method: 'post',
+                    url: 'http://192.168.43.213:8000/v1/api/teams/',
+                    headers:{
+                        "Content-Type":"application/json", 
+                        'Authorization': 'Bearer '+token
+                        },
+                    data: data
+                    }).then(response => (console.log(response.data)))
+                    .catch(error => (console.log(error)));      
+                }
+    },           
+            },
+            
+    mounted(){         
+          let token =localStorage.getItem('token')
+          const  headers={
+            'Authorization' : `Bearer ${token}`,
+          }
+        fetch('http://192.168.43.213:8000/v1/api/users/all/?format=json',{headers})
+            .then(res=> res.json())
+            .then(data => {
+              this.users = data
+              for (const d in data ) {
+                if (data[d].user_type=="CHERCHEUR" || data[d].user_type=="DOCTORANT")
+                {
+                  
+                  this.chercheurs.push(data[d])
+                }
+                } 
+            })
+            .catch(err => console.log(err.message))         
     },
     
 };

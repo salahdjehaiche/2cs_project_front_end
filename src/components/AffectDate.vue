@@ -57,10 +57,15 @@ data(){
       }
       if (this.type==="Soummission")  {config.type="SM"}
       else {config.type="VA"}
+      
+      let token =localStorage.getItem('token')
       axios({
           method: 'post',
           url: 'http://192.168.43.213:8000/v1/api/configs/',
-          headers:{"Content-Type":"application/json"},
+          headers:{
+                        "Content-Type":"application/json", 
+                        'Authorization': 'Bearer '+token
+                        },
           data: config
         }).then(response => {
           console.log(response.data)

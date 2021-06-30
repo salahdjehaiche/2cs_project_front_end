@@ -603,8 +603,8 @@ data() {
 
             postProjet(){
               let projet = new FormData
-              projet.append('file', this.file)
-              projet.append('projetInformation', this.projetInformation )
+              //projet.append('file', this.file)
+           //   projet.append('projetInformation', this.projetInformation )
               projet.append('title','projet1')
               projet.append('research_area','type1')
               projet.append('field','type1')
@@ -614,20 +614,19 @@ data() {
               projet.append('objective','type1')
               projet.append('keyword','type1')
               projet.append('methodology','type1')
-              projet.append('planning_work',{
-                                              'year1':'type1',
-                                              'year2':'type1',
-                                              'year3':'type1',
-                                              'year4':'type1',
-                                              'wanted_result':'type1'
-                                            })
-             
-              let token ="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjI0NTQzNTkwLCJqdGkiOiI2ZTUzYzFhZjA4ZjA0OWI0OTA0YzVkYTJlMTU1MGZkNyIsInVzZXJfaWQiOjE0fQ.LZ0i1OGlFa_N92RisfV81fjVn6yMWhEPNBiwBtWImdc"
+            /*  projet.append('planning_work',{
+                                              year1:'type1',
+                                              year2:'type1',
+                                              year3:'type1',
+                                              year4:'type1',
+                                              wanted_result:'type1'
+                                            })*/
+              let token =localStorage.getItem('token')
               axios.post(`http://192.168.43.213:8000/v1/api/projects/`, projet,                      
                 {
                   headers:{
                     'Authorization' : `bearer ${token}`,
-                    'Content-Type': `multipart/form-data; boundary=${projet._boundary}` 
+                    'Content-Type': `multipart/form-data`, 
               },    
               }).then((res) => {console.log(res)})
               .catch((error) => {console.log(error)})              

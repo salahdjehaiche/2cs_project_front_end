@@ -187,8 +187,7 @@ export default {
          this.rechercherUsers
         }        
     },
-        mounted(){
-          let user =store.state.login.user
+        mounted(){         
           let token =localStorage.getItem('token')
           const  headers={
             'Authorization' : `Bearer ${token}`,

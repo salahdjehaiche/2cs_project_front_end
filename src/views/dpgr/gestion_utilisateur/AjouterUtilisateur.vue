@@ -151,7 +151,7 @@ export default {
         postrequest(){            
                 this.data.username = this.data.last_name.replace(" ","") + this.data.first_name.replace(" ","")
                 this.data.password1 = "12345678"
-                 let token =localStorage.getItem('token')
+                let token =localStorage.getItem('token')
                 axios({
                     method: 'post',
                     url: 'http://192.168.43.213:8000/v1/api/users/',

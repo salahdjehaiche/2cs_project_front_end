@@ -42,7 +42,7 @@
                       <th
                         class="px-6 py-3 bg-blue-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
                       >
-                        Laboratoire
+                        Role
                       </th>
                       <th
                         class="px-6 py-3 bg-blue-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
@@ -53,12 +53,12 @@
                     <tr v-for="membre in membres" :key="membre">
                       <td class="px-6 py-2 whitespace-no-wrap text-left">
                         <div class="text-sm font-bold leading-5 text-blue-600">
-                          {{membre.nom}}
+                          {{membre.last_name}}
                         </div>
                       </td>
                       <td class="px-6 py-2 whitespace-no-wrap text-left">
                         <div class="text-xs leading-5 text-gray-900">
-                          {{membre.prenom}}
+                          {{membre.first_name}}
                         </div>
                       </td>
                       <td class="px-6 py-2 whitespace-no-wrap text-left">
@@ -68,13 +68,13 @@
                       </td>
                       <td class="px-6 py-2 whitespace-normal text-left">
                         <div class="text-xs leading-5 text-gray-900">
-                          {{membre.laboratoire}}
+                          {{membre.user_type}}
                         </div>
                       </td>
                       
                       <td class="px-6 py-4 whitespace-no-wrap">
                         <div class="text-xs leading-5 text-gray-900">
-                         <router-link :to="{name : 'Consulterprofile' ,params: {user:membre.nom +' '+ membre.prenom}}"                             
+                         <router-link :to="{name : 'Consulterprofile' ,params: {user:membre.pk}}"                             
                             class="text-blue-500 hover:text-blue-800 hover:font-bold"
                           >
                             <svg
@@ -110,14 +110,21 @@ export default {
   data(){
     return{
       id_equipe: 1 ,
-        membres:[
-            {nom:'Djehaiche',prenom:'Salah',email:'h@esi.dz',laboratoire:'lmcs'},
-            {nom:'Debabza',prenom:'Idriss',email:'h@esi.dz',laboratoire:'lmcs'},
-            {nom:'Telli',prenom:'Mohamed Khouja',email:'h@esi.dz',laboratoire:'lmcs'},
-            {nom:'Haddad',prenom:'Zineddine',email:'h@esi.dz',laboratoire:'lmcs'},
-            {nom:'Kherroubi',prenom:'Oussama',email:'h@esi.dz',laboratoire:'lmcs'},
-        ],
+        membres:[ ],
     }
-}
+},
+mounted(){         
+          let token =localStorage.getItem('token')
+          const  headers={
+            'Authorization' : `Bearer ${token}`,
+          }
+        fetch('http://192.168.43.213:8000/v1/api/teams/',{headers})
+            .then(res=> res.json())
+            .then(data => {
+              console.log(data)
+              this.membres = data           
+            })
+            .catch(err => console.log(err.message))         
+    },
 };
 </script>

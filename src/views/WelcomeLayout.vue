@@ -71,7 +71,7 @@ export default {
             sideBarCL.forEach(element => {
               this.sideBar.push(element) 
             });
-        }else if (user.user_type==="membre") {
+        }else if (user.user_type==="CHERCHEUR") {
             sideBarMembre.forEach(element => {
               this.sideBar.push(element) 
             });        
