@@ -35,7 +35,8 @@ export default {
         }
     },
     mounted(){
-      let user =store.state.login.user.result
+        console.log(store.state)
+      let user =store.state.login.user
       let sideBarDPGR=[
                 {name :'GestionUtilisateur' , label: 'Gestion Utilisateur',herite:false},  
                 {name :'ConsulterProjetDPGR' , label: 'Projets Soumis',herite:false},                
@@ -58,19 +59,19 @@ export default {
                 {name :'FicheProjet' , label: 'Fiches De Projet',herite:true},
                 {name :'Bilan' , label: 'Bilans De Projet',herite:true},                  
       ]
-      if (user.role==="dpgr") {
+      if (user.user_type==="MEMBRE_DPGR") {
             sideBarDPGR.forEach(element => {
              this.sideBar.push(element) 
             });
-      } else if (user.role==="CS") {
+      } else if (user.user_type==="MEMBRE_CS") {
             sideBarCS.forEach(element => {
               this.sideBar.push(element) 
             });
-        }else if (user.role==="CL") {
+        }else if (user.user_type==="CL") {
             sideBarCL.forEach(element => {
               this.sideBar.push(element) 
             });
-        }else if (user.role==="membre") {
+        }else if (user.user_type==="membre") {
             sideBarMembre.forEach(element => {
               this.sideBar.push(element) 
             });        

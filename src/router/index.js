@@ -33,7 +33,7 @@ const routes = [
       let user =store.state.login.user
       if (!user){
         next({name:'Login'})
-      }else if(user.result.role!="dpgr"){
+      }else if(user.user_type!="MEMBRE_DPGR"){
         next({name:'Login'})
       }else{
         next()
@@ -49,7 +49,7 @@ const routes = [
       let user =store.state.login.user
       if (!user){
         next({name:'Login'})
-      }else if(user.result.role!="dpgr"){
+      }else if(user.user_type!="MEMBRE_DPGR"){
         next({name:'Login'})
       }else{
         next()
@@ -66,7 +66,7 @@ const routes = [
       let user =store.state.login.user
       if (!user){
         next({name:'Login'})
-      }else if(user.result.role!="dpgr"){
+      }else if(user.user_type!="MEMBRE_DPGR"){
         next({name:'Login'})
       }else{
         next()
@@ -82,7 +82,7 @@ const routes = [
       let user =store.state.login.user
       if (!user){
         next({name:'Login'})
-      }else if(user.result.role!="CL"){
+      }else if(user.user_type!="MEMBRE_CL"){
         next({name:'Login'})
       }else{
         next()
@@ -98,7 +98,7 @@ const routes = [
       let user =store.state.login.user
       if (!user){
         next({name:'Login'})
-      }else if(user.result.role!="CS"){
+      }else if(user.user_type!="MEMBRE_CS"){
         next({name:'Login'})
       }else{
         next()
@@ -141,7 +141,7 @@ const routes = [
         let user =store.state.login.user
         if (!user){
           next({name:'Login'})
-        }else if(user.result.role!="membre"){
+        }else if(user.user_type!="membre"){
           next({name:'Login'})
         }else{
           next()
@@ -163,7 +163,7 @@ const routes = [
         let user =store.state.login.user
         if (!user){
           next({name:'Login'})
-        }else if(user.result.role!="membre"){
+        }else if(user.user_type!="membre"){
           next({name:'Login'})
         }else{
           next()
@@ -179,7 +179,7 @@ const routes = [
       let user =store.state.login.user
       if (!user){
         next({name:'Login'})
-      }else if(user.result.role!="membre"){
+      }else if(user.user_type!="membre"){
         next({name:'Login'})
       }else{
         next()
@@ -195,7 +195,7 @@ const routes = [
       let user =store.state.login.user
       if (!user){
         next({name:'Login'})
-      }else if(user.result.role!="membre"){
+      }else if(user.user_type!="membre"){
         next({name:'Login'})
       }else{
         next()
@@ -211,7 +211,7 @@ const routes = [
       let user =store.state.login.user
       if (!user){
         next({name:'Login'})
-      }else if(user.result.role!="membre"){
+      }else if(user.user_type!="membre"){
         next({name:'Login'})
       }else{
         next()
@@ -227,7 +227,7 @@ const routes = [
       let user =store.state.login.user
       if (!user){
         next({name:'Login'})
-      }else if(user.result.role!="membre"){
+      }else if(user.user_type!="membre"){
         next({name:'Login'})
       }else{
         next()
@@ -243,7 +243,7 @@ const routes = [
       let user =store.state.login.user
       if (!user){
         next({name:'Login'})
-      }else if(user.result.role!="membre"){
+      }else if(user.user_type!="membre"){
         next({name:'Login'})
       }else{
         next()
@@ -259,7 +259,7 @@ const routes = [
       let user =store.state.login.user
       if (!user){
         next({name:'Login'})
-      }else if(user.result.role!="membre"){
+      }else if(user.user_type!="membre"){
         next({name:'Login'})
       }else{
         next()
@@ -275,7 +275,7 @@ const routes = [
       let user =store.state.login.user
       if (!user){
         next({name:'Login'})
-      }else if(user.result.role!="membre"){
+      }else if(user.user_type!="membre"){
         next({name:'Login'})
       }else{
         next()
@@ -291,7 +291,7 @@ const routes = [
       let user =store.state.login.user
       if (!user){
         next({name:'Login'})
-      }else if(user.result.role!="membre"){
+      }else if(user.user_type!="membre"){
         next({name:'Login'})
       }else{
         next()
@@ -307,7 +307,7 @@ const routes = [
       let user =store.state.login.user
       if (!user){
         next({name:'Login'})
-      }else if(user.result.role!="membre"){
+      }else if(user.user_type!="membre"){
         next({name:'Login'})
       }else{
         next()
@@ -323,7 +323,7 @@ const routes = [
       let user =store.state.login.user
       if (!user){
         next({name:'Login'})
-      }else if(user.result.role!="membre"){
+      }else if(user.user_type!="membre"){
         next({name:'Login'})
       }else{
         next()
@@ -345,6 +345,7 @@ const router = createRouter({
 router.beforeEach((to,from,next)=>{ 
   if (to.matched.some(record => record.meta.requiresAuth)){
     let user =store.state.login.user
+    console.log(!user)
     if (!user){
       next({name:'Login'})
     }else{

@@ -189,7 +189,7 @@ export default {
         }        
     },
      mounted(){
-      this.user =store.state.login.user.result.role
+      this.user =store.state.login.user
       console.log(store.state.login.user.result)    
         this.publicationFiltre=this.publication
      /*     let token ="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjI0NTQzNTkwLCJqdGkiOiI2ZTUzYzFhZjA4ZjA0OWI0OTA0YzVkYTJlMTU1MGZkNyIsInVzZXJfaWQiOjE0fQ.LZ0i1OGlFa_N92RisfV81fjVn6yMWhEPNBiwBtWImdc"
@@ -226,7 +226,7 @@ export default {
              this.publicationFiltre=this.publications
         }
         if(this.filterDate){
-           if(this.roleSelection !=' '){
+           if(thisuser_typeSelection !=' '){
             this.publicationFiltre = this.publicationFiltre.filter((publication) =>{
                 return publication.date_creation ===this.dateCreation
             })  

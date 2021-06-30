@@ -175,7 +175,7 @@ export default {
         },
     },
     mounted(){
-      this.user =store.state.login.user.result.role
+      this.user =store.state.login.user
       console.log(store.state.login.user.result)
     }
 };

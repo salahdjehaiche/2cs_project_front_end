@@ -151,6 +151,8 @@
 import WelcomeLayout from '../../WelcomeLayout.vue'
 import MainHeader from '../../../components/mainHeader.vue'
 import AjouterUtilisateur  from './AjouterUtilisateur.vue'
+import store from "../../../store/index";
+
 export default {
   components: {
     AjouterUtilisateur,
@@ -159,6 +161,7 @@ export default {
   },
     data(){
         return{
+            user:'',
             supprimer:false,
             roleSelection:'',
             ajouter_utilisateur:false,
@@ -185,12 +188,12 @@ export default {
         }        
     },
         mounted(){
-          let token ="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjI0NTQzNTkwLCJqdGkiOiI2ZTUzYzFhZjA4ZjA0OWI0OTA0YzVkYTJlMTU1MGZkNyIsInVzZXJfaWQiOjE0fQ.LZ0i1OGlFa_N92RisfV81fjVn6yMWhEPNBiwBtWImdc"
+          let user =store.state.login.user
+          let token =localStorage.getItem('token')
           const  headers={
             'Authorization' : `Bearer ${token}`,
-            'Content-Type': `multipart/form-data; `
           }
-        fetch('http://192.168.43.213:8000/v1/api/users/all/?format=json',{ headers })
+        fetch('http://192.168.43.213:8000/v1/api/users/all/?format=json',{headers})
             .then(res=> res.json())
             .then(data => {
               this.users = data
@@ -216,9 +219,9 @@ export default {
              this.usersFiltre=this.users
         }
         if(this.filterSelection){
-           if(this.roleSelection !=' '){
+           if(thisuser_typeSelection !=' '){
             this.usersFiltre = this.usersFiltre.filter((user) =>{
-                return user.user_type ===this.roleSelection
+                return user.user_type ===thisuser_typeSelection
             })  
           }else{
              this.usersFiltre=this.users

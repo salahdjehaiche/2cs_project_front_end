@@ -21,11 +21,11 @@
           <h3 class="my-4 text-2xl font-semibold text-center text-gray-700">Connexion</h3>
           <form  @submit.prevent="doLogin" class="flex flex-col space-y-5">
             <div class="flex flex-col space-y-1">
-              <label for="email" class="text-sm font-semibold text-left text-gray-500">Adresse e-mail</label>
+              <label for="username" class="text-sm font-semibold text-left text-gray-500">Nom Utilisateur</label>
               <input
-                type="email"
-                id="email"
-                v-model="email"
+                type="username"
+                id="username"
+                v-model="username"
                 autofocus
                 class="px-4 py-2 transition duration-300 border border-gray-300 rounded focus:border-transparent focus:outline-none focus:ring-4 focus:ring-blue-200"
               />
@@ -59,7 +59,7 @@
     export default {
         name: 'Login',
         data: () => ({
-            email: "",
+            username: "",
             password: "",
         }),
         methods: {
@@ -70,9 +70,9 @@
                 this.$refs.form.reset();
             },
             doLogin() {
-                const { email, password } = this;
-                if(this.email != "" && this.password != "") {
-                    this.login({ email, password });
+                const { username, password } = this;
+                if(this.username != "" && this.password != "") {
+                    this.login({ username, password });
                 }else{
                     alert('Please fill the text!');
                 }

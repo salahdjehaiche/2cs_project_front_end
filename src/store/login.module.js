@@ -1,28 +1,46 @@
 import { loginService } from '../services/login.service';
 import  router  from '../router/index.js';
+import axios from 'axios'
+
 const state = {
     isLogin: false,
     token:null,
     user:null,
 };
 const actions = {
-    login({commit}, { email, password }) {
-        commit('loginRequest', { email });
+    async login({commit}, { username, password }) {
+        commit('loginRequest', { username });
     
-        let result = loginService.login(email, password);
-        if(result){
-            commit('loginSuccess',{result});
-            if (result.role=="dpgr")
-            {
-                router.push('/');
-            }
-            else if (result.role=="membre"){
-                router.push({name : 'Actuel'});
-            }else if (result.role==="CS"){
-                router.push({name : 'ConsulterProjetCS'});
-            }else if (result.role=="CL"){
-                router.push({name : 'ConsulterProjetCL'});
-            }                 
+        let result = await loginService.login(username, password);
+        console.log(result)
+        if(result){        
+                   
+            let response = await axios({
+                method: 'get',
+                url: 'http://192.168.43.213:8000/v1/api/users/auth-user',
+                headers:{
+                    "Content-Type":"application/json",
+                    'Authorization': 'Bearer '+result 
+                    },
+                }); 
+                localStorage.setItem('token', result)
+             
+                if (response.status==200){                                      
+                    let user_type = response.data.user_type;
+                    commit('loginSuccess',response.data);
+                   
+                     if (user_type=="MEMBRE_DPGR"){
+                        router.push({name : 'GestionUtilisateur'});
+                     }else if (user_type=="membre"){
+                         router.push({name : 'Actuel'});
+                     }else if (user_type=="MEMBRE_CS"){
+                         router.push({name : 'ConsulterProjetCS'});
+                     }else if (user_type=="CL"){
+                         router.push({name : 'ConsulterProjetCL'});
+                     }                                     
+                }else{
+                    commit('loginFailure');
+                }           
         }
     },
     logout({commit}) {
@@ -44,11 +62,11 @@ const mutations = {
         state.token=null;
         state.user=user;
     },
-    loginSuccess(state,user) {
+    loginSuccess(state,data) {
         state.isLogin=true;
         state.token=null;
-        state.user=user;        
-    },
+        state.user=data;        
+    }, 
     loginFailure(state) {
         state.isLogin=false;        
     },

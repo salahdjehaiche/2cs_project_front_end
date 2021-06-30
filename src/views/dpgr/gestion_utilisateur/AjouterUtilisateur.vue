@@ -29,7 +29,7 @@
                 </div>
                 <!--Header End-->
             </div>
-            <form @submit.prevent="submit" >
+            <form @submit="submit" >
                     <div class="text-left px-2 py-4 text-lg md:flex md:items-center">
                         <span class="text-grey-800 font-bold  mr-3 md:w-1/3 ">Nom</span>
                         <input type="text" required v-model="data.last_name"
@@ -151,12 +151,14 @@ export default {
         postrequest(){            
                 this.data.username = this.data.last_name.replace(" ","") + this.data.first_name.replace(" ","")
                 this.data.password1 = "12345678"
+                 let token =localStorage.getItem('token')
                 axios({
                     method: 'post',
                     url: 'http://192.168.43.213:8000/v1/api/users/',
                     headers:{
                         "Content-Type":"application/json", 
-                        'Authorization': 'Bearer '+TOKEN},
+                        'Authorization': 'Bearer '+token
+                        },
                     data: this.data
                     }).then(response => (console.log(response.data)))
                     .catch(error => (console.log(error)));

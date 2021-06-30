@@ -1,8 +1,28 @@
+import axios from 'axios'
+
 export const loginService = {
     login
 };
-function login(email, password) {
-    if(email != "" && password != "") {
+async function login(username, password) {
+    if(username != "" && password != "") {
+        const data ={
+            "username": username, 
+            "password": password
+        }
+        let response = await axios({
+            method: 'post',
+            url: 'http://192.168.43.213:8000/api/token/',
+            headers:{
+                "Content-Type":"application/json", 
+                },
+            data: data
+            }); 
+            
+            if (response.status==200){
+               return response.data.access
+            }
+            return false
+            
         if (password=="1111")
         {
             return {role:"dpgr"};
