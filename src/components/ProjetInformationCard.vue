@@ -21,7 +21,7 @@
                         <div class="px-2 py-2 flex items-center" v-if="modifier">
                           <router-link :to="{name: 'ModifierProjet'} ">
                           <button  type="submit"  class="    py-1    px-2    border border-transparent    shadow-sm    text-sm    font-medium    rounded-md    text-white    bg-green-400    hover:bg-green-500  ">
-                            Modifier
+                            Modifier / Améliorer
                           </button>
                           </router-link>
                         </div>
@@ -74,7 +74,7 @@ export default {
           {label:'Intitulé de la formation doctorale',information:'information'},
           {label:'Problématique',information:'information'},
           {label:'Mot clés',information:'information'},
-          {label:'Objectifs',information:'informationinformationinformationinformationinformationinformationinformationinformationinformationinformationinformation'},
+          {label:'Objectifs',information:'information'},
           {label:'Méthodologie',information:'information'},
           {label:'Fichier',nom:'nom fichier',url:'#'},
         ],

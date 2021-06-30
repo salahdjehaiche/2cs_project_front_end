@@ -7,7 +7,7 @@
          <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
           <div class="w-full h-15 px-6 pb-2 flex items-center justify-between">
             <div class="text-left px-2 py-4 text-xl flex items-center">
-              <p class="text-grey-800 font-bold">Liste des membres</p>
+              <p class="text-grey-800 font-bold">Liste des membres de l'équipe {{id_equipe}}</p>
             </div>
           </div>
         </div>
@@ -109,6 +109,7 @@ export default {
   },
   data(){
     return{
+      id_equipe: 1 ,
         membres:[
             {nom:'Djehaiche',prenom:'Salah',email:'h@esi.dz',laboratoire:'lmcs'},
             {nom:'Debabza',prenom:'Idriss',email:'h@esi.dz',laboratoire:'lmcs'},

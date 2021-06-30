@@ -15,9 +15,14 @@ const actions = {
             if (result.role=="dpgr")
             {
                 router.push('/');
-            }else{
-                router.push({name : 'Actuel'});
             }
+            else if (result.role=="membre"){
+                router.push({name : 'Actuel'});
+            }else if (result.role==="CS"){
+                router.push({name : 'ConsulterProjetCS'});
+            }else if (result.role=="CL"){
+                router.push({name : 'ConsulterProjetCL'});
+            }                 
         }
     },
     logout({commit}) {

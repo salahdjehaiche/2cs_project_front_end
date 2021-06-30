@@ -1,54 +1,57 @@
 <template>
-    <div id="login">
-        <div class="h-100 bg-gray-300">
-            <div class="d-flex h-100 justify-content-center align-items-center">
-                <b-col md="8" class="mx-auto app-login-box">
-                    <div class="modal-dialog w-100 mx-auto">
-                        <div class="modal-content">
-                            <div class="modal-body">
-                                <div class="h5 modal-title text-center">
-                                    <h4 class="mt-2">
-                                        <div>Welcome,</div>
-                                        <span>Please sign in to your account below.</span>
-                                    </h4>
-                                </div>
-                                <form ref="form" @submit.prevent="doLogin">
-                                    <div id="usernameGroup1">
-                                        <label class="mr-5  " >Email</label>
-                                        <input id="usernameInput"
-                                                    type="email"
-                                                    name="email" 
-                                                    v-model="email"
-                                                    required
-                                                    placeholder="Enter email..." />
-                                    </div>
-                                    <div id="exampleInputGroup2"
-                                            >
-                                        <label class="mr-3  " >Password</label>x
-                                        <input id="exampleInput2"
-                                                    type="password"
-                                                    name="password" 
-                                                    v-model="password"
-                                                    required
-                                                    placeholder="Enter password..." />
-                                       
-                                    </div>
-                                   <div class="my-3">
-                                <button class="border bg-red-700 p-1 rounded-lg text-white" type="submit" >
-                                    Login
-                                </button>
-                            </div>          
-                                </form>
-                                <div class="divider"/>
-                            </div>                                                                          
-                        </div>
-                    </div>
-                    <div class="text-center text-white opacity-8 mt-3">
-                        <strong> Copyright &copy; camellabs.com </strong>
-                    </div>
-                </b-col>
-            </div>
+    <div  id="login" class="flex items-center min-h-screen p-4 bg-gray-100 lg:justify-center">
+      <div
+        class="flex flex-col overflow-hidden  bg-white rounded-md shadow-lg max md:flex-row md:flex-1 lg:max-w-screen-md"
+      >
+        <div
+          class="p-2 py-6  bg-blue-200 md:w-80 md:flex-shrink-0 md:flex md:flex-col md:items-center "
+        >
+          <div class="w-3/4 flex px-4 items-center ml-2 ">
+            <img src="../../assets/ProjetRechercheBlanc2.png"  alt="2a logo">
+          </div>
+          <div class="py-4 text-xl font-bold tracking-wider text-center">
+            Projet de recherche
+            <p class="py-2 m-6 text-sm text-justify font-normal  text-gray-900 md:mt-0">
+            Un système qui va permeetre à la DPGR de suiver les différents projets de recherches et aux partie concernées d'éxecuter ces opérations
+          </p>
+          </div>
+          
         </div>
+        <div class="p-5 bg-white md:flex-1">
+          <h3 class="my-4 text-2xl font-semibold text-center text-gray-700">Connexion</h3>
+          <form  @submit.prevent="doLogin" class="flex flex-col space-y-5">
+            <div class="flex flex-col space-y-1">
+              <label for="email" class="text-sm font-semibold text-left text-gray-500">Adresse e-mail</label>
+              <input
+                type="email"
+                id="email"
+                v-model="email"
+                autofocus
+                class="px-4 py-2 transition duration-300 border border-gray-300 rounded focus:border-transparent focus:outline-none focus:ring-4 focus:ring-blue-200"
+              />
+            </div>
+            <div class="flex flex-col space-y-1">
+              <div class="flex items-center justify-between">
+                <label for="password" class="text-sm font-semibold text-gray-500">Mot de passe</label>                
+              </div>
+              <input
+                type="password"
+                id="password"
+                v-model="password"
+                class="px-4 py-2 transition duration-300 border border-gray-300 rounded focus:border-transparent focus:outline-none focus:ring-4 focus:ring-blue-200"
+              />
+            </div>
+            <div>
+              <button
+                type="submit"
+                class="w-full px-4 py-2 text-lg font-semibold text-white transition-colors duration-300 bg-blue-400 rounded-md shadow hover:bg-blue-500 focus:outline-none focus:ring-blue-200 focus:ring-4"
+              >
+                Log in
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
 </template>
 <script>
@@ -77,64 +80,3 @@
         },
     }
 </script>
-
-
-
-<!--<template>
-  <div>
-      <div><h1>Login {{appName}}</h1> </div>
-      <div>
-          <form  @submit.prevent="onLogin"
-          class="text-center bg-blue-200 w-4/5">
-              <div class="py-2 my-2  ">
-                <label class="mr-5  " >Email</label>
-                <input type="email" class=" w-2/3 " v-model="input.email" />
-              </div>
-              <div class="py-2 my-2  ">
-                <label class="mr-3  " >Password</label>
-                <input type="password" class=" w-2/3 " v-model="input.password" />
-              </div>
-              <div class="my-3">
-                <button class="border bg-red-200" type="submit">
-                    Login
-                </button>
-              </div>                            
-          </form>
-      </div>
-  </div>
-</template>
-
-<script>
-export default {
-    data(){ 
-        return{
-            mail:'',
-            input: {
-                email: '',
-                password: ''
-            }
-        }
-    },
-    methods:{        
-        onLogin(){
-            
-            if(this.input.email != "" && this.input.password != "") {
-                if(this.input.email == "saleh@esi.dz" && this.input.password == "12345678") {
-                    this.$emit("authenticated", true);
-                    this.$router.replace({ name: "GestionUtilisateur" });
-                } else {
-                    console.log("The email and / or password is incorrect");
-                }
-            } else {
-                console.log("A email and password must be present");
-            }            
-        }
-    },
-    
-
-}
-</script>
-
-<style>
-
-</style>-->

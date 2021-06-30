@@ -34,7 +34,7 @@ export default {
      
       laboTabs:[
         {
-          name : 'MCSI',
+          name : 'LCSI',
           table:[
             {
                 id_équipe:1,
@@ -53,7 +53,7 @@ export default {
           ]
         },
         {
-          name:'LCMS',
+          name:'LMCS',
           table:[        
             {
                 id_équipe:3,

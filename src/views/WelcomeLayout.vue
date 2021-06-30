@@ -32,8 +32,7 @@ export default {
     data(){
         return{
             sideBar : [
-                {name :'Consulterpublications' , label: 'Consulter Publication',herite:false},
-                {name :'ConsulterEquipe' , label: 'Consulter Equipe',herite:false},
+                {name :'Consulterpublications'  , label: 'Consulter Publication',herite:false},
             ]
         }
     },
@@ -41,17 +40,18 @@ export default {
       let user =store.state.login.user.result
       let sideBarDPGR=[
                 {name :'GestionUtilisateur' , label: 'Gestion Utilisateur',herite:false},  
-                {name :'ConsulterProjetDPGR' , label: 'Consulter Projet',herite:false},                
-                {name :'AffecterLesDelais' , label: 'Affecter Les Delais',herite:false},                
+                {name :'ConsulterProjetDPGR' , label: 'Projets Soumis',herite:false},                
+                {name :'AffecterLesDelais' , label: 'Affecter Les Delais',herite:false},    
       ]
       let sideBarCS=[
-                {name :'ConsulterProjetCS' , label: 'Consulter ProjetCS',herite:false},               
+                {name :'ConsulterProjetCS' , label: 'Consulter ProjetsCS',herite:false},               
       ]
       let sideBarCL=[
-                {name :'ConsulterProjetCL' , label: 'Consulter ProjetCL',herite:false},
+                {name :'ConsulterProjetCL' , label: 'Consulter ProjetsCL',herite:false},
       ]
       let sideBarMembre=[
                 {name :'CreationEquipe' , label: 'Creer Equipe',herite:false},
+                {name :'ConsulterEquipe' , label: 'Consulter Equipe',herite:false},
                 {name :'ProjetRecherche' , label: 'Projet Recherche',herite:false},
                 {name :'Actuel' , label: 'Projet Actual',herite:false},
                 {name :'Bilan' , label: 'Bilans De Projet',herite:true},
@@ -64,18 +64,21 @@ export default {
             sideBarDPGR.forEach(element => {
              this.sideBar.push(element) 
             });
-      } else {
+      } else if (user.role==="CS") {
             sideBarCS.forEach(element => {
               this.sideBar.push(element) 
             });
+        }else if (user.role==="CL") {
             sideBarCL.forEach(element => {
               this.sideBar.push(element) 
             });
+        }else if (user.role==="membre") {
             sideBarMembre.forEach(element => {
               this.sideBar.push(element) 
             });        
-      }      
-    }
+        }
+    }      
+    
     ,
     components: {
         WelcomeHeader,

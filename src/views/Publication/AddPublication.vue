@@ -42,7 +42,7 @@
                     
                     </select>
                     
-                    <button @click="ajoutercollaborateur" type="button"
+                    <button @click="ajoutercollaborateur" type="button" v-if="user==='membre'"
                             class="p-1 rounded-md text-white m-2 bg-blue-500 hover:bg-blue-600 focus:outline-none focus:bg-blue-700  " >                        
                             <svg class="h-6 w-6 fill-current " viewBox="0 0 20 20">
                                 <path d="M10,1.6c-4.639,0-8.4,3.761-8.4,8.4c0,4.639,3.761,8.4,8.4,8.4s8.4-3.761,8.4-8.4C18.4,5.361,14.639,1.6,10,1.6z M15,11h-4 v4H9v-4H5V9h4V5h2v4h4V11z"/>
@@ -114,7 +114,7 @@
 <script>
 import MainHeader from '../../components/mainHeader.vue'
 import WelcomeLayout from "../WelcomeLayout.vue";
-export default {
+export default {    
   components: {
     WelcomeLayout,
     MainHeader
@@ -151,6 +151,10 @@ export default {
         removeExterneCollabe(collab){
             this.listexterneCollaborateurs.pop(collab)
         },
+    },
+    mounted(){
+      this.user =store.state.login.user.result.role
+      console.log(store.state.login.user.result)
     }
 };
 </script>

@@ -32,7 +32,7 @@ export default {
     return{
     linkName:{name : 'ProjetDetail' ,user:'cl'},
      
-     nomLab:'MCSI',
+     nomLab:'LCSI',
       laboTabs:[
         {
           name : this.nomLab,

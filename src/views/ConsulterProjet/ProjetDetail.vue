@@ -38,6 +38,27 @@
                   </div>
                 </div>         
                 <MembresEquipeCard   :id_equipe="id"/>
+                <div class="px-2 py-2 sm:px-0" v-if="user=='dpgr'">
+                  <div class="border border-grey-light  lg:border lg:border-grey-light  bg-white  rounded  lg:rounded  p-2  flex flex-col  justify-between  leading-normal">
+                    <div  class="bg-green-50 overflow-hidden shadow sm:rounded-lg">
+                      <div  class=" w-full h-8 px-1 pb-1  items-center justify-between  ">
+                        <div  class="text-center px-2 py-1 text-md  items-center">
+                          <p class="text-grey-800 font-bold">Bilans du projet</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class=" items-center">
+                      <div class="py-2  items-center ">
+                        
+                          <button type="button"
+                            class="  py-1  px-2  border border-transparent  shadow-sm  text-sm  font-medium  rounded-md  text-white  bg-blue-400  hover:bg-blue-500"
+                          >
+                            Consulter 
+                          </button>                        
+                      </div>
+                    </div>
+                  </div>
+                </div>
              </div>
             </div>
           </div>
@@ -80,21 +101,23 @@
               <div
                 class="text-left px-2 py-4 text-xl flex items-center justify-between"
               >
-                <div class="px-6 pb-2 flex items-center">
+                <div class="px-4 pb-2 flex items-center">
                    <button @click="showmodalAcc"
                     class="py-2 px-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700"
                   >
                     <div class="flex items-center">
-                      <h3>Accepter</h3>
+                      <h3 v-if="user != 'dpgr'">Accepter</h3>
+                      <h3 v-if="user === 'dpgr'">Avis favorable</h3>
                     </div>
                   </button>                 
                 </div>
-                <div class="px-6 pb-2 flex items-center">
+                <div class="px-4 pb-2 flex items-center">
                    <button @click="showmodalRef"
                     class="py-2 px-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700"
                   >
                     <div class="flex items-center">
-                      <h3>Refuser</h3>
+                      <h3 v-if="user != 'dpgr'">Refuser</h3>
+                      <h3 v-if="user === 'dpgr'">Avis défavorable</h3>
                     </div>
                   </button>                  
                 </div>

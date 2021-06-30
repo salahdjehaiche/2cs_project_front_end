@@ -32,7 +32,7 @@
             </div>
             <div class="text-left px-2 py-4 text-xl  md:w-1/3 md:text-right">
                 <router-link :to="{name: 'ajouterpublication'} ">
-                    <button
+                    <button v-if="user=='membre'"
                       class="py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-500 hover:bg-green-600 
                         focus:border-green-500 focus:ring-2 focus:ring-green-500 focus:outline-none focus:ring-opacity-50" >
                         <div class="flex items-center">
@@ -137,9 +137,6 @@
           </div>
         </div>
       </div>     
-<!--     <div v-if="supprimer">
-        <ajouterPublication  @close="downloadPublication" :supprimer="supprimer"/>
-     </div>-->
     </main>
   
  </WelcomeLayout>
@@ -149,6 +146,7 @@
 import WelcomeLayout from '../WelcomeLayout.vue'
 import ajouterPublication  from './VisionnerPublication.vue'
 import MainHeader from '../../components/mainHeader.vue'
+import store from "../../store/index";
 
 export default {
   components: {
@@ -158,6 +156,7 @@ export default {
   },
     data(){
         return{
+          user:'',
             supprimer:false,
             collaborateurSelection:'',
             publications:[
@@ -190,6 +189,8 @@ export default {
         }        
     },
      mounted(){
+      this.user =store.state.login.user.result.role
+      console.log(store.state.login.user.result)    
         this.publicationFiltre=this.publication
      /*     let token ="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjI0NTQzNTkwLCJqdGkiOiI2ZTUzYzFhZjA4ZjA0OWI0OTA0YzVkYTJlMTU1MGZkNyIsInVzZXJfaWQiOjE0fQ.LZ0i1OGlFa_N92RisfV81fjVn6yMWhEPNBiwBtWImdc"
           const  headers={

@@ -12,14 +12,14 @@ const routes = [
   path: '/modifeirpofile',
   name: 'Modifierprofile',
   component: () => import( '../views/profile/ModifierProfile.vue'),
-  //  meta:{requiresAuth: true}
+    meta:{requiresAuth: true}
   },
   {
     path: '/consulterpofile/:user',
     name: 'Consulterprofile',
     component: () => import( '../views/profile/ConsulterProfile.vue'),
     props:true,
-  //  meta:{requiresAuth: true}
+    meta:{requiresAuth: true}
   },
 
 
@@ -28,7 +28,7 @@ const routes = [
     path: '/affecterlesdelais',
     name: 'AffecterLesDelais',
     component: () => import( '../views/dpgr/AffecterLesDelais.vue'),
-  /*  meta:{requiresAuth: true},
+    meta:{requiresAuth: true},
     beforeEnter: (to, from, next) => {
       let user =store.state.login.user
       if (!user){
@@ -38,13 +38,13 @@ const routes = [
       }else{
         next()
       }
-    }*/
+    }
   },
   {
     path: '/GestionUtilisateur',
     name: 'GestionUtilisateur',
     component: () => import( '../views/dpgr/gestion_utilisateur/GestionUtilisateur.vue'),
-     /* meta:{requiresAuth: true},
+      meta:{requiresAuth: true},
       beforeEnter: (to, from, next) => {
       let user =store.state.login.user
       if (!user){
@@ -54,7 +54,7 @@ const routes = [
       }else{
         next()
       }
-    }*/
+    }
   },
   //-----------------------------consultation projet -----------------
   {
@@ -77,40 +77,40 @@ const routes = [
     path: '/consulterprojet/cl',
     name: 'ConsulterProjetCL',
     component: () => import( '../views/ConsulterProjet/ConsulterProjetCL.vue'),
-      /*meta:{requiresAuth: true},
+      meta:{requiresAuth: true},
       beforeEnter: (to, from, next) => {
       let user =store.state.login.user
       if (!user){
         next({name:'Login'})
-      }else if(user.result.role!="membre"){
+      }else if(user.result.role!="CL"){
         next({name:'Login'})
       }else{
         next()
       }
-    }*/
+    }
   },
   {
     path: '/consulterprojet/cs',
     name: 'ConsulterProjetCS',
     component: () => import( '../views/ConsulterProjet/ConsulterProjetCS.vue'),
-      /*meta:{requiresAuth: true},
+      meta:{requiresAuth: true},
       beforeEnter: (to, from, next) => {
       let user =store.state.login.user
       if (!user){
         next({name:'Login'})
-      }else if(user.result.role!="membre"){
+      }else if(user.result.role!="CS"){
         next({name:'Login'})
       }else{
         next()
       }
-    }*/
+    }
   },
   {
     path: '/consulterprojet/:user/:id',
     name: 'ProjetDetail',
     component: () => import( '../views/ConsulterProjet/ProjetDetail.vue'),
     props:true,
-  //  meta:{requiresAuth: true}
+    meta:{requiresAuth: true}
   },
   //----------------------- consulter publication --------------
   {
@@ -136,7 +136,7 @@ const routes = [
     path: '/creation_equipe',
     name: 'CreationEquipe',
     component: () => import( '../views/Membres/CreationEquipe.vue'),
-      /*meta:{requiresAuth: true},
+      meta:{requiresAuth: true},
       beforeEnter: (to, from, next) => {
         let user =store.state.login.user
         if (!user){
@@ -146,7 +146,7 @@ const routes = [
         }else{
           next()
         }
-      }*/
+      }
   },
   {
     path: '/consulter_equipe',
@@ -158,7 +158,7 @@ const routes = [
     path: '/projetrecherche',
     name: 'ProjetRecherche',
     component: () => import( '../views/Membres/ProjetRecherche.vue'),
-     /* meta:{requiresAuth: true},
+      meta:{requiresAuth: true},
       beforeEnter: (to, from, next) => {
         let user =store.state.login.user
         if (!user){
@@ -168,13 +168,13 @@ const routes = [
         }else{
           next()
         }
-      }*/
+      }
   },
   {
     path: '/actuel',
     name: 'Actuel',
     component: () => import( '../views/Membres/projetactual/Actuel.vue'),
-    /*meta:{requiresAuth: true},
+    meta:{requiresAuth: true},
     beforeEnter: (to, from, next) => {
       let user =store.state.login.user
       if (!user){
@@ -184,13 +184,13 @@ const routes = [
       }else{
         next()
       }
-    }*/
+    }
   },
   {
     path: '/actuel/bilan',
     name: 'Bilan',
     component: () => import( '../views/Membres/projetactual/Bilan.vue'),
-      /*meta:{requiresAuth: true},
+      meta:{requiresAuth: true},
       beforeEnter: (to, from, next) => {
       let user =store.state.login.user
       if (!user){
@@ -200,13 +200,13 @@ const routes = [
       }else{
         next()
       }
-    }*/
+    }
   },
   {
     path: '/actuel/soumission',
     name: 'SoumettreProjet',
     component: () => import( '../views/Membres/projetactual/SoumettreProjet.vue'),
-      /*meta:{requiresAuth: true},
+      meta:{requiresAuth: true},
       beforeEnter: (to, from, next) => {
       let user =store.state.login.user
       if (!user){
@@ -216,13 +216,13 @@ const routes = [
       }else{
         next()
       }
-    }*/
+    }
   },
   {
     path: '/actuel/modifier',
     name: 'ModifierProjet',
     component: () => import( '../views/Membres/projetactual/ModifierProjet.vue'),
-      /*meta:{requiresAuth: true},
+      meta:{requiresAuth: true},
       beforeEnter: (to, from, next) => {
       let user =store.state.login.user
       if (!user){
@@ -232,13 +232,13 @@ const routes = [
       }else{
         next()
       }
-    }*/
+    }
   },
   {
     path: '/actuel/ficheprojet',
     name: 'FicheProjet',
     component: () => import( '../views/Membres/projetactual/FicheProjet.vue'),
-      /*meta:{requiresAuth: true},
+      meta:{requiresAuth: true},
       beforeEnter: (to, from, next) => {
       let user =store.state.login.user
       if (!user){
@@ -248,13 +248,13 @@ const routes = [
       }else{
         next()
       }
-    }*/
+    }
   },  
   {
     path: '/actuel/consulter',
     name: 'Consulter',
     component: () => import( '../views/Membres/projetactual/Consulter.vue'),
-      /*meta:{requiresAuth: true},
+      meta:{requiresAuth: true},
       beforeEnter: (to, from, next) => {
       let user =store.state.login.user
       if (!user){
@@ -264,13 +264,13 @@ const routes = [
       }else{
         next()
       }
-    }*/
+    }
   },
   {
     path: '/actuel/contrat',
     name: 'Contrat',
     component: () => import( '../views/Membres/contrat/Contrat.vue'),
-      /*meta:{requiresAuth: true},
+      meta:{requiresAuth: true},
       beforeEnter: (to, from, next) => {
       let user =store.state.login.user
       if (!user){
@@ -280,13 +280,13 @@ const routes = [
       }else{
         next()
       }
-    }*/
+    }
   },
   {
     path: '/actuel/contrat/creer',
     name: 'CreationContrat',
     component: () => import( '../views/Membres/contrat/CreationContrat.vue'),
-      /*meta:{requiresAuth: true},
+      meta:{requiresAuth: true},
       beforeEnter: (to, from, next) => {
       let user =store.state.login.user
       if (!user){
@@ -296,13 +296,13 @@ const routes = [
       }else{
         next()
       }
-    }*/
+    }
   },
   {
     path: '/actuel/contrat/detail/:id',
     name: 'DetailContrat',
     component: () => import( '../views/Membres/contrat/DetailContrat.vue'),
-      /*meta:{requiresAuth: true},
+      meta:{requiresAuth: true},
       beforeEnter: (to, from, next) => {
       let user =store.state.login.user
       if (!user){
@@ -312,13 +312,13 @@ const routes = [
       }else{
         next()
       }
-    }*/
+    }
   },
   {
     path: '/actuel/contrat/renouvler',
     name: 'RenouvlerContrat',
     component: () => import( '../views/Membres/contrat/RenouvlerContrat.vue'),
-      /*meta:{requiresAuth: true},
+      meta:{requiresAuth: true},
       beforeEnter: (to, from, next) => {
       let user =store.state.login.user
       if (!user){
@@ -328,7 +328,7 @@ const routes = [
       }else{
         next()
       }
-    }*/
+    }
   },
   {
     path: '/login',
