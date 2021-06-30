@@ -25,7 +25,7 @@
                                 <circle cx="8" cy="8" r="8"/>
                                 </svg>
                                 <router-link :to="{name : 'Consulterprofile' ,params: {user:membre.nom +' '+ membre.prenom}}"  class="text-grey-dark text-center">
-                                     {{membre.nom}} {{membre.prenom}} {{id_équipe}}
+                                     {{membre.nom}} {{membre.prenom}} 
                                 </router-link >
                             </li>                        
                         </ul>

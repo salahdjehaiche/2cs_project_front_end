@@ -120,8 +120,14 @@ const routes = [
       //meta:{requiresAuth: true}
   },
   {
-    path: '/consulterpublication',
-    name: 'Consulterpublication',
+    path: '/visionerpublication',
+    name: 'Visionerpublication',
+    component: () => import( '../views/Publication/VisionnerPublication'),
+      //meta:{requiresAuth: true}
+  },
+  {
+    path: '/consulterpublications',
+    name: 'Consulterpublications',
     component: () => import( '../views/Publication/ConsulterPublication.vue'),
       //meta:{requiresAuth: true}
   },

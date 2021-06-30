@@ -478,7 +478,7 @@
                   </form>
                 </div>
               </div>
-                   <div class="md:col-span-1 md:border-r border-gray-300 px-2 sm:px-1" >
+              <div class="md:col-span-1 md:border-r border-gray-300 px-2 sm:px-1" >
                 <MembresEquipeCard :id_equipe="id" />
                 <!-----Delais de soumission---->
                 <div class="px-2 py-2 sm:px-0">

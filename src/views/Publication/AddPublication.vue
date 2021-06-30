@@ -1,7 +1,7 @@
 <template>
   <WelcomeLayout>
       <MainHeader :titre="'Ajouter publication'" >
-            <router-link :to="{path : '/consulterpublication'}"
+            <router-link :to="{path : '/Consulterpublications'}"
             class="text-blue-500 hover:text-blue-800 hover:font-bold"
             >  Consulter Publication
             </router-link>
@@ -69,7 +69,7 @@
                         class="mt-1 border border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm rounded-md" placeholder="Autre collaborateurs">          
                     
                     <button @click="ajouterExternCollaborateur" type="button"
-                            class="p-1 rounded-full text-white  m-2 bg-blue-500 hover:bg-blue-600 focus:outline-none focus:bg-blue-700  " >                        
+                            class="p-1 rounded text-white  m-2 bg-blue-500 hover:bg-blue-600 focus:outline-none focus:bg-blue-700  " >                        
                     
                             <svg class="h-6 w-6 fill-current" viewBox="0 0 20 20">
                                 <path d="M10,1.6c-4.639,0-8.4,3.761-8.4,8.4c0,4.639,3.761,8.4,8.4,8.4s8.4-3.761,8.4-8.4C18.4,5.361,14.639,1.6,10,1.6z M15,11h-4 v4H9v-4H5V9h4V5h2v4h4V11z"/>

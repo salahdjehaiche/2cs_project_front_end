@@ -103,9 +103,8 @@
                       </td>
                       <td class="px-6 py-4 whitespace-no-wrap">
                         <div class="text-xs leading-5 text-gray-900 text-left">
-                        
-                          <button
-                              @click="seePublication"
+                        <router-link :to="{name: 'Visionerpublication'}">
+                          <button                             
                               class="text-blue-500 hover:text-blue-800 hover:font-bold"
                             >
                               <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -114,20 +113,19 @@
                               </svg>
           
                           </button>
+                          </router-link>
                         </div>
                       </td>
                       <td class="px-6 py-4 whitespace-no-wrap">
                         <div class="text-xs leading-5 text-gray-900 text-left">
                         
-                          <button
-                              @click="downloadPublication"
+                          <a href="https://www.google.com"                             
                               class="text-blue-500 hover:text-blue-800 hover:font-bold"
                             >
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="Green">
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                            </svg>
-          
-                          </button>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+                            </svg>          
+                          </a >
                         </div>
                       </td>
                       
@@ -138,13 +136,10 @@
             </div>
           </div>
         </div>
-      </div> 
-      <div v-if="ajouter_publication ">
-        <ajouterPublication  @close="openForm" :ajouter="ajouter_publication" />
-     </div>
-     <div v-else-if="supprimer">
+      </div>     
+<!--     <div v-if="supprimer">
         <ajouterPublication  @close="downloadPublication" :supprimer="supprimer"/>
-     </div>
+     </div>-->
     </main>
   
  </WelcomeLayout>
@@ -152,7 +147,7 @@
 
 <script>
 import WelcomeLayout from '../WelcomeLayout.vue'
-import ajouterPublication  from './AjouterPublication'
+import ajouterPublication  from './VisionnerPublication.vue'
 import MainHeader from '../../components/mainHeader.vue'
 
 export default {
@@ -165,7 +160,6 @@ export default {
         return{
             supprimer:false,
             collaborateurSelection:'',
-            ajouter_publication:false,
             publications:[
                   {
                   id:1,
@@ -189,15 +183,7 @@ export default {
             dateCreation:''
         }
     },
-    methods:{
-        openForm(){
-           this.ajouter_publication =!this.ajouter_publication
-        },
-        downloadPublication(){
-          this.supprimer= !this.supprimer
-        },
-        seePublication(){
-        },
+    methods:{       
         filterpublication(){
          this.filterDate =true
          this.rechercherpublication

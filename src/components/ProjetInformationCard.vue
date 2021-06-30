@@ -31,7 +31,7 @@
             <div class="px-4 py-5 bg-white sm:p-6">
                 <div class="grid grid-cols-6 gap-6" v-for="information in projectInformations" :key="information">
                     <div class="col-span-6 sm:col-span-6 flex items-center justify-start">
-                        <div class=" text-left block text-sm font-bold text-black flex items-center m-3  ">
+                        <div class=" text-left block text-sm font-bold text-black flex items-center  ">
                             <label for="nom" class="block text-sm  text-black text-left text-md mb-3">
                                 {{information.label}}: 
                             </label>
@@ -44,8 +44,7 @@
                                 <a :href="information.url" v-text="information.nom" @click.prevent="downloadItem(information)" />                    
                             </div>
                           </div>
-                    </div>
-                        
+                    </div>  
                 </div>           
                 <TableColaboration :tableau="tablecolaboration" />                
 

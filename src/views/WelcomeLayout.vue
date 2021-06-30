@@ -32,7 +32,7 @@ export default {
     data(){
         return{
             sideBar : [
-                {name :'Consulterpublication' , label: 'Consulter Publication',herite:false},
+                {name :'Consulterpublications' , label: 'Consulter Publication',herite:false},
                 {name :'ConsulterEquipe' , label: 'Consulter Equipe',herite:false},
             ]
         }
