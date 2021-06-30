@@ -20,36 +20,16 @@
                         >
                           <div class="px-2 py-2 flex items-center">
                             <router-link :to="{name : 'CreationContrat'}">
-                            <button
-                              class="
-                                py-1
-                                px-2
-                                border border-transparent
-                                shadow-sm
-                                text-sm
-                                font-medium
-                                rounded-md
-                                text-white
-                                bg-green-400
-                                hover:bg-green-500
-                              "
+                            <button class=" py-1 px-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-400 hover:bg-green-500 "
                             >
-                            <div class="flex items-center">
-                              
-                              <svg
-                                class="h-6 w-6 fill-current mr-2"
-                                viewBox="0 0 20 20"
-                              >
-                                <path
-                                  d="M10,1.6c-4.639,0-8.4,3.761-8.4,8.4c0,4.639,3.761,8.4,8.4,8.4s8.4-3.761,8.4-8.4C18.4,5.361,14.639,1.6,10,1.6z M15,11h-4
-    v4H9v-4H5V9h4V5h2v4h4V11z"
-                                />
+                            <div class="flex items-center">                              
+                              <svg  class="h-6 w-6 fill-current mr-2"  viewBox="0 0 20 20">
+                                <path d="M10,1.6c-4.639,0-8.4,3.761-8.4,8.4c0,4.639,3.761,8.4,8.4,8.4s8.4-3.761,8.4-8.4C18.4,5.361,14.639,1.6,10,1.6z M15,11h-4 v4H9v-4H5V9h4V5h2v4h4V11z" />
                               </svg>
                               <h3>Ajouter</h3>
                             </div>
                             </button>
-                            </router-link>
-                            
+                            </router-link>                            
                           </div>
                         </div>
             </div>

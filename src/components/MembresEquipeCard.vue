@@ -1,5 +1,5 @@
 <template>
-    <div class="md:col-span-1 md:border-r border-gray-300 px-2 sm:px-1">
+    <div class="md:col-span-1  px-2 sm:px-1">
         <div class="px-2 sm:px-0">
             <div
                 class="  border border-grey-light  lg:border lg:border-grey-light  bg-white  rounded  lg:rounded  p-2  flex flex-col  justify-between  leading-normal">
@@ -24,8 +24,8 @@
                                 >
                                 <circle cx="8" cy="8" r="8"/>
                                 </svg>
-                                <router-link :to="{name : 'Consulterprofile'}"  class="text-grey-dark text-center">
-                                     {{membre.nom}} {{membre.prenom}}
+                                <router-link :to="{name : 'Consulterprofile' ,params: {user:membre.nom +' '+ membre.prenom}}"  class="text-grey-dark text-center">
+                                     {{membre.nom}} {{membre.prenom}} {{id_équipe}}
                                 </router-link >
                             </li>                        
                         </ul>
@@ -44,17 +44,12 @@ data(){
         membres:[
             {nom:'Djehaiche',prenom:'Salah'},
             {nom:'Debabza',prenom:'Idriss'},
-            {nom:'Telli',prenom:'Mohamed Khoja'},
+            {nom:'Telli',prenom:'Mohamed Khouja'},
             {nom:'Haddad',prenom:'Zineddine'},
             {nom:'Kherroubi',prenom:'Oussama'},
         ],
     }
 },
-methods:{
-    openProfile(){
-        console.log("--------profile--------")
-    }
-}
 }
 </script>
 

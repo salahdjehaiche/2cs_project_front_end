@@ -14,12 +14,14 @@ const routes = [
   component: () => import( '../views/profile/ModifierProfile.vue'),
   //  meta:{requiresAuth: true}
   },
-{
-  path: '/consulterpofile',
-  name: 'Consulterprofile',
+  {
+    path: '/consulterpofile/:user',
+    name: 'Consulterprofile',
     component: () => import( '../views/profile/ConsulterProfile.vue'),
-     // meta:{requiresAuth: true}
+    props:true,
+  //  meta:{requiresAuth: true}
   },
+
 
 //---------------------dpgr-----------------
   {
@@ -111,6 +113,12 @@ const routes = [
   //  meta:{requiresAuth: true}
   },
   //----------------------- consulter publication --------------
+  {
+    path: '/ajouterpublication',
+    name: 'ajouterpublication',
+    component: () => import( '../views/Publication/AddPublication.vue'),
+      //meta:{requiresAuth: true}
+  },
   {
     path: '/consulterpublication',
     name: 'Consulterpublication',

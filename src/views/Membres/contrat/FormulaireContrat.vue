@@ -39,7 +39,7 @@
                       <!--contrat infos-->
                       <div   class="px-2 py-2 bg-white sm:p-6 border-b">
                         <div class="grid grid-cols-6 gap-6">
-                            <div class="col-span-6 sm:col-span-4">
+                            <div class="col-span-6 sm:col-span-4" v-if="$route.name==='CreationContrat'">
                             <label
                               for="title"
                               class="block text-sm font-medium text-left text-black"
@@ -77,7 +77,7 @@
                               />
                             </div>
                           </div>
-                          <div class="col-span-6 sm:col-span-6">
+                          <div class="col-span-6 sm:col-span-6" v-if="$route.name==='CreationContrat'">
                             <label
                               for="prenom"
                               class="block text-sm font-medium text-left text-black"
@@ -95,20 +95,11 @@
                               required
                             ></textarea>
                           </div>
-                            <div class="col-span-6 sm:col-span-3">
-                            <label
-                              for="file"
-                              class="block text-sm text-left font-medium text-black"
-                              >Fichier</label
-                            >
-                            <input
-                              type="file"
-                              name="file"
-                              id="file"
-                              placeholder="Selectionner"
-                              class="mt-1 border  border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm rounded-md"
-                              required
-                            />
+                          <div class="col-span-6 sm:col-span-3" v-if="$route.name==='CreationContrat'">
+                            <label  for="file"  class="block text-sm text-left font-medium text-black"  >
+                              Fichier
+                            </label>
+                            <input  type="file"  name="file"  id="file"  placeholder="Selectionner"  class="mt-1 border  border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm rounded-md"  required/>
                           </div>
                         </div>
                       </div>    
@@ -118,14 +109,8 @@
                           class="py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700"
                         >
                           <div class="flex items-center">
-                            <svg
-                              class="h-6 w-6 fill-current mr-2"
-                              viewBox="0 0 20 20"
-                            >
-                              <path
-                                d="M10,1.6c-4.639,0-8.4,3.761-8.4,8.4c0,4.639,3.761,8.4,8.4,8.4s8.4-3.761,8.4-8.4C18.4,5.361,14.639,1.6,10,1.6z M15,11h-4
-	v4H9v-4H5V9h4V5h2v4h4V11z"
-                              />
+                            <svg class="h-6 w-6 fill-current mr-2" viewBox="0 0 20 20">
+                              <path d="M10,1.6c-4.639,0-8.4,3.761-8.4,8.4c0,4.639,3.761,8.4,8.4,8.4s8.4-3.761,8.4-8.4C18.4,5.361,14.639,1.6,10,1.6z M15,11h-4 v4H9v-4H5V9h4V5h2v4h4V11z"/>
                             </svg>
                             <h3>{{button}}</h3>
                           </div>
@@ -157,6 +142,9 @@ export default {
     saveContrat(){
       console.log(this.titre,this.date,this.detail)
     }
+  },
+  mounted(){
+    console.log(this.$route.name)
   }
 }
 </script>

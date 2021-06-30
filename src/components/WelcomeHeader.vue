@@ -58,7 +58,7 @@
           <div  :class="dropDownOpen ? '' : 'hidden'"
            class="origin-top-right absolute right-0 mt-2 w-32 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
             <!-- Active: "bg-gray-100", Not Active: "" -->
-            <router-link  :to="{name : 'Consulterprofile'}  ">
+            <router-link  :to="{name : 'Consulterprofile',params: {user:user ,id :id_équipe}}">
                 <div class="block px-2 py-2 text-sm text-gray-700 hover:bg-gray-200" role="menuitem" tabindex="-1" id="user-menu-item-0">
                     Account
                 </div>
@@ -97,6 +97,7 @@ export default {
     data() {
         return {
             dropDownOpen: false,
+            user:{nom:"djehaiche"}
         };
     },
     methods: {

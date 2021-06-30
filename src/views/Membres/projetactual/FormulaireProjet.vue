@@ -478,7 +478,28 @@
                   </form>
                 </div>
               </div>
-              <MembresEquipeCard :id_equipe="1" />
+                   <div class="md:col-span-1 md:border-r border-gray-300 px-2 sm:px-1" >
+                <MembresEquipeCard :id_equipe="id" />
+                <!-----Delais de soumission---->
+                <div class="px-2 py-2 sm:px-0">
+                  <div class="border border-grey-light  lg:border lg:border-grey-light  bg-white  rounded  lg:rounded  p-2  flex flex-col  justify-between  leading-normal">
+                    <div  class="bg-green-50 overflow-hidden shadow sm:rounded-lg">
+                      <div  class=" w-full h-8 px-1 pb-1  items-center justify-between  ">
+                        <div  class="text-center px-2 py-1 text-md  items-center">
+                          <p class="text-grey-800 font-bold">Delais de Soumission</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class=" items-center">
+                      <div class="py-2  items-center">
+                         <label for="nom" class="block text-sm italic text-black text-center ">
+                                {{dateFinSoummission}}
+                          </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -494,6 +515,7 @@ export default {
   components: { MembresEquipeCard },
 data() {
             return {
+                dateFinSoummission:"12/12/2021",
               file:null,
                 projetInformation:{
                   title:'projet1',

@@ -1,11 +1,14 @@
 <template>
 <WelcomeLayout>
-   <MainHeader :titre="'Consuler profile de '+id" >
-          <router-link :to="{path : '/consulterprofile/'+user}"
-            class="text-blue-500 hover:text-blue-800 hover:font-bold"
-            >Consulter Profile
-            </router-link>
-            <span class="text-grey-dark text-center font-bold">> </span>
+   <MainHeader :titre="'Consuler profile de '+user" >
+            <span class="text-grey-dark text-center font-bold">  
+               <a class="text-blue-500 hover:text-blue-800 hover:font-bold flex " @click="$router.go(-1)">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6" />
+                  </svg>
+              </a>         
+            </span>
+        
    </MainHeader>
 
     <main class="bg-white">
@@ -19,109 +22,7 @@
               <ProfileInformationCard :id_equipe="id" />
               <MembresEquipeCard   :id_equipe="id"/>
             </div>
-          </div>
-          <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg" v-if="user === 'dpgr'">
-            <div>
-                <div v-for="decision in decisions" :key="decision"
-                    class="w-full h-15 px-6 pb-2 flex items-center justify-start">
-                    <div class="text-left px-2 py-4 text-xl flex items-center">
-                        <p class="text-grey-800 font-bold">Décision {{decision.conseil}} :</p>
-                    </div>
-                    <div class="text-left px-2 py-4 text-xl flex items-center">
-                        <p class="text-grey-800 font-bold">{{decision.pointVue}}</p>
-                    </div>
-                </div>
-            </div>
-              <div
-                class="px-2 py-4 text-xl text-right justify-between"
-              >
-                <div class="px-6 pb-2 ">
-                  <div class="telecherger">
-                    <button @click="showmodal"
-                      id="btn"
-                      class="py-2 px-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600
-                      hover:bg-blue-600"
-                    >
-                      <div class="flex items-center">
-                        <h3>Telecherger</h3>
-                      </div>
-                    </button>
-                  </div>
-                </div>
-              </div>
-          </div>
-
-          <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg" v-if="user=== 'cs'">
-            <div class="w-full h-15 px-6 pb-2 flex items-center justify-start">
-              <div class="text-left px-2 py-4 text-xl flex items-center">
-                <p class="text-grey-800 font-bold">Décision CL :</p>
-              </div>
-              <div class="text-left px-2 py-4 text-xl flex items-center">
-                <p class="text-grey-800 font-bold">--</p>
-              </div>
-            </div>
-            <div
-              class="w-full h-15 px-6 pb-2 flex items-center justify-between"
-            >
-              <div class="text-left px-2 py-4 text-xl flex items-center">
-                <p class="text-grey-800 font-bold">Votre décision :</p>
-              </div>
-              <div
-                class="text-left px-2 py-4 text-xl flex items-center justify-between"
-              >
-                <div class="px-6 pb-2 flex items-center">
-                   <button @click="showmodalAcc"
-                    class="py-2 px-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700"
-                  >
-                    <div class="flex items-center">
-                      <h3>Accepter</h3>
-                    </div>
-                  </button>
-                </div>
-                <div class="px-6 pb-2 flex items-center">
-                   <button @click="showmodalRef"
-                    class="py-2 px-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700"
-                  >
-                    <div class="flex items-center">
-                      <h3>Refuser</h3>
-                    </div>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg" v-if="user=== 'cl'">
-            <div
-              class="w-full h-15 px-6 pb-2 flex items-center justify-between"
-            >
-              <div class="text-left px-2 py-4 text-xl flex items-center">
-                <p class="text-grey-800 font-bold">Votre décision :</p>
-              </div>
-              <div
-                class="text-left px-2 py-4 text-xl flex items-center justify-between"
-              >
-                <div class="px-6 pb-2 flex items-center">
-                   <button @click="showmodalAcc"
-                    class="py-2 px-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700"
-                  >
-                    <div class="flex items-center">
-                      <h3>Accepter</h3>
-                    </div>
-                  </button>
-                </div>
-                <div class="px-6 pb-2 flex items-center">
-                   <button @click="showmodalRef"
-                    class="py-2 px-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700"
-                  >
-                    <div class="flex items-center">
-                      <h3>Refuser</h3>
-                    </div>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
+          </div>    
         </div>
       </div>
     </main>
@@ -133,25 +34,20 @@
 </template>
 
 <script>
-import MembresEquipeCard from '../../components/chercheurCamarades.vue'
+import MembresEquipeCard from '../../components/MembresEquipeCard.vue'
 import ProfileInformationCard from '../../components/ProfileInformationCard.vue'
 import WelcomeLayout from '../WelcomeLayout.vue'
 import MainHeader from '../../components/mainHeader.vue'
 export default {
-  props :['id','user'],
+  props :['user'],
   components: { WelcomeLayout,MembresEquipeCard,ProfileInformationCard, MainHeader  },
   data(){
       return{
-        modal1:false,
-        action:'',
-        decisions:[
-            {conseil:'CL ',pointVue:'--' },
-            {conseil:'CS ',pointVue:'--' },
-        ],
+       id:'1'
       }
   },
   mounted(){
-      console.log(this.id)
+      console.log(this.user)
   }
   ,
 methods:{

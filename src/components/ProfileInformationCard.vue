@@ -39,13 +39,13 @@ export default {
       return{ 
  
      profileInformations:[
-          {label:'Nom',information:''},
-          {label:'Prénom',information:''},
-          {label:'Filière',information:''},
-          {label:'Spécialité',information:''},
-          {label:'équipe',information:''},
-    
-    
+            {label:'Nom',information:''},
+            {label:'Prénom',information:''},
+            {label:'Email',information:''},
+            {label:'Spécialité',information:''},
+            {label:'Laboratoire',information:''},
+            {label:'équipe',information:''},
+            {label:'CV',information:''},    
         ],
       }
   }
