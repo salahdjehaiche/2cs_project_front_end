@@ -28,12 +28,13 @@ const actions = {
                 if (response.status==200){                                      
                     let user_type = response.data.user_type;
                     commit('loginSuccess',response.data);
-                   
+                    if (response.data.team_id!=null)
+                    {localStorage.setItem('id_equipe',response.data.team_id)}
                      if (user_type=="MEMBRE_DPGR"){
                         router.push({name : 'GestionUtilisateur'});
                      }else if (user_type=="MEMBRE_CS"){
                          router.push({name : 'ConsulterProjetCS'});
-                     }else if (user_type=="MEMBRE_CL"){
+                     }else if (user_type=="MEMBRE_LMCS" || user_type=="MEMBRE_MCSI" ){
                          router.push({name : 'ConsulterProjetCL'});
                      }else {
                          router.push({name : 'Actuel'});

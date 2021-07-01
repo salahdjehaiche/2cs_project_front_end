@@ -20,7 +20,7 @@
                     </div>
                     <div class=" items-center">
                       <div class="py-2  items-center ">
-                        <router-link :to="{name: 'Consulter'} ">
+                        <router-link :to="{name: 'Consulter',params :{id:id_projet}} ">
                           <button type="submit"
                             class="  py-1  px-2  border border-transparent  shadow-sm  text-sm  font-medium  rounded-md  text-white  bg-blue-400  hover:bg-blue-500"
                           >
@@ -75,6 +75,7 @@ export default {
   data(){
     return{
       dateFinSoummission:"12/12/2021",
+      id_projet:'',
     }
   },
   mounted(){
@@ -92,7 +93,7 @@ export default {
             .catch(error => (console.log(error)));
 
     //------------------------------------------------------------------------
-    
+
   }
 };
 </script>

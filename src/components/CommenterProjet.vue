@@ -38,7 +38,7 @@
                 <div
                 class="flex w-full h-auto justify-center items-center rounded text-center text-gray-500"
                 >
-                <form  @submit.prevent="submit">
+                <form  @submit="submit">
                     <div class="overflow-hidden sm:rounded-md">
                     <div class="px-4 py-5 bg-white sm:p-6">
                         <div class="grid grid-cols-6 gap-6">
@@ -93,8 +93,9 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
-props:['text'],
+props:['text','decision','id','user','decisionsCL','decisionsCS'],
 data(){
     return{
         commentaire :'',
@@ -110,6 +111,33 @@ methods:{
         if(this.commentaire.length >=40 )
        {
             //----submit response -----------------//
+             let token =localStorage.getItem('token')
+             let data={projet:this.id,d_cl:'',d_cs:'',d_expert:'',avis:this.decision}
+             if(this.user=='cl') {data.d_cl=this.commentaire}
+             else if(this.user=='cs') {
+                 data.d_cl=this.decisionsCL
+                 data.d_cs=this.commentaire
+                }
+                else {
+                    data.d_cl=this.decisionsCL
+                    data.d_cs=this.decisionsCS
+                    data.d_expert=this.commentaire
+                }
+                console.log(data)
+            axios.put('http://192.168.43.213:8000/v1/api/decisions/',data,{
+            headers:{
+                "Content-Type":"application/json", 
+                'Authorization': 'Bearer '+token
+                },          
+            }).then(response => { 
+           console.log(response.data)  
+              })
+            .catch(error => (console.log(error)));
+
+
+
+           
+
             this.closemodal()
        }else {
            this.commentaireError ="le commentaire doit contenir au moins 40 caractères"

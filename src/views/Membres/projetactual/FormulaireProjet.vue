@@ -515,26 +515,25 @@ export default {
   components: { MembresEquipeCard },
 data() {
             return {
-                dateFinSoummission:"12/12/2021",
-              file:null,
-                projetInformation:{
-                  title:'projet1',
-                  research_area:'type1',                  
-                  field:'type1',
-                  speciality:'type1',
-                  title_doctrant_formation:'type1',
-                  problematic:'type1',
-                  objective:'type1',
-                  keyword:'type1',
-                  methodology:'type1',
-                  planning_work:{
-                    "année_1":'type1',
-                    "année_2":'type1',
-                    "année_3":'type1',
-                    "année_4":'type1',
-                    "resultat_attendu":'type1'
-                  },
-                  Collaborations: []
+                  dateFinSoummission:"12/12/2021",
+                  projetInformation:{
+                    title:'projet1',
+                    research_area:'type1',                  
+                    field:'type1',
+                    speciality:'type1',
+                    title_doctrant_formation:'type1',
+                    problematic:'type1',
+                    objective:'type1',
+                    keyword:'type1',
+                    methodology:'type1',
+                    planning_work:{
+                      "année_1":'type1',
+                      "année_2":'type1',
+                      "année_3":'type1',
+                      "année_4":'type1',
+                      "resultat_attendu":'type1'
+                    },
+                    Collaborations: []
                 },
                 form: {
                     title: null,
@@ -605,31 +604,27 @@ data() {
               let projet = new FormData
               //projet.append('file', this.file)
            //   projet.append('projetInformation', this.projetInformation )
-              projet.append('title','projet1')
-              projet.append('research_area','type1')
-              projet.append('field','type1')
-              projet.append('speciality','type1')
-              projet.append('title_doctrant_formation','type1')
-              projet.append('problematic','type1')
-              projet.append('objective','type1')
-              projet.append('keyword','type1')
-              projet.append('methodology','type1')
-            /*  projet.append('planning_work',{
-                                              year1:'type1',
-                                              year2:'type1',
-                                              year3:'type1',
-                                              year4:'type1',
-                                              wanted_result:'type1'
-                                            })*/
+              projet.append('title',this.projetInformation.title)
+              projet.append('research_area',this.projetInformation.research_area)
+              projet.append('field',this.projetInformation.field)
+              projet.append('speciality',this.projetInformation.speciality)
+              projet.append('title_doctrant_formation',this.projetInformation.title_doctrant_formation)
+              projet.append('problematic',this.projetInformation.problematic)
+              projet.append('objective',this.projetInformation.objective)
+              projet.append('keyword',this.projetInformation.keyword)
+              projet.append('methodology',this.projetInformation.methodology)
+              projet.append('planning_work',this.projetInformation.planning_work)
               let token =localStorage.getItem('token')
-              axios.post(`http://192.168.43.213:8000/v1/api/projects/`, projet,                      
-                {
-                  headers:{
-                    'Authorization' : `bearer ${token}`,
-                    'Content-Type': `multipart/form-data`, 
-              },    
-              }).then((res) => {console.log(res)})
-              .catch((error) => {console.log(error)})              
+              let data= this.projetInformation
+              axios({
+                    method: 'post',
+                    url: 'http://192.168.43.213:8000/v1/api/projects/',
+                    headers:{
+                        'Authorization': 'Bearer '+token
+                        },
+                    data: data
+                    }).then(response => (console.log(response.data)))
+                    .catch(error => (console.log(error)));                           
             }
         },
        

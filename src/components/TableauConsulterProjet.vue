@@ -14,12 +14,7 @@
                         class="px-6 py-3 bg-blue-50  text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
                       >
                         id_équipe
-                      </th>
-                      <th
-                        class="px-6 py-3 bg-blue-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
-                      >
-                        Chef Equipe
-                      </th>
+                      </th>                     
 
                       <th
                         class="px-6 py-3 bg-blue-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
@@ -45,28 +40,25 @@
                     </tr>
                   </thead>
                   <tbody class="bg-white divide-y divide-gray-200">
-                    <tr v-for="tab in tableau" :key="tab">
+                    <tr v-for="tab in tableaux" :key="tab">
                       <td class="px-6 py-2 whitespace-no-wrap">
                         <div class="text-sm font-bold leading-5  text-blue-600">
-                          {{tab.id_équipe}}
+                          {{tab.team}}
                         </div>
-                      </td>
+                      </td>                     
                       <td class="px-6 py-2 whitespace-no-wrap">
-                        <div class="text-xs leading-5 text-gray-900 text-left"> {{tab.chef_equipe}} </div>
-                      </td>
-                      <td class="px-6 py-2 whitespace-no-wrap">
-                        <div class="text-xs leading-5 text-gray-900 text-left">{{tab.intutilé}}</div>
+                        <div class="text-xs leading-5 text-gray-900 text-left">{{tab.title}}</div>
                       </td>
                       <td class="px-6 py-2 whitespace-normal">
-                        <div class="text-xs leading-5 text-gray-900 text-left">{{tab.date}}</div>
+                        <div class="text-xs leading-5 text-gray-900 text-left">{{tab.created_at.substr(0,10)}}</div>
                       </td>
                       <td class="px-6 py-2 whitespace-normal">
-                        <div class="text-xs leading-5 text-gray-900 text-left">{{tab.etat}}</div>
+                        <div class="text-xs leading-5 text-gray-900 text-left">en atente</div>
                       </td>
                       <td class="px-6 py-2 whitespace-normal">
                         <div class="text-xs leading-5 text-gray-900">
                           <div class="text-xs leading-5 text-gray-900">
-                          <a  href="download"
+                          <a  href="#"
                             class="text-blue-500 hover:text-blue-800 hover:font-bold"
                           >
                             <svg
@@ -82,7 +74,7 @@
                       </td>
                       <td class="px-6 py-4 whitespace-no-wrap">
                         <div class="text-xs leading-5 text-gray-900 text-left">
-                          <router-link  :to="{name:linkName.name ,params: {user:linkName.user ,id :tab.id_équipe}}"
+                          <router-link  :to="{name:linkName.name ,params: {user:linkName.user ,id :tab.id,id_team:tab.team}}"
                             class="text-blue-500 hover:text-blue-800 hover:font-bold"
                           >
                             <svg
@@ -112,26 +104,34 @@ export default {
     props:['tableau','linkName'],
     data(){
       return{
+        tableaux:null,
         projet:null
       }
     },
     methods:{
        getprojetInfo() {
-         let token =localStorage.getItem('token')
-         axios({
-            method: 'get',
-            url: 'http://192.168.43.213:8000/v1/api/projects/',
+         
+      }
+    },
+    mounted(){
+        let token =localStorage.getItem('token')
+          var data          
+          axios.get('http://192.168.43.213:8000/v1/api/projects/all',{
             headers:{
                 "Content-Type":"application/json", 
                 'Authorization': 'Bearer '+token
                 },
-            }).then(response => (this.projet= response.data))
-            .catch(error => (console.log(error)));
-      }
-    },
-    mounted(){
-        this.getprojetInfo()
-        console.log(this.linkName)
+            }).then(response => {console.log(response.data)
+            if (response.status==200){
+                data= response.data 
+                localStorage.setItem('id_projet', data.id) 
+                localStorage.setItem('team', data.team) 
+                this.tableaux=data
+                console.log(this.tableaux)
+                                                     
+              }
+            }).catch(err => console.log(err.message))
+       // console.log(this.linkName)
     }
 }
 </script>

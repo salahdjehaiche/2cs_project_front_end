@@ -82,7 +82,7 @@ const routes = [
       let user =store.state.login.user
       if (!user){
         next({name:'Login'})
-      }else if(user.user_type!="MEMBRE_CL"){
+      }else if(user.user_type!="MEMBRE_LMCS" ||user.user_type!="MEMBRE_MCSI" ){
         next({name:'Login'})
       }else{
         next()
@@ -106,7 +106,7 @@ const routes = [
     }
   },
   {
-    path: '/consulterprojet/:user/:id',
+    path: '/consulterprojet/:user/:id/:id_team',
     name: 'ProjetDetail',
     component: () => import( '../views/ConsulterProjet/ProjetDetail.vue'),
     props:true,
@@ -255,6 +255,7 @@ const routes = [
     path: '/actuel/consulter',
     name: 'Consulter',
     component: () => import( '../views/Membres/projetactual/Consulter.vue'),
+    props:true,
       meta:{requiresAuth: true},
       beforeEnter: (to, from, next) => {
       let user =store.state.login.user

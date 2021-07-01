@@ -277,7 +277,10 @@
 <script>
 import MainHeader from '../../../components/mainHeader.vue'
 import WelcomeLayout from "../../WelcomeLayout.vue";
+import axios from 'axios'
+
 export default {
+  props: ['id'],
   components: {
     WelcomeLayout,
     MainHeader
@@ -290,7 +293,7 @@ export default {
             comment:"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum",
         },
         CS: {
-            Avis:true,
+            Avis:false,
             comment:"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum",
         },
         EX: {
@@ -299,6 +302,31 @@ export default {
         },
       },
     }
+  },
+  mounted(){
+            let token =localStorage.getItem('token') 
+            const id_projet= localStorage.getItem('id_projet')
+            axios.get('http://192.168.43.213:8000/v1/api/decisions/',{params : {id:id_projet},
+            headers:{
+                "Content-Type":"application/json", 
+                'Authorization': 'Bearer '+token
+                },
+            }).then(response => {
+            if (response.status==200){
+              const commentCL=response.data.d_cl
+              const commentCS=response.data.d_cs
+              const commentexpert=response.data.d_expert
+              const avis=response.data.avis
+              this.Decision.CL.Avis= avis
+              this.Decision.CL.comment= commentCL
+              this.Decision.CS.Avis= avis
+              this.Decision.CS.comment= commentCS
+              this.Decision.EX.Avis= avis
+              this.Decision.EX.comment= commentexpert
+
+               console.log(response.data)
+            }
+            }).catch(err => console.log(err.message))
   }
 }
 </script>

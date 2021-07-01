@@ -16,7 +16,7 @@
             <div
               class="md:grid md:grid-cols-4 md:gap-6 py-2 sm:px-3 lg:px-4 bg-white rounded-md"
             >
-              <ProjetInformationCard :id_equipe="id" />   
+              <ProjetInformationCard :id_equipe="id_team" />   
              <div class="md:col-span-1 md:border-r border-gray-300 px-2 sm:px-1" >              
                  <!-----Delais de soumission---->
                 <div class="px-2 py-2 sm:px-0">
@@ -36,8 +36,7 @@
                       </div>
                     </div>
                   </div>
-                </div>         
-                <MembresEquipeCard   :id_equipe="id"/>
+                </div>                       
                 <div class="px-2 py-2 sm:px-0" v-if="user=='dpgr'">
                   <div class="border border-grey-light  lg:border lg:border-grey-light  bg-white  rounded  lg:rounded  p-2  flex flex-col  justify-between  leading-normal">
                     <div  class="bg-green-50 overflow-hidden shadow sm:rounded-lg">
@@ -132,7 +131,8 @@
 
 </WelcomeLayout>   
 <div v-if="modal1">
-  <CommenterProjet  @close="showmodal" :text="action"/>
+  <CommenterProjet  @close="showmodal" :text="action" :decisionsCL="decisionsCL"
+:decisionsCS="decisionsCS"  :decision="avis" :id="id" :user="user"/>
 </div> 
 </template>
 
@@ -142,8 +142,9 @@ import CommenterProjet from '../../components/CommenterProjet.vue'
 import ProjetInformationCard from '../../components/ProjetInformationCard.vue'
 import WelcomeLayout from '../WelcomeLayout.vue'
 import MainHeader from '../../components/mainHeader.vue'
+import axios from 'axios'
 export default {
-  props :['id','user'],
+  props :['id','id_team','user'],
   components: { WelcomeLayout,MembresEquipeCard, ProjetInformationCard,CommenterProjet, MainHeader  },
   data(){
       return{ 
@@ -151,8 +152,9 @@ export default {
         action:'',
         dateFinvalidation:'31/12/2021',       
         decisionsCL:'--' ,
-        decisionsCS:'--' ,            
-        votreDecision:'--',
+        decisionsCS:'--' , 
+        avis:false,           
+        votreDecision:'--',        
       }
   }
   ,
@@ -170,8 +172,40 @@ methods:{
     },
      showmodalAcc(){
        this.action='Accepter le Projet'
+       this.avis=true
       this.modal1=!this.modal1
     }
+  },mounted(){  
+    console.log(this.id_team)
+       let token =localStorage.getItem('token')
+            axios.get('http://192.168.43.213:8000/v1/api/decisions/',{params : {id:this.id},
+            headers:{
+                "Content-Type":"application/json", 
+                'Authorization': 'Bearer '+token
+                },
+            }).then(response => {
+            if (response.status==200){
+              const commentCL=response.data.d_cl
+              const commentCS=response.data.d_cs
+              const commentexpert=response.data.d_expert
+              const avis=response.data.avis
+              
+
+            if(this.user=='cl') {this.votreDecision=commentCL}
+             else if(this.user=='cs') {
+                this.decisionsCL=commentCL
+                this.votreDecision=commentCS
+                }
+                else {
+                  this.decisionsCL=commentCL
+              this.decisionsCS= commentCS    
+              this.votreDecision=commentexpert
+                }
+
+
+               console.log(response.data)
+            }
+            }).catch(err => console.log(err.message))
   }
 }
 </script>

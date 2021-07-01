@@ -102,9 +102,10 @@ export default {
   },
   },
   mounted(){         
+    console.log('------'+this.id_equipe)
           let token =localStorage.getItem('token') 
           var data          
-          axios.get('http://192.168.43.213:8000/v1/api/projects/',{params : {id:20},
+          axios.get('http://192.168.43.213:8000/v1/api/projects/',{params : {id:this.id_equipe},
             headers:{
                 "Content-Type":"application/json", 
                 'Authorization': 'Bearer '+token
@@ -112,7 +113,8 @@ export default {
             }).then(response => {
             if (response.status==200){
                 data= response.data 
-                console.log(data)
+                localStorage.setItem('id_projet', data.id) 
+                console.log(data.id)
                 const plandetravail =JSON.parse(data.palnning_work)
                // var plandetravail= data.palnning_work.replace('{','').replace('}','').split(',').
                 this.projectInformations =[
@@ -128,6 +130,7 @@ export default {
                         {label:'plan de travail',information: plandetravail}
                       ]
 
+                                                     
               }
             }).catch(err => console.log(err.message)) 
     },
