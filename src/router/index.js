@@ -117,19 +117,20 @@ const routes = [
     path: '/ajouterpublication',
     name: 'ajouterpublication',
     component: () => import( '../views/Publication/AddPublication.vue'),
-      //meta:{requiresAuth: true}
+      meta:{requiresAuth: true}
   },
   {
-    path: '/visionerpublication',
+    path: '/visionerpublication/:intitule/:type/:date/:detail/:collabs/:extcollab',
     name: 'Visionerpublication',
     component: () => import( '../views/Publication/VisionnerPublication'),
-      //meta:{requiresAuth: true}
+    props:true,
+      meta:{requiresAuth: true}
   },
   {
     path: '/consulterpublications',
     name: 'Consulterpublications',
     component: () => import( '../views/Publication/ConsulterPublication.vue'),
-      //meta:{requiresAuth: true}
+      meta:{requiresAuth: true}
   },
   //-----------------------------membres -------------------
     {

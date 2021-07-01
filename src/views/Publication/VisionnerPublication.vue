@@ -3,7 +3,7 @@
     <MainHeader :titre="'Publication'" >
         <router-link :to="{path : '/Consulterpublications'}"
         class="text-blue-500 hover:text-blue-800 hover:font-bold"
-        >  Consulter Publication
+        >  Consulter Publication  {{id}}
         </router-link>
         <span class="text-grey-dark text-center font-bold">> </span>
     </MainHeader>
@@ -33,7 +33,19 @@
                         </div>
                         <div class=" text-left px-1 block break-all text-sm font-medium text-black flex items-center  ">
                             <label  for="nom" class="block text-lg font-medium text-black text-left  mb-3">
-                                Titre de Publication
+                                {{intitule}}
+                            </label>                         
+                        </div>
+                    </div>
+                     <div class="col-span-6 sm:col-span-6 flex items-center justify-start">
+                        <div class=" text-left block text-sm font-bold text-black flex items-center m-3  ">
+                            <label for="nom" class="block text-lg  text-black text-left mb-3">
+                               Type de Publication: 
+                            </label>
+                        </div>
+                        <div class=" text-left px-1 block break-all text-sm font-medium text-black flex items-center  ">
+                            <label  for="nom" class="block text-lg font-medium text-black text-left  mb-3">
+                                {{type}}
                             </label>                         
                         </div>
                     </div>
@@ -46,8 +58,8 @@
                         <div v-for="collab in collaborateurs" :key="collab"
                         class="ml-6 text-left px-1 block break-all text-sm font-medium text-black flex items-center  ">
                             <router-link :to="{name : 'Consulterprofile' ,params: {user:collab.nom +' '+ collab.prenom}}"  class="text-grey-dark text-center">
-                                <label  for="nom" class="hover:text-blue-500 block text-lg font-medium text-black text-left  mb-3">
-                                    - {{collab.nom}} {{collab.prenom}} {{collab.email}}
+                                <label  for="nom" class="  block text-lg font-medium text-black text-left  mb-3">
+                                    - {{collab.nom}} 
                                 </label>                         
                             </router-link>
                         </div>
@@ -62,7 +74,20 @@
                         <div v-for="collab in Autrecollaborateurs" :key="collab"
                         class="ml-6 text-left px-1 block break-all text-sm font-medium text-black flex items-center  ">
                                 <label  for="nom" class=" block text-lg font-medium text-black text-left  mb-3">
-                                    - {{collab.nom}} {{collab.prenom}} {{collab.email}}
+                                    - {{collab.nom}}
+                                </label>                         
+                        </div>
+                    </div>
+                    <div class=" items-center">
+                        <div class=" text-left block text-sm font-bold text-black flex items-center m-3  ">
+                            <label for="nom" class="block text-lg  text-black text-left mb-3">
+                               Details: 
+                            </label>
+                        </div>
+                        <div 
+                        class="ml-6 text-left px-1 block break-all text-sm font-medium text-black flex items-center  ">
+                                <label  for="nom" class=" block text-lg font-medium text-black text-left  mb-3">
+                                  {{detail}} 
                                 </label>                         
                         </div>
                     </div>
@@ -84,7 +109,7 @@
                     <div class=" items-center">
                       <div class="py-2  items-center">
                          <label for="nom" class="block text-sm italic text-black text-center ">
-                                {{datePublication}}
+                                {{dates }}
                           </label>
                       </div>
                     </div>
@@ -143,23 +168,30 @@ export default {
     WelcomeLayout,
     MainHeader
   },
-    props: ['ajouter','supprimer'], 
+    props: ['intitule','type','date','detail','collabs','extcollab'], 
     data(){
         return{ 
-            datePublication:"12/12/2021",
-            collaborateurs:[
-                {nom:'Djehaiche ',prenom:'saleh' ,email:'hs_djehaiche@esi.dz'},
-                {nom:'Djehaiche ',prenom:'saleh' ,email:'hs_djehaiche@esi.dz'}
-            ],
-            Autrecollaborateurs:[
-                {nom:'Djehaiche ',prenom:'saleh' ,email:'hs_djehaiche@esi.dz'},
-                {nom:'Djehaiche ',prenom:'saleh' ,email:'hs_djehaiche@esi.dz'}
-            ]
+            collaborateurs:[],
+            Autrecollaborateurs:[],
+            dates: ''
         }
     },
     methods:{
         
     },
+    mounted(){
+      const coll = this.collabs.split (',')
+      const othercollab= this.extcollab.split(',')
+      for (const col in coll){
+        if (coll[col] != '')
+          {this.collaborateurs.push( {nom : coll[col]})}
+      }
+       for (const col in othercollab){
+        if (othercollab[col] != '')
+          {this.Autrecollaborateurs.push( {nom : othercollab[col]})}
+      }
+      this.dates= this.date.substring(0,10)
+    }
 }
 </script>
 

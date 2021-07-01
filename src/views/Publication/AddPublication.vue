@@ -11,7 +11,7 @@
       <div class="max-w-8xl mx-auto sm:px-6 lg:px-4">
         <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
           <div class="w-2/2 bg-white p-4  md:w-full card"  >
-            <form @submit.prevent="submit"  >     
+            <form @submit.prevent="postPublication"  >     
 
                 <div class="text-left px-2 py-4 text-lg md:flex md:items-center">
                 
@@ -21,15 +21,7 @@
                         class="mt-1 border border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm rounded-md" placeholder="Nom">
                 </div>
                 
-                
-                <div class="text-left px-2 py-4 text-lg md:flex md:items-center">
-                    
-                    <span class="text-grey-800  mr-3 md:w-1/4 ">Date</span>
-                    
-                    <input type="date" required v-model="date_creation" 
-                        class="mt-1 border border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm rounded-md" placeholder="Date">
-                
-                </div>
+              
                 
                  <div class="text-left px-2 py-4 text-lg md:flex md:items-center">
                     <p class="text-grey-800  mr-3 md:w-1/4">Type</p>
@@ -51,7 +43,7 @@
                     <select name="role" id="role" required  v-model="collaborateur" 
                     class="mt-1 border border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm rounded-md" >                     
                     
-                        <option v-for="chercheur in chercheurs" v-bind:key="chercheur">{{chercheur.nom}}</option>
+                        <option v-for="chercheur in chercheurs" v-bind:key="chercheur">{{chercheur.nom}} {{chercheur.prenom}}</option>
                     
                     </select>
                     
@@ -100,12 +92,15 @@
                     
                      </span>
                 </div>
-<div class="text-left px-2 py-4 text-lg md:flex md:items-center">
-    <p class="text-grey-800  mr-3 md:w-1/4">Détails</p>    
-</div>
-<div class="text-left px-2 py-4 text-lg md:flex md:items-center">
-<textarea v-model="detail" maxlength="300" name="detail" id="detail" rows="10" cols="80" class="mt-1 w-3/4 px-2 border border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm rounded-md" placeholder="Détail" required></textarea>
-</div>
+                
+                <div class="text-left px-2 py-4 text-lg md:flex md:items-center">
+                    <p class="text-grey-800  mr-3 md:w-1/4">Détails</p>    
+                </div>
+
+                <div class="text-left px-2 py-4 text-lg md:flex md:items-center">
+                    <textarea v-model="detail" maxlength="300" name="detail" id="detail" rows="10" cols="80" class="mt-1 w-3/4 px-2 border border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm rounded-md" placeholder="Détail" required></textarea>
+                </div>
+
                 <div class="text-center px-2 py-4 text-lg text-center">
                     <button 
                             class="focus:outline-none focus:bg-blue-700 py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white  my-2 bg-blue-500 hover:bg-blue-600 
@@ -133,6 +128,8 @@
 import MainHeader from '../../components/mainHeader.vue'
 import WelcomeLayout from "../WelcomeLayout.vue";
 import store from "../../store/index";
+import axios from 'axios'
+
 export default {    
   components: {
     WelcomeLayout,
@@ -144,17 +141,16 @@ export default {
             type:'',
             user:'',
             detail:'',
-            date_creation:'',
             collaborateur:'',
             listCollaborateurs:[],
             listexterneCollaborateurs:[],
             externeCollaborateur:'',
             chercheurs:[
-                {nom:"oussama"},
-                {nom:"salah"},
-                {nom:"rafik"},
-                {nom:"zinou"},
-                {nom:"Ahmed"},
+                {nom:"oussama",prenom :"kherroubi"},
+                {nom:"salah",prenom :"kherroubi"},
+                {nom:"rafik",prenom :"kherroubi"},
+                {nom:"zinou",prenom :"kherroubi"},
+                {nom:"Ahmed",prenom :"kherroubi"},
             ],
         }
     },
@@ -172,6 +168,35 @@ export default {
         },
         removeExterneCollabe(collab){
             this.listexterneCollaborateurs.pop(collab)
+        },
+        postPublication(){  
+            let listcollab =''
+            let listextcollab=''
+            console.log(this.listCollaborateurs)
+            for(const index in this.listCollaborateurs) {
+                listcollab += this.listCollaborateurs[index]+','
+            }    
+            for(const index in this.listexterneCollaborateurs) {
+                listextcollab += this.listexterneCollaborateurs[index]+','
+            }    
+            const data ={
+                name:this.intitule,
+                type:this.type,
+                details:this.detail,
+                collaborateur:listcollab,
+                other_collaborateur:listextcollab,                
+            }                 
+            let token =localStorage.getItem('token')
+            axios({
+                method: 'post',
+                url: 'http://192.168.43.213:8000/v1/api/publications/',
+                headers:{
+                    "Content-Type":"application/json", 
+                    'Authorization': 'Bearer '+token
+                    },
+                data: data
+                }).then(response => (console.log(response.data)))
+                .catch(error => (console.log(error)));
         },
     },
     mounted(){

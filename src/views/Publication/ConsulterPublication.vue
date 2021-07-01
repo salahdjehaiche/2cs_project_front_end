@@ -77,33 +77,30 @@
                       <th
                         class="px-6 py-3 bg-blue-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
                       > Visionner
-                      </th>
-                      <th
-                        class="px-6 py-3 bg-blue-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
-                      > Telecharger
-                      </th>
+                      </th>                   
                     </tr>
                   </thead>
                   <tbody class="bg-white divide-y divide-gray-200" v-for="publication in rechercherpublication" :key="publication">
                     <tr>
                       <td class="px-6 py-2 whitespace-no-wrap">
                         <div class="text-sm font-bold leading-5 text-left text-blue-600">
-                          {{publication.id}}
+                          {{publication.teamid}}
                         </div>
                       </td>
                       <td class="px-6 py-2 whitespace-no-wrap">
                         <div class="text-xs leading-5 text-gray-900 text-left">
-                          {{publication.intitule}}
+                          {{publication.name}}
                         </div>
                       </td>
                       <td class="px-6 py-2 whitespace-no-wrap">
                         <div class="text-xs leading-5 text-gray-900 text-left">
-                          {{publication.date_creation}}
+                          {{publication.created_at.substring(0,10)}} 
                         </div>
                       </td>
                       <td class="px-6 py-4 whitespace-no-wrap">
                         <div class="text-xs leading-5 text-gray-900 text-left">
-                        <router-link :to="{name: 'Visionerpublication'}">
+                        <router-link :to="{name: 'Visionerpublication',
+                        params:{intitule:publication.name ,type:publication.type ,date : publication.created_at,detail:publication.details ,collabs:publication.collaborateur ,extcollab:publication.other_collaborateur}}">
                           <button                             
                               class="text-blue-500 hover:text-blue-800 hover:font-bold"
                             >
@@ -115,20 +112,7 @@
                           </button>
                           </router-link>
                         </div>
-                      </td>
-                      <td class="px-6 py-4 whitespace-no-wrap">
-                        <div class="text-xs leading-5 text-gray-900 text-left">
-                        
-                          <a href="https://www.google.com"                             
-                              class="text-blue-500 hover:text-blue-800 hover:font-bold"
-                            >
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
-                            </svg>          
-                          </a >
-                        </div>
-                      </td>
-                      
+                      </td>                     
                     </tr>
                   </tbody>
                 </table>
@@ -138,7 +122,6 @@
         </div>
       </div>     
     </main>
-  {{pub}}
  </WelcomeLayout>
 </template>
 
@@ -160,23 +143,7 @@ export default {
           user:'',
             supprimer:false,
             collaborateurSelection:'',
-            publications:[
-                  {
-                  id:1,
-                  intitule:'Sujetscientifique1',
-                  date_creation:'2021-06-21',
-                  collaborteurs:'hs_debabza@esi.dz',
-                  autre_collaborateurs:'tout les membres',
-                },
-                 {
-                  id:2,
-                  intitule:'Sa',
-                  date_creation:'2021-06-22',
-                  collaborteurs:'hs_debabza@',
-                  autre_collaborateurs:'tout les membres',
-                }
-                
-            ],           
+            publications:[ ],           
             publicationFiltre: this.publication,
             filterDate:false,
             rechercher:'',
@@ -189,51 +156,32 @@ export default {
          this.filterDate =true
          this.rechercherpublication
         },
-        getpublicationInfo() {
+        async getpublicationInfo() {
          let token =localStorage.getItem('token')
-         axios({
+         this.pub = await axios({
             method: 'get',
             url: 'http://192.168.43.213:8000/v1/api/publications/',
             headers:{
                 "Content-Type":"application/json", 
                 'Authorization': 'Bearer '+token
                 },
-            }).then(response => (this.pub= response.data))
-            .catch(error => (console.log(error)));
+            })
+            this.publications=this.pub.data
         }        
     },
      mounted(){
       this.user =store.state.login.user
-      this.getpublicationInfo()
-      console.log(store.state.login.user.result)    
-        this.publicationFiltre=this.publication
-     /*     let token ="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjI0NTQzNTkwLCJqdGkiOiI2ZTUzYzFhZjA4ZjA0OWI0OTA0YzVkYTJlMTU1MGZkNyIsInVzZXJfaWQiOjE0fQ.LZ0i1OGlFa_N92RisfV81fjVn6yMWhEPNBiwBtWImdc"
-          const  headers={
-            'Authorization' : `Bearer ${token}`,
-            'Content-Type': `multipart/form-data; `
-          }
-        fetch('http://192.168.43.213:8000/v1/api/publication/all/?format=json',{ headers })
-            .then(res=> res.json())
-            .then(data => {
-              this.publication = data
-              this.publicationFiltre=this.publication            
-            })
-            .catch(err => console.log(err.message)) 
-      */},
-    updated(){
-      if(!this.ajouter_utilisateur && !this.supprimer) {
-        console.log("get publication from  database")
-        }
-    },
+      this.getpublicationInfo()               
+    },    
     computed:{
      rechercherpublication()  
       {
          
         if(this.rechercher !=''){
-          
+          console.log(this.rechercher)
           this.publicationFiltre = this.publications.filter((publication) =>{           
               const search=this.rechercher.toLowerCase()
-              const intitule = publication.intitule.toLowerCase()
+              const intitule = publication.name.toLowerCase()
               const id =publication.id.toString()
               return  (intitule.includes(search)|| id.includes(search))              
           })  
