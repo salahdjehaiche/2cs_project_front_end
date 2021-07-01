@@ -37,11 +37,13 @@
                             </label>
                         </div>
                         <div class=" text-left px-1 block break-all text-sm font-medium text-black flex items-center  ">
-                            <label v-if="information.label!='Fichier'" for="nom" class="block text-sm font-medium text-black text-left text-md mb-3">
+                            <label v-if="information.label!='plan de travail'" for="nom" class="block text-sm font-medium text-black text-left text-md mb-3">
                                 {{ information.information }}
                             </label>
-                            <div v-if="information.label==='Fichier'" class="block text-sm font-medium text-black text-left text-md mb-3 text-blue-500">
-                                <a :href="information.url" v-text="information.nom" @click.prevent="downloadItem(information)" />                    
+                            <div v-if="information.label==='plan de travail'" class="block text-sm font-medium text-black text-left text-md mb-3">
+                              <label v-for="(cs,pt) in information.information" :key="pt" for="nom" class="block text-sm font-medium text-black text-left text-md mb-3">
+                                {{ pt }}  :  {{cs}}
+                              </label>                   
                             </div>
                           </div>
                     </div>  
@@ -66,18 +68,7 @@ export default {
   data(){
       return{ 
         item:{url:'#',nom:'Fichier'},
-        projectInformations:[
-          {label:'Intitulé de projet',information:'information'},
-          {label:'Domaine de recherche',information:'information'},
-          {label:'Filière',information:'information'},
-          {label:'Spécialité',information:'information'},
-          {label:'Intitulé de la formation doctorale',information:'information'},
-          {label:'Problématique',information:'information'},
-          {label:'Mot clés',information:'information'},
-          {label:'Objectifs',information:'information'},
-          {label:'Méthodologie',information:'information'},
-          {label:'Fichier',nom:'nom fichier',url:'#'},
-        ],
+        projectInformations:[],
         tablecolaboration:[
             {
                 etablissement:'--',
@@ -108,8 +99,38 @@ export default {
         link.click()
         URL.revokeObjectURL(link.href)
       }).catch(console.error)
-  }
-}
+  },
+  },
+  mounted(){         
+          let token =localStorage.getItem('token') 
+          var data          
+          axios.get('http://192.168.43.213:8000/v1/api/projects/',{params : {id:20},
+            headers:{
+                "Content-Type":"application/json", 
+                'Authorization': 'Bearer '+token
+                },
+            }).then(response => {
+            if (response.status==200){
+                data= response.data 
+                console.log(data)
+                const plandetravail =JSON.parse(data.palnning_work)
+               // var plandetravail= data.palnning_work.replace('{','').replace('}','').split(',').
+                this.projectInformations =[
+                        {label:'Intitulé de projet',information:data.title},
+                        {label:'Domaine de recherche',information:data.research_area},
+                        {label:'Filière',information:  data.field},
+                        {label:'Spécialité',information:data.specialty},
+                        {label:'Intitulé de la formation doctorale',information:data.title_doctorant_formation},
+                        {label:'Problématique',information:data.problematic},
+                        {label:'Mot clés',information:data.keyword},
+                        {label:'Objectifs',information:data.objective},
+                        {label:'Méthodologie',information:data.methodology},
+                        {label:'plan de travail',information: plandetravail}
+                      ]
+
+              }
+            }).catch(err => console.log(err.message)) 
+    },
 }
 </script>
 

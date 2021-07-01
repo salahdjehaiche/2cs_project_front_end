@@ -528,11 +528,11 @@ data() {
                   keyword:'type1',
                   methodology:'type1',
                   planning_work:{
-                    year1:'type1',
-                    year2:'type1',
-                    year3:'type1',
-                    year4:'type1',
-                    wanted_result:'type1'
+                    "année_1":'type1',
+                    "année_2":'type1',
+                    "année_3":'type1',
+                    "année_4":'type1',
+                    "resultat_attendu":'type1'
                   },
                   Collaborations: []
                 },

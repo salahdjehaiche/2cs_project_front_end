@@ -195,7 +195,12 @@ export default {
                     'Authorization': 'Bearer '+token
                     },
                 data: data
-                }).then(response => (console.log(response.data)))
+                }).then(response =>  { 
+                if(response.status ==200 ){
+                  alert("le pubplication est ajouté avec succées ")
+                  this.$router.push({path : '/Consulterpublications'})
+                }
+              })
                 .catch(error => (console.log(error)));
         },
     },

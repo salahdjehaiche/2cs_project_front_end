@@ -64,7 +64,7 @@ import MainHeader from '../../../components/mainHeader.vue'
 import WelcomeLayout from "../../WelcomeLayout.vue";
 import ProjetInformationCard from '../../../components/ProjetInformationCard.vue'
 import MembresEquipeCard from '../../../components/MembresEquipeCard.vue';
-
+import axios from 'axios'
 export default {
   components: {
     MainHeader,
@@ -76,6 +76,23 @@ export default {
     return{
       dateFinSoummission:"12/12/2021",
     }
+  },
+  mounted(){
+      let token =localStorage.getItem('token')               
+        axios.get('http://192.168.43.213:8000/v1/api/configs/',{params : {type:'SM'},
+            headers:{
+                "Content-Type":"application/json", 
+                'Authorization': 'Bearer '+token
+                },
+            }).then(response => {
+            if (response.status==200){
+                this.dateFinSoummission=response.data[0].to_date
+              }
+            })
+            .catch(error => (console.log(error)));
+
+    //------------------------------------------------------------------------
+    
   }
 };
 </script>

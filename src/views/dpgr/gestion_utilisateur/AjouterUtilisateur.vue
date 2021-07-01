@@ -154,7 +154,7 @@ export default {
                 let token =localStorage.getItem('token')
                 axios({
                     method: 'post',
-                    url: 'http://192.168.43.213:8000/v1/api/users/',
+                    url: 'https://django-app-dpgr.herokuapp.com/v1/api/users/',
                     headers:{
                         "Content-Type":"application/json", 
                         'Authorization': 'Bearer '+token

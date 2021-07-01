@@ -154,9 +154,6 @@ export default {
         decisionsCS:'--' ,            
         votreDecision:'--',
       }
-  },
-  mounted(){
-      console.log(this.id)
   }
   ,
 methods:{

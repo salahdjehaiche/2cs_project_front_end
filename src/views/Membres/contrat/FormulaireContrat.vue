@@ -146,7 +146,12 @@ export default {
                 'Authorization': 'Bearer '+token
                 },
             data: data
-            }).then(response => (console.log(response.data)))
+            }).then(response => {       
+              if(response.status ==200 ){
+                alert("le contrat  est ajouté avec succées ")
+                this.$router.push({path : '/actuel/contrat'})
+              }
+              })
             .catch(error => (console.log(error)));            
       },
       updateContrat(){      
@@ -157,7 +162,12 @@ export default {
                 "Content-Type":"application/json", 
                 'Authorization': 'Bearer '+token
                 },          
-            }).then(response => (console.log(response.data)))
+            }).then(response => { 
+                if(response.status ==200 ){
+                  alert("le contrat  est renouvlé avec succées ")
+                  this.$router.push({path : '/actuel/contrat'})
+                }
+              })
             .catch(error => (console.log(error)));
       }
   },
