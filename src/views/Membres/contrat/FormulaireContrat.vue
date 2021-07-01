@@ -140,7 +140,7 @@ export default {
         console.log(data)
         axios({
             method: 'post',
-            url: 'http://192.168.43.213:8000/v1/api/contrats/',
+            url: 'https://django-app-dpgr.herokuapp.com/v1/api/contrats/',
             headers:{
                 "Content-Type":"application/json", 
                 'Authorization': 'Bearer '+token
@@ -157,7 +157,7 @@ export default {
       updateContrat(){      
             let token =localStorage.getItem('token')         
             const data={id:this.id , date_ren:this.date_sign} 
-            axios.put('http://192.168.43.213:8000/v1/api/contrats/',data,{
+            axios.put('https://django-app-dpgr.herokuapp.com/v1/api/contrats/',data,{
             headers:{
                 "Content-Type":"application/json", 
                 'Authorization': 'Bearer '+token

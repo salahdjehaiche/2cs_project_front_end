@@ -116,7 +116,7 @@ export default {
     mounted(){
         let token =localStorage.getItem('token')
           var data          
-          axios.get('http://192.168.43.213:8000/v1/api/projects/all',{
+          axios.get('https://django-app-dpgr.herokuapp.com/v1/api/projects/all',{
             headers:{
                 "Content-Type":"application/json", 
                 'Authorization': 'Bearer '+token

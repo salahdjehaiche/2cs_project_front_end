@@ -17,7 +17,7 @@ const actions = {
                    
             let response = await axios({
                 method: 'get',
-                url: 'http://192.168.43.213:8000/v1/api/users/auth-user',
+                url: 'https://django-app-dpgr.herokuapp.com/v1/api/users/auth-user',
                 headers:{
                     "Content-Type":"application/json",
                     'Authorization': 'Bearer '+result 

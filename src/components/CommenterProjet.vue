@@ -124,7 +124,7 @@ methods:{
                     data.d_expert=this.commentaire
                 }
                 console.log(data)
-            axios.put('http://192.168.43.213:8000/v1/api/decisions/',data,{
+            axios.put('https://django-app-dpgr.herokuapp.com/v1/api/decisions/',data,{
             headers:{
                 "Content-Type":"application/json", 
                 'Authorization': 'Bearer '+token

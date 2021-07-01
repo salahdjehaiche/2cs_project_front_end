@@ -160,7 +160,7 @@ export default {
          let token =localStorage.getItem('token')
          this.pub = await axios({
             method: 'get',
-            url: 'http://192.168.43.213:8000/v1/api/publications/',
+            url: 'https://django-app-dpgr.herokuapp.com/v1/api/publications/',
             headers:{
                 "Content-Type":"application/json", 
                 'Authorization': 'Bearer '+token

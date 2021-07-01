@@ -164,7 +164,7 @@ export default {
                     .catch(error => (console.log(error)));
         },
         deleterequest(){
-                axios.delete( 'http://192.168.43.213:8000/v1/api/users/',{params:{id: this.delete_id}}
+                axios.delete( 'https://django-app-dpgr.herokuapp.com/v1/api/users/',{params:{id: this.delete_id}}
                     ).then(response => (console.log(response.data)))
                     .catch(error => (console.log(error)));
         }

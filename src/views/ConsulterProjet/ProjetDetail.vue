@@ -178,7 +178,7 @@ methods:{
   },mounted(){  
     console.log(this.id_team)
        let token =localStorage.getItem('token')
-            axios.get('http://192.168.43.213:8000/v1/api/decisions/',{params : {id:this.id},
+            axios.get('https://django-app-dpgr.herokuapp.com/v1/api/decisions/',{params : {id:this.id},
             headers:{
                 "Content-Type":"application/json", 
                 'Authorization': 'Bearer '+token

@@ -618,7 +618,7 @@ data() {
               let data= this.projetInformation
               axios({
                     method: 'post',
-                    url: 'http://192.168.43.213:8000/v1/api/projects/',
+                    url: 'https://django-app-dpgr.herokuapp.com/v1/api/projects/',
                     headers:{
                         'Authorization': 'Bearer '+token
                         },

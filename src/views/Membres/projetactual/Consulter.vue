@@ -306,7 +306,7 @@ export default {
   mounted(){
             let token =localStorage.getItem('token') 
             const id_projet= localStorage.getItem('id_projet')
-            axios.get('http://192.168.43.213:8000/v1/api/decisions/',{params : {id:id_projet},
+            axios.get('https://django-app-dpgr.herokuapp.com/v1/api/decisions/',{params : {id:id_projet},
             headers:{
                 "Content-Type":"application/json", 
                 'Authorization': 'Bearer '+token

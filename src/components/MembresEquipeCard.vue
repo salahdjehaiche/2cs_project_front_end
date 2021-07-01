@@ -55,7 +55,7 @@ mounted(){
           const  headers={
             'Authorization' : `Bearer ${token}`,
           }
-        fetch('http://192.168.43.213:8000/v1/api/teams/',{headers})
+        fetch('https://django-app-dpgr.herokuapp.com/v1/api/teams/',{headers})
             .then(res=> res.json())
             .then(data => {
               console.log(data)

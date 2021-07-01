@@ -11,7 +11,7 @@ async function login(username, password) {
         }
         let response = await axios({
             method: 'post',
-            url: 'http://192.168.43.213:8000/api/token/',
+            url: 'https://django-app-dpgr.herokuapp.com/api/token/',
             headers:{
                 "Content-Type":"application/json", 
                 },

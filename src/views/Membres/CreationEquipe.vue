@@ -130,7 +130,7 @@ export default {
                   const data= this.listmembres
                   axios({
                     method: 'post',
-                    url: 'http://192.168.43.213:8000/v1/api/teams/',
+                    url: 'https://django-app-dpgr.herokuapp.com/v1/api/teams/',
                     headers:{
                         "Content-Type":"application/json", 
                         'Authorization': 'Bearer '+token
@@ -147,7 +147,7 @@ export default {
           const  headers={
             'Authorization' : `Bearer ${token}`,
           }
-        fetch('http://192.168.43.213:8000/v1/api/users/all/?format=json',{headers})
+        fetch('https://django-app-dpgr.herokuapp.com/v1/api/users/all/?format=json',{headers})
             .then(res=> res.json())
             .then(data => {
               this.users = data
